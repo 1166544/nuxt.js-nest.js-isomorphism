@@ -15,6 +15,9 @@
                 </ul>
             </div>
             <pre>{{ userAgent }}</pre>
+            <br/>
+            <pre>Format phone number-by server side {{ formatPhoneOnServer }}</pre>
+            <pre>Format phone number-by client side {{ formatPhoneOnClient }}</pre>
             <Visitors />
         </div>
     </div>
@@ -24,19 +27,21 @@
 import  Visitors from '~/components/com-visitors';
 
 export default {
-    asyncData({ store, route, userAgent }) {
+    asyncData({ store, route, userAgent, app }) {
         return {
-        userAgent,
-        slugs: [
-            'foo',
-            'bar',
-            'baz'
-        ]
+            // 调用插中间件返回值
+            userAgent,
+            // 调用插件时间函数
+            formatPhoneOnServer: app.$hidePhoneKeyNumber(13800138000)
         }
+    },
+    mounted() {
+        // 调用插件时间函数
+        this.formatPhoneOnClient = this.$hidePhoneKeyNumber(13900432150);
     },
     data(){
         return {
-
+            formatPhoneOnClient: ''
         }
     },
     components: {

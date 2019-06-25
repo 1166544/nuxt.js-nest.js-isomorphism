@@ -34,6 +34,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/plug-hide-phone-number.all.js' },
   ],
 
   /*
