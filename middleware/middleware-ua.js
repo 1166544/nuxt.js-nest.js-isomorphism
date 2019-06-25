@@ -10,7 +10,7 @@ export default function( context ) {
         newUaInfo = `${context.req.headers['user-agent']}  ExtClient render from Server`;
     } else {
         // 浏览器端
-        newUaInfo = `${context.req.headers['user-agent']}  ExtClient render from Client`;
+        newUaInfo = `${navigator.userAgent}  ExtClient render from Client`;
     }
 
     context.userAgent = newUaInfo;
