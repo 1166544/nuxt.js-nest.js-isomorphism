@@ -58,5 +58,10 @@ module.exports = {
   server: {
       port: 8088,
       host: '0.0.0.0'
+  },
+
+  /** regedit middlewares */
+  router: {
+      middleware: ['middleware-visitors', 'middleware-ua']
   }
 }

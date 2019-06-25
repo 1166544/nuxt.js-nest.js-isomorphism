@@ -7,24 +7,29 @@
                     non proident, sunt in culpa qui officia deserunt mollit.</span></p>
             </div>
             <div class="col-md-3 footer-grid animated wow slideInLeft">
-            <h3>Contact Info</h3>
+                <h3>Contact Info</h3>
                 <ul>
                     <li><i class="glyphicon glyphicon-map-marker"></i>1234k Avenue, 4th block, <span>New York City.</span></li>
                     <li><i class="glyphicon glyphicon-envelope"></i><a href="mailto:info@example.com">info@example.com</a></li>
                     <li><i class="glyphicon glyphicon-earphone"></i>+1234 567 567</li>
                 </ul>
             </div>
+            <Visitors />
         </div>
     </div>
 </template>
 
 <script>
+import  Visitors from '~/components/com-visitors';
 
 export default {
     data(){
         return {
 
         }
+    },
+    components: {
+        Visitors
     }
 }
 </script>

@@ -1,18 +1,18 @@
 <template>
   <div>
-    <Nav/>
+    <PartialsNav/>
     <nuxt/>
-    <Footer/>
+    <PartialsFooter/>
   </div>
 </template>
 
 <script>
-import Nav from './partials/nav';
-import Footer from './partials/footer';
+import PartialsNav from './partials/partials-nav';
+import PartialsFooter from './partials/partials-footer';
 export default {
   components: {
-    Nav,
-    Footer
+    PartialsNav,
+    PartialsFooter
   }
 }
 </script>
