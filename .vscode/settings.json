@@ -1,0 +1,10 @@
+{
+    "editor.fontSize": 14,
+    "editor.tabCompletion": "on",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "window.zoomLevel": 0.3,
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontFamily": "Menlo, Monaco, 'Courier New', monospace"
+}
