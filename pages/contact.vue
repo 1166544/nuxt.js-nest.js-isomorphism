@@ -14,6 +14,7 @@
                     <li><i class="glyphicon glyphicon-earphone"></i>+1234 567 567</li>
                 </ul>
             </div>
+            <pre>{{ userAgent }}</pre>
             <Visitors />
         </div>
     </div>
@@ -23,6 +24,16 @@
 import  Visitors from '~/components/com-visitors';
 
 export default {
+    asyncData({ store, route, userAgent }) {
+        return {
+        userAgent,
+        slugs: [
+            'foo',
+            'bar',
+            'baz'
+        ]
+        }
+    },
     data(){
         return {
 
