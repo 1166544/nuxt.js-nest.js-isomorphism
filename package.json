@@ -1,9 +1,8 @@
 {
-    "name": "nuxtjs-nestjs-starter",
+    "name": "nuxt.js-nest.js-isomorphism",
     "version": "1.0.0",
-    "description": "Starter project for nuxtjs and nestjs integrated.",
-    "author": "ColonelBundy",
-    "private": true,
+    "description": "A project for nuxtjs and nestjs integrated.",
+    "author": "James Liauw",
     "scripts": {
         "format": "prettier --write \"**/*.ts\"",
         "start": "cross-env NODE_ENV=production node dist/server/main.js",

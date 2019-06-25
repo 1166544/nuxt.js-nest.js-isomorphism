@@ -8,26 +8,26 @@ import Consola from 'consola';
 declare const module: any;
 
 async function bootstrap() {
-  const { host, port } = config.env;
+    const { host, port } = config.env;
 
-  const nuxt = await NuxtServer.getInstance().run(
-    config.dev ? !module.hot._main : true,
-  );
-  const server = await NestFactory.create(ApplicationModule);
+    const nuxt = await NuxtServer.getInstance().run(
+        config.dev ? !module.hot._main : true,
+    );
+    const server = await NestFactory.create(ApplicationModule);
 
-  server.useGlobalFilters(new NuxtFilter(nuxt));
+    server.useGlobalFilters(new NuxtFilter(nuxt));
 
-  await server.listen(port, host, () => {
-    Consola.ready({
-      message: `Server listening on http://${host}:${port}`,
-      badge: true,
+    await server.listen(port, host, () => {
+        Consola.ready({
+            message: `Server listening on http://${host}:${port}`,
+            badge: true,
+        });
     });
-  });
 
-  if (config.dev && module.hot) {
-    module.hot.accept();
-    module.hot.dispose(() => server.close());
-  }
+    if (config.dev && module.hot) {
+        module.hot.accept();
+        module.hot.dispose(() => server.close());
+    }
 }
 
 bootstrap();
