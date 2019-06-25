@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": false,
+    "removeComments": true,
+    "noLib": false,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "target": "es6",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["client/*"]
+    },
+    "types": [
+      "@types/node",
+      "@nuxt/vue-app",
+      "vuex-class-component/dist"
+    ]
+  },
+  "include": [
+    "server/**/*",
+    "client/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

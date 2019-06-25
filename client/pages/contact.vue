@@ -26,6 +26,7 @@
 <script>
 import  Visitors from '~/components/com-visitors';
 
+/** 联系方式页面 */
 export default {
     asyncData({ store, route, userAgent, app }) {
         return {

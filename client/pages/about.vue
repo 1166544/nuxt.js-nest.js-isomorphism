@@ -12,6 +12,7 @@
 </template>
 
 <script>
+/** 关于页面 */
 export default {
     head() {
         return {

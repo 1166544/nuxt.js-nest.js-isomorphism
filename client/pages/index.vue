@@ -8,7 +8,7 @@
 </template>
 
 <script>
-
+/** 首页面 */
 export default {
     head() {
         return {

@@ -80,3 +80,7 @@ dist
 # IDE
 .idea
 yarn.lock
+# Service worker
+sw.*
+
+dist

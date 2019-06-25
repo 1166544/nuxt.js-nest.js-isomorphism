@@ -10,6 +10,7 @@ npm run dev
 
 ```js
 npm run build
+npm start
 ```
 
 ## 访问
