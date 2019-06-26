@@ -1,7 +1,7 @@
 import { Nuxt } from '@nuxt/core';
 import { BundleBuilder } from '@nuxt/webpack';
 import { Builder } from '@nuxt/builder';
-import config from '../../nuxt.config';
+import config from '../../../nuxt.config';
 
 export default class NuxtServer {
     private static instance: NuxtServer;

@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { ApplicationModule } from './application.module';
-import { NuxtFilter } from './nuxt/nuxt.filter';
-import NuxtServer from './nuxt/';
+import { AppModule } from './app.module';
+import { NuxtFilter } from './modules/nuxt/nuxt.filter';
+import NuxtServer from './modules/nuxt/';
 import config from '../nuxt.config';
 import Consola from 'consola';
 
@@ -13,10 +13,10 @@ async function bootstrap() {
     const nuxt = await NuxtServer.getInstance().run(
         config.dev ? !module.hot._main : true,
     );
-    const server = await NestFactory.create(ApplicationModule);
+    const server = await NestFactory.create(AppModule);
 
     server.useGlobalFilters(new NuxtFilter(nuxt));
-
+    server.setGlobalPrefix('api');
     await server.listen(port, host, () => {
         Consola.ready({
             message: `Server listening on http://${host}:${port}`,
