@@ -19,7 +19,7 @@ export class LocalController {
     @HttpCode(HttpStatus.OK)
     @All('getHostConfig')
     public getHostConfig(): any {
-        const config = this.localService.getHostConfig();
+        const config: any = this.localService.getHostConfig();
 
         return {
             success: true,

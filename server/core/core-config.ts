@@ -1,7 +1,7 @@
 import { CoreConfigData } from './core-config-data';
 import { ENVIRONMENT } from './core-base-http-client';
-import * as ConfigDev from '../../config/config.dev';
-import * as ConfigProd from '../../config/config.prod';
+import { ConfigDev } from '../../config/config.dev';
+import { ConfigProd } from '../../config/config.prod';
 
 export class CoreConfig {
     private static _instance: CoreConfig = new CoreConfig();
@@ -48,13 +48,13 @@ export class CoreConfig {
         if (!this._configData) {
             switch (envFlag) {
                 case ENVIRONMENT.ENV_DEVELOPMENT:
-                    this._configData = new CoreConfigData(ConfigDev);
+                    this._configData = new CoreConfigData(new ConfigDev());
                     break;
                 case ENVIRONMENT.ENV_PROD:
-                    this._configData = new CoreConfigData(ConfigProd);
+                    this._configData = new CoreConfigData(new ConfigProd());
                     break;
                 default:
-                    this._configData = new CoreConfigData(ConfigProd);
+                    this._configData = new CoreConfigData(new ConfigProd());
                     break;
             }
         }
@@ -65,7 +65,7 @@ export class CoreConfig {
             process.env[ENVIRONMENT.LOCAL_STR] === ENVIRONMENT.ENV_DEVELOPMENT
         ) {
             console.log('Replace start config data.');
-            this._configData = new CoreConfigData(ConfigDev);
+            this._configData = new CoreConfigData(new ConfigDev());
             this.httpsSupport(process.env[ENVIRONMENT.LOCAL_STR]);
         }
 
