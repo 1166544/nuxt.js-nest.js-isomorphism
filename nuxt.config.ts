@@ -51,6 +51,7 @@ const config: any = {
     plugins: [
         '@/plugins/vuetify',
         '@/plugins/axiosInstance.ts',
+        { src: '~/plugins/plug-init-config.client.js', mode: 'client' },
         { src: '~/plugins/plug-hide-phone-number.all.js' },
     ],
 

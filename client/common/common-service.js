@@ -5,16 +5,21 @@ import axios from 'axios';
  * 用法文档 https://github.com/axios/axios
  */
 class CommonService {
-    constructor(optios) {
-        this.optios = optios || {};
-        this.optios.timeout = 60000;
-        this.optios.withCredentials = true;
+    constructor(options) {
+        this.options = options || {};
+        this.options.timeout = 60000;
+        this.options.withCredentials = true;
+        this.options.baseURL = '';
 
         // 服务端和本地基础地址判断
         if (process.server) {
-            options.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT }/api/getData`;
+            this.options.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT }/api/getData`;
         } else {
-            options.baseURL = '/api/getData';
+            this.options.baseURL = '/api/getData';
+
+            if (this.options.key === 'local') {
+                this.options.baseURL = '/';
+            }
         }
 
         // 创建axios实例
@@ -35,15 +40,24 @@ class CommonService {
 
         // 响应拦截
         this.apiService.interceptors.response.use(
-            response => checkResponst(response),
+            response => this.checkResponst(response),
             error => {
                 // for debug
                 console.log('err' + error);
                 const response = error.response;
 
-                return checkResponst(response);
+                return this.checkResponst(response);
             }
         );
+    }
+
+    /**
+     * 结果响应检测
+     * @param {*} response
+     */
+    checkResponst(response) {
+        // hole 检测响应头，例如401跳转等
+        return response;
     }
 
     /**

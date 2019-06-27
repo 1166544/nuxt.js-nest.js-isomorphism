@@ -1,5 +1,5 @@
 import { CoreConfig } from '../../core/core-config';
-
+import { ENVIRONMENT } from '../../core/core-base-http-client';
 /**
  * 配置文件获取服务
  *
@@ -25,7 +25,10 @@ export class LocalService {
      * @memberof LocalService
      */
     public getHostConfig(): any {
-        return this.configer.getHostConfig();
+        return {
+            config: this.configer.getHostConfig(),
+            env: process.env[ENVIRONMENT.LOCAL_STR],
+        };
     }
 
     /**

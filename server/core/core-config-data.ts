@@ -12,7 +12,6 @@ export class CoreConfigData {
      * 获取服务器基础配置
      */
     public getHostConfig(): any {
-        console.log(this.configData);
         return this.configData.getServerConfig();
     }
 

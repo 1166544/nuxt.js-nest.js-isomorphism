@@ -1,17 +1,13 @@
 import CommonService from '~/common/common-service';
-// import {
-//     serverData
-// } from '~/config/config.default';
 
 /**
  *  OPEN API服务
  */
 class ServiceApiOpen extends CommonService {
     constructor() {
-        // super({
-        //     baseConfig: serverData.apiOpen
-        // });
-        super({});
+        super({
+            key: 'apiOpen'
+        });
     }
 
     /** 获取旅游简讯 */
