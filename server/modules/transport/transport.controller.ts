@@ -5,6 +5,7 @@ import {
     HttpCode,
     Req,
     HttpStatus,
+    Res,
 } from '@nestjs/common';
 import { Routers } from '../../routers/routers';
 import { TransportService } from './transport.services';
@@ -32,9 +33,10 @@ export class TransportController extends CoreController {
      */
     @HttpCode(HttpStatus.OK)
     @All('getTransportData')
-    public async getTransportData(@Req() request) {
+    public async getTransportData(@Req() request, @Res() res) {
         const result = await this.transportService.getTransportData(request);
+        console.log('xxxxxxxxxxxx', result);
 
-        return result;
+        res.status(HttpStatus.OK).json(result);
     }
 }

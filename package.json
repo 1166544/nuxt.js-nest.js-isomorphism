@@ -6,7 +6,7 @@
     "scripts": {
         "format": "prettier --write \"**/*.ts\"",
         "start": "cross-env NODE_ENV=production node dist/server/main.js",
-        "dev": "cross-env NODE_ENV=development http_proxy=http://127.0.0.1:8888 webpack --config webpack.config.js",
+        "client:dev": "cross-env NODE_ENV=development http_proxy=http://127.0.0.1:8888 webpack --config webpack.config.js",
         "build": "cross-env NODE_ENV=production npm run clean && nuxt-ts build && tsc",
         "lint": "tslint -p tsconfig.json -c tslint.json",
         "lintfix": "tslint -p tsconfig.json --fix",

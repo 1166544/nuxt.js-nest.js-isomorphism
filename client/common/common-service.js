@@ -10,13 +10,16 @@ class CommonService {
         this.options.timeout = 60000;
         this.options.withCredentials = true;
         this.options.baseURL = '';
+        this.defaultUrl = '';
 
-        // 服务端和本地基础地址判断
         if (process.server) {
-            this.options.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT }/api/getData`;
+            // 服务端渲染请求时
+            this.options.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT }/api/transport/getTransportData`;
         } else {
-            this.options.baseURL = '/api/getData';
+            // 本地渲染请求时
+            this.options.baseURL = '/api/transport/getTransportData';
 
+            // 本地配置请求
             if (this.options.key === 'local') {
                 this.options.baseURL = '/';
             }
@@ -28,12 +31,13 @@ class CommonService {
         // 请求拦截设置
         this.apiService.interceptors.request.use(
             config => {
+                config.headers['x-key'] = this.options.key;
                 console.log('request====================================', config); // for debug
                 return config;
             },
             error => {
                 // Do something with request error
-                console.log('error=====================================', error); // for debug
+                console.log('error======================================', error); // for debug
                 Promise.reject(error);
             }
         );
@@ -43,10 +47,8 @@ class CommonService {
             response => this.checkResponst(response),
             error => {
                 // for debug
-                console.log('err' + error);
-                const response = error.response;
-
-                return this.checkResponst(response);
+                console.log('error======================================', error); // for debug
+                return this.checkResponst(error.response);
             }
         );
     }
@@ -61,10 +63,18 @@ class CommonService {
     }
 
     /**
+     * 将真正请求地址隐藏到头部
+     * @param {*} serviceUrl
+     */
+    addChannelData(serviceUrl) {
+        this.apiService.defaults.headers.common['x-url'] = serviceUrl;
+    }
+
+    /**
      * 处理REQUEST
      * @param {*} config
      */
-    reques(config) {
+    reques(config = {}) {
         return this.apiService.reques(config);
     }
 
@@ -73,8 +83,9 @@ class CommonService {
      * @param {*} url URL
      * @param {*} config 配置
      */
-    get(url, config) {
-        return this.apiService.get(url, config);
+    get(url, config = {}) {
+        this.addChannelData(url);
+        return this.apiService.get(this.defaultUrl, config);
     }
 
     /**
@@ -83,8 +94,9 @@ class CommonService {
      * @param {*} data 参数
      * @param {*} config 配置
      */
-    post(url, data, config) {
-        return this.apiService.post(url, data, config);
+    post(url, data = {}, config = {}) {
+        this.addChannelData(url);
+        return this.apiService.post(this.defaultUrl, data, config);
     }
 
     /**
@@ -92,8 +104,9 @@ class CommonService {
      * @param {*} url
      * @param {*} config
      */
-    delete(url, config) {
-        return this.apiService['delete'](url, config);
+    delete(url, config = {}) {
+        this.addChannelData(url);
+        return this.apiService['delete'](this.defaultUrl, config);
     }
 
     /**
@@ -101,8 +114,9 @@ class CommonService {
      * @param {*} url
      * @param {*} config
      */
-    head(url, config) {
-        return this.apiService.head(url, config);
+    head(url, config = {}) {
+        this.addChannelData(url);
+        return this.apiService.head(this.defaultUrl, config);
     }
 
     /**
@@ -111,7 +125,8 @@ class CommonService {
      * @param {*} data
      * @param {*} config
      */
-    put(url, data, config) {
+    put(url, data, config = {}) {
+        this.addChannelData(url);
         return this.apiService.put(url, data, config);
     }
 
@@ -122,6 +137,7 @@ class CommonService {
      * @param {*} config
      */
     patch(url, data, config) {
+        this.addChannelData(url);
         return this.apiService.patch(url, data, config);
     }
 }

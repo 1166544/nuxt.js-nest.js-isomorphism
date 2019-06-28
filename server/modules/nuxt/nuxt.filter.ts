@@ -14,22 +14,28 @@ export class NuxtFilter implements ExceptionFilter {
         this.nuxt = nuxt;
     }
 
+    /** 错误过滤 */
     public async catch(exception: HttpException, host: ArgumentsHost) {
-        const ctx = host.switchToHttp();
-        const res = ctx.getResponse();
-        const req = ctx.getRequest();
-        const status = exception.getStatus();
+        try {
+            const ctx = host.switchToHttp();
+            const res = ctx.getResponse();
+            const req = ctx.getRequest();
+            const status = exception.getStatus();
+            // console.log(exception);
 
-        if (status === 404) {
-            if (!res.headersSent) {
-                await this.nuxt.render(req, res);
+            if (status === 404) {
+                if (!res.headersSent) {
+                    await this.nuxt.render(req, res);
+                }
+            } else {
+                res.status(status).json({
+                    statusCode: status,
+                    timestamp: new Date().toISOString(),
+                    path: req.url,
+                });
             }
-        } else {
-            res.status(status).json({
-                statusCode: status,
-                timestamp: new Date().toISOString(),
-                path: req.url,
-            });
+        } catch (e) {
+            // console.log(e);
         }
     }
 }

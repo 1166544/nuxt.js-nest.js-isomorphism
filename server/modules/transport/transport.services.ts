@@ -6,12 +6,12 @@ import { LocalService } from '../local/local.services';
 /**
  * 请求 透传key
  */
-export const CHANNEL_KEY: string = 'x-channel-key';
+export const SERVICE_KEY: string = 'x-key';
 
 /**
  * 请求 透传url
  */
-export const SERVICE_URL: string = 'x-service-api';
+export const SERVICE_URL: string = 'x-url';
 
 /**
  * content-type
@@ -36,11 +36,13 @@ export class TransportService {
      * 中转
      */
     public async getTransportData(request): Promise<any> {
-        const key = request.headers[CHANNEL_KEY];
-        const url = request.headers[SERVICE_URL];
-        const contentType = request.headers[CONTENT_TYPE];
+        const key: string = request.headers[SERVICE_KEY];
+        const url: string = request.headers[SERVICE_URL];
+        const contentType: string = request.headers[CONTENT_TYPE];
         const remoteUrl: string = this.localService.getHostConfigUrlByKey(key);
         const headers: any = {};
+
+        console.log(remoteUrl, url, request.method);
 
         const requestObj: AxiosRequestConfig = {
             data: request.body,

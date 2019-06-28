@@ -41,7 +41,7 @@ export class LocalService {
     public getHostConfigUrlByKey(key: string): any {
         const config = this.configer.getHostConfig();
         if (key) {
-            return config[key].url;
+            return config[key].serverUrl;
         }
     }
 }
