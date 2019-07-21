@@ -1,3 +1,5 @@
 import { SetMetadata } from '@nestjs/common';
 
-export const Roles = (...roles: string[]) => SetMetadata('roles', roles);
+/** Roles const */
+// tslint:disable-next-line: variable-name
+export const Roles: any = (...roles: string[]): any => SetMetadata('roles', roles);
