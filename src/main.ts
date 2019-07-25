@@ -2,7 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ApplicationModule } from './app.module';
 
-/** 启动入口 */
+/** entry */
 async function bootstrap(): Promise<any> {
 	const app: any = await NestFactory.create(ApplicationModule);
 	const port: number = 8088;
