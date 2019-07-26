@@ -32,6 +32,7 @@ describe('Cats', () => {
 			});
 	});
 
+	// afterAll
 	afterAll(async () => {
 		await app.close();
 	});
