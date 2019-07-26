@@ -8,6 +8,8 @@
 	],
 	"scripts": {
 		"build": "npm run lint && tsc -p tsconfig.build.json",
+		"client": "npm run start",
+		"serve": "npm run start",
 		"start": "npm run lint && ts-node src/main.ts",
 		"prestart:prod": "npm run build",
 		"start:prod": "node dist/main.js",
