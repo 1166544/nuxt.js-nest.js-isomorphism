@@ -15,10 +15,17 @@
 		"esModuleInterop": true,
 		"moduleResolution": "node",
 		"baseUrl": "./",
+		"noImplicitAny": false,
 		"paths": {
 			"~/*": ["client/*"]
 		},
-		"types": ["@types/node", "@nuxt/vue-app", "vuex-class-component/dist"]
+		"types": [
+			"@types/node",
+			"@nuxt/vue-app",
+			"vuex-class-component/dist",
+			"@types/jasmine",
+			"@types/jest"
+		]
 	},
 	"include": ["server/**/*", "client/**/*"],
 	"exclude": ["node_modules"]
