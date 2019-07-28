@@ -7,13 +7,16 @@
 		"exclude": [
 			"e2e/*",
 			"src/*-spec.ts",
-			"e2e/*-spec.ts"
+			"e2e/*-spec.ts",
+			"server/nuxt/index.ts",
+			"nuxt.config.ts"
 		]
 	},
 	"jsRules": {
 		"no-unused-expression": true
 	},
 	"rules": {
+		"no-implicit-dependencies": false,
 		"no-inferrable-types": false,
 		"typedef": [true, "variable-declaration", "property-declaration", "arrow-call-signature", "call-signature", "parameter", "member-variable-declaration", "array-destructuring"],
 		// 禁止给类的构造函数的参数添加修饰符
@@ -235,7 +238,7 @@
 		// 定义每行代码数
 		"max-line-length": [true, 200],
 		// 禁止使用export default关键字，因为当export对象名称发生变化时，需要修改import中的对象名。https://github.com/palantir/tslint/issues/1182#issue-151780453
-		"no-default-export": true,
+		"no-default-export": false,
 
 		// 定义对齐风格
 		"align": [true, "parameters", "statements", "members", "elements"],

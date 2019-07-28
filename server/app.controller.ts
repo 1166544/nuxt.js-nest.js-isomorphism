@@ -1,9 +1,16 @@
-import { Get, Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
+/**
+ * App controller
+ *
+ * @export
+ * @class AppController
+ */
 @Controller()
 export class AppController {
+	// tslint:disable-next-line:completed-docs
 	@Get('/test')
-	test(): string {
+	public test(): string {
 		return 'Server OK.';
 	}
 }

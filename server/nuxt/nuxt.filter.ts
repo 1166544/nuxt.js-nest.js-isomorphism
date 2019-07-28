@@ -1,11 +1,18 @@
 import {
-	ExceptionFilter,
-	HttpException,
 	ArgumentsHost,
 	Catch,
+	ExceptionFilter,
+	HttpException
 } from '@nestjs/common';
 import { Nuxt } from 'nuxt';
 
+/**
+ * NUXT过滤器
+ *
+ * @export
+ * @class NuxtFilter
+ * @implements {ExceptionFilter}
+ */
 @Catch()
 export class NuxtFilter implements ExceptionFilter {
 	private readonly nuxt: Nuxt;
@@ -14,13 +21,21 @@ export class NuxtFilter implements ExceptionFilter {
 		this.nuxt = nuxt;
 	}
 
-	public async catch(exception: HttpException, host: ArgumentsHost) {
-		const ctx = host.switchToHttp();
-		const res = ctx.getResponse();
-		const req = ctx.getRequest();
-		const status = exception.getStatus();
+	/**
+	 * catch
+	 *
+	 * @param {HttpException} exception
+	 * @param {ArgumentsHost} host
+	 * @memberof NuxtFilter
+	 */
+	public async catch(exception: HttpException, host: ArgumentsHost): Promise<any> {
+		const ctx: any = host.switchToHttp();
+		const res: any = ctx.getResponse();
+		const req: any = ctx.getRequest();
+		const status: any = exception.getStatus();
+		const NUM_404: number = 404;
 
-		if (status === 404) {
+		if (status === NUM_404) {
 			if (!res.headersSent) {
 				await this.nuxt.render(req, res);
 			}
@@ -28,7 +43,7 @@ export class NuxtFilter implements ExceptionFilter {
 			res.status(status).json({
 				statusCode: status,
 				timestamp: new Date().toISOString(),
-				path: req.url,
+				path: req.url
 			});
 		}
 	}

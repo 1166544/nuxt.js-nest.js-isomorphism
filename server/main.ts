@@ -1,20 +1,27 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { ApplicationModule } from './app.module';
-import { NuxtFilter } from './nuxt/nuxt.filter';
-import NuxtServer from './nuxt/';
-import config from '../nuxt.config';
+// tslint:disable-next-line: no-implicit-dependencies
 import Consola from 'consola';
+import config from '../nuxt.config';
+import { ApplicationModule } from './app.module';
+import NuxtServer from './nuxt/';
+import { NuxtFilter } from './nuxt/nuxt.filter';
 
+// tslint:disable-next-line:completed-docs
 declare const module: any;
 
+/**
+ * bootstrap
+ *
+ */
+// tslint:disable-next-line:typedef
 async function bootstrap() {
 	const { host, port } = config.env;
 
-	const nuxt = await NuxtServer.getInstance().run(
-		config.dev ? !module.hot._main : true,
+	const nuxt: any = await NuxtServer.getInstance().run(
+		config.dev ? !module.hot._main : true
 	);
-	const server = await NestFactory.create(ApplicationModule);
+	const server: any = await NestFactory.create(ApplicationModule);
 
 	server.useGlobalFilters(new NuxtFilter(nuxt));
 	server.useGlobalPipes(new ValidationPipe());
@@ -22,7 +29,7 @@ async function bootstrap() {
 	await server.listen(port, host, () => {
 		Consola.ready({
 			message: `Server listening on http://${host}:${port}`,
-			badge: true,
+			badge: true
 		});
 	});
 
