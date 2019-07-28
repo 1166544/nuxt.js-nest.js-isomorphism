@@ -19,13 +19,7 @@
 		"paths": {
 			"~/*": ["client/*"]
 		},
-		"types": [
-			"@types/node",
-			"@nuxt/vue-app",
-			"vuex-class-component/dist",
-			"@types/jasmine",
-			"@types/jest"
-		]
+		"types": ["@types/node", "@nuxt/vue-app", "vuex-class-component/dist"]
 	},
 	"include": ["server/**/*", "client/**/*"],
 	"exclude": ["node_modules"]
