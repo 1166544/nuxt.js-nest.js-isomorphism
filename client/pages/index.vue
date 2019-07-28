@@ -32,12 +32,6 @@
                 title="contribute"
               >issue board</a>.
             </p>
-            <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-            <div class="text-xs-right">
-              <em>
-                <small>&mdash; John Leider</small>
-              </em>
-            </div>
             <hr class="my-3" />
             <a href="https://nuxtjs.org/" target="_blank">Nuxt Documentation</a>
             <br />
@@ -57,8 +51,8 @@
 import Logo from '~/components/Logo.vue';
 
 export default {
-  components: {
-    Logo,
-  },
+	components: {
+		Logo
+	}
 };
 </script>

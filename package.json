@@ -21,9 +21,7 @@
 		"start:prod": "node dist/main.js",
 		"test": "jest --config=jest.json",
 		"test:watch": "jest --watch --config=jest.json",
-		"test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage",
-		"e2e": "jest --config=e2e/jest-e2e.json --forceExit",
-		"e2e:watch": "jest --watch --config=e2e/jest-e2e.json"
+		"test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage"
 	},
 	"dependencies": {
 		"@nestjs/common": "6.5.2",
