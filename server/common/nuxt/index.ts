@@ -1,7 +1,7 @@
 import { Builder } from '@nuxt/builder';
 import { Nuxt } from '@nuxt/core';
 import { BundleBuilder } from '@nuxt/webpack';
-import config from '../../nuxt.config';
+import config from '../../../nuxt.config';
 
 /**
  * NUXT服务

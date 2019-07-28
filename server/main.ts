@@ -4,8 +4,8 @@ import { NestFactory } from '@nestjs/core';
 import Consola from 'consola';
 import config from '../nuxt.config';
 import { ApplicationModule } from './app.module';
-import NuxtServer from './nuxt/';
-import { NuxtFilter } from './nuxt/nuxt.filter';
+import NuxtServer from './common/nuxt';
+import { NuxtFilter } from './common/nuxt/nuxt.filter';
 
 // tslint:disable-next-line:completed-docs
 declare const module: any;
