@@ -1,0 +1,4 @@
+{
+	"watch": [],
+	"exec": "node dist/main.js"
+}
