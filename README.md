@@ -6,6 +6,7 @@
 ## Nuxt.js and Nest.js isomorphism project
 
 <p>Nuxt and Nest integrated, ships with vuetify.</p>
+<p>UI Frameworks base on <a href="https://vuetifyjs.com">Vuetify</a></p>
 
 
 ## Development
@@ -23,3 +24,11 @@ visit: http://localhost:8088
 ```js
 npm run build
 ```
+
+## References
+> Vuetifyjs-Material Design
+Component Framework   https://vuetifyjs.com/zh-Hans/styles/colors<br/>
+
+> Nest.js-A progressive Node.js framework for building efficient, reliable and scalable server-side applications.   https://nestjs.com/<br/>
+
+> Nuxt.js-The Vue.js Framework   https://nuxtjs.org/<br/>
