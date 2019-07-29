@@ -1,66 +1,76 @@
 <template>
-	<v-layout column justify-center align-center>
-		<v-flex xs12 sm8 md6>
-			<v-card>
-				<v-card-title class="headline">YES!</v-card-title>
-				<v-card-text>
-					<v-data-table :headers="headers" :items="friends" class="elevation-1">
-						<template v-slot:items="props">
-							<td>{{ props.item.id }}</td>
-							<td>{{ props.item.name }}</td>
-						</template>
-          			</v-data-table>
-        		</v-card-text>
-      		</v-card>
-    	</v-flex>
-  	</v-layout>
+  <v-layout column justify-center align-center>
+    <v-flex xs12 sm8 md6>
+      <v-card>
+        <v-card-title class="headline">YES!</v-card-title>
+        <v-card-text>
+          <v-data-table :headers="headers" :items="friends" class="elevation-1">
+            <template v-slot:items="props">
+              <td>{{ props.item.id }}</td>
+              <td>{{ props.item.name }}</td>
+            </template>
+          </v-data-table>
+        </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 
+/** Test class */
 @Component({})
 export default class Test extends Vue {
-	// initial data
-	msg = 123;
+	/** initial data */
+	public msg: number = 123;
 
-	get friends() {
+	/** get friends */
+	public get friends(): any {
 		return this.$vxm.root.rFriends;
 	}
 
-	headers = [
+	/** header data */
+	public headers: any = [
 		{
 			text: 'Id',
-			value: 'id',
+			value: 'id'
 		},
 		{
 			text: 'Name',
-			value: 'name',
-		},
+			value: 'name'
+		}
 	];
 
-	// lifecycle hooks
-	created() {}
+	/** lifecycle hooks */
+	public created(): void {
+		// hole
+	}
 
-	mounted() {
+	/** mounted data */
+	public mounted(): void {
 		this.$vxm.root.getFriends();
 
 		console.log('mounted :D');
 	}
 
-	fetch() {}
+	/** fetch */
+	public fetch(): void {
+		// hole
+	}
 
-	async asyncData() {
+	/** fetch data by async */
+	public async asyncData(): Promise<any> {
 		console.log('async');
 	}
 
-	// computed
-	get computedMsg() {
+	/** computed mgs */
+	public get computedMsg(): string {
 		return 'computed ' + this.msg;
 	}
 
-	// method
-	greet() {
+	/** method */
+	public greet(): void {
 		alert('greeting: ' + this.msg);
 	}
 }

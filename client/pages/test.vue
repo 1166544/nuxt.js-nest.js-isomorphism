@@ -1,61 +1,68 @@
 <template>
-	<div>
-		<span>{{ computedMsg }} - {{ msg }}</span>
-		<v-data-table :headers="headers" :items="friends" class="elevation-1">
-			<template v-slot:items="props">
-				<td>{{ props.item.id }}</td>
-				<td>{{ props.item.name }}</td>
-			</template>
-    	</v-data-table>
-  	</div>
+  <div>
+    <span>{{ computedMsg }} - {{ msg }}</span>
+    <v-data-table :headers="headers" :items="friends" class="elevation-1">
+      <template v-slot:items="props">
+        <td>{{ props.item.id }}</td>
+        <td>{{ props.item.name }}</td>
+      </template>
+    </v-data-table>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import { State } from 'vuex-class';
 
+/** 测试模块 */
 @Component({})
 export default class Test extends Vue {
-	@State friends;
+	/** friends data */
+	@State
+	public friends: any;
 
-	// initial data
-	msg = 123;
+	/** initial data msg */
+	public msg: any = 123;
 
-	headers = [
+	/** header data */
+	public headers: any = [
 		{
 			text: 'Id',
-			value: 'id',
+			value: 'id'
 		},
 		{
 			text: 'Name',
-			value: 'name',
-		},
+			value: 'name'
+		}
 	];
 
-	// lifecycle hooks
-	created() {
+	/** lifecycle hooks created */
+	public created(): void {
 		console.log('created');
 	}
 
-	mounted() {
+	/** mounted */
+	public mounted(): void {
 		console.log('mounted :D');
 	}
 
-	fetch() {
+	/** fetch */
+	public fetch(): void {
 		console.log('fetch');
 	}
 
-	async asyncData() {
+	/** fecth async data */
+	public async asyncData(): Promise<any> {
 		console.log('async');
 	}
 
-	// computed
-	get computedMsg() {
+	/** computed msg */
+	public get computedMsg(): string {
 		return 'computed ' + this.msg;
 	}
 
-	// method
-	greet() {
+	/** custom method greet */
+	public greet(): void {
 		alert('greeting: ' + this.msg);
 	}
 }
