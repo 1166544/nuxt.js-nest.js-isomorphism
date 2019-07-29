@@ -21,7 +21,7 @@ Vue.use(Vuetify, {
 		Ripple,
 	},
 	theme: {
-		primary: colors.blue.darken2,
+		primary: colors.grey,
 		accent: colors.grey.darken3,
 		secondary: colors.amber.darken3,
 		info: colors.teal.lighten1,
