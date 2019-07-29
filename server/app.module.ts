@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { CatsModule } from './cats/cats.module';
+import { CatsModule } from './modules/cats/cats.module';
 // tslint:disable-next-line: ordered-imports
 import { AppController } from './app.controller';
 

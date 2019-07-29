@@ -25,6 +25,39 @@ visit: http://localhost:8088
 npm run build
 ```
 
+## Directory Structure
+```js
+client --- The client side source code folder, write Vue.js logical
+here
+ |-------- assets
+ |-------- components
+ |-------- layouts
+ |-------- middleware
+ |-------- pages
+ |-------- plugins
+ |-------- static
+ |-------- store
+
+server --- The server side(Node.js) logical here
+ |-------- main.ts
+ |-------- app.module.ts
+ |-------- app.controller.ts
+ |-------- common
+             |--------- decorators
+             |--------- filters
+             |--------- guards
+             |--------- interceptors
+             |--------- middleware
+             |--------- nuxt
+             |--------- pipes
+ |-------- routers
+ |-------- modules
+             |--------- modeule A..
+             |--------- modeule B..
+             |--------- modeule C..
+             |--------- modeule D..
+```
+
 ## References
 > Vuetifyjs-Material Design
 Component Framework   https://vuetifyjs.com/zh-Hans/styles/colors<br/>

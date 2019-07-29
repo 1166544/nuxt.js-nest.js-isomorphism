@@ -7,11 +7,12 @@ import {
 	UseGuards,
 	UseInterceptors
 } from '@nestjs/common';
-import { Roles } from '../common/decorators/roles.decorator';
-import { RolesGuard } from '../common/guards/roles.guard';
-import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
-import { TransformInterceptor } from '../common/interceptors/transform.interceptor';
-import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
+import { Roles } from '../../common/decorators/roles.decorator';
+import { RolesGuard } from '../../common/guards/roles.guard';
+import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
+import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
+import { ParseIntPipe } from '../../common/pipes/parse-int.pipe';
+import { Routers } from './../../routers/routers';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { ICat } from './interfaces/cat.interface';
@@ -22,7 +23,7 @@ import { ICat } from './interfaces/cat.interface';
  * @export
  * @class CatsController
  */
-@Controller('cats')
+@Controller(Routers.CATS_MODULE_ROUTER)
 @UseGuards(RolesGuard)
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
 export class CatsController {
