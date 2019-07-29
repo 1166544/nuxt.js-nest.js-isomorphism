@@ -2,7 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 // tslint:disable-next-line: no-implicit-dependencies
 import Consola from 'consola';
-import config from '../nuxt.config';
+import config from '../../nuxt.config';
 import { ApplicationModule } from './app.module';
 import NuxtServer from './common/nuxt';
 import { NuxtFilter } from './common/nuxt/nuxt.filter';

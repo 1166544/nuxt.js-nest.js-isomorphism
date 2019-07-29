@@ -6,9 +6,9 @@
 	"linterOptions": {
 		"exclude": [
 			"e2e/*",
-			"server/*-spec.ts",
+			"src/server/*-spec.ts",
 			"e2e/*-spec.ts",
-			"server/nuxt/index.ts",
+			"src/server/nuxt/index.ts",
 			"nuxt.config.ts"
 		]
 	},

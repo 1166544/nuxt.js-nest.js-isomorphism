@@ -17,10 +17,10 @@
 		"baseUrl": "./",
 		"noImplicitAny": false,
 		"paths": {
-			"~/*": ["client/*"]
+			"~/*": ["src/client/*"]
 		},
 		"types": ["@types/node", "@nuxt/vue-app", "vuex-class-component/dist"]
 	},
-	"include": ["server/**/*", "client/**/*"],
+	"include": ["src/server/**/*", "src/client/**/*"],
 	"exclude": ["node_modules"]
 }

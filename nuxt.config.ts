@@ -12,7 +12,7 @@ const config: NuxtConfiguration = {
 		baseUrl: process.env.BASE_URL || 'http://localhost:8088',
 	},
 
-	srcDir: './client/',
+	srcDir: './src/client/',
 	dev: isDev,
 
 	/*

@@ -9,7 +9,7 @@
 	],
 	"scripts": {
 		"format": "prettier --write \"**/*.ts\"",
-		"start": "cross-env NODE_ENV=production node dist/server/main.js",
+		"start": "cross-env NODE_ENV=production node dist/src/server/main.js",
 		"start:dev": "npm run lint && cross-env NODE_ENV=development webpack --config webpack.config.js",
 		"build": "npm run lint && cross-env NODE_ENV=production npm run clean && nuxt build && tsc",
 		"lint": "tslint -p tsconfig.json -c tslint.json",

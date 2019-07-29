@@ -8,7 +8,7 @@
 	"transform": {
 		"^.+\\.tsx?$": "ts-jest"
 	},
-	"testRegex": "/server/.*\\.(test|spec).(ts|tsx|js)$",
-	"collectCoverageFrom": ["server/**/*.{js,jsx,tsx,ts}", "!**/node_modules/**", "!**/vendor/**"],
+	"testRegex": "/src/server/.*\\.(test|spec).(ts|tsx|js)$",
+	"collectCoverageFrom": ["src/server/**/*.{js,jsx,tsx,ts}", "!**/node_modules/**", "!**/vendor/**"],
 	"coverageReporters": ["json", "lcov"]
 }

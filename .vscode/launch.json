@@ -8,7 +8,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "Debug Nest",
-			"args": ["${workspaceFolder}/server/main.ts"],
+			"args": ["${workspaceFolder}/src/server/main.ts"],
 			"runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
 			"sourceMaps": true,
 			"cwd": "${workspaceRoot}",
