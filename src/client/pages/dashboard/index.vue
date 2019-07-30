@@ -30,10 +30,26 @@ export default class Dashboard extends Vue {
 	public tabs: any = null;
 
 	/** tab items data */
-	public tabItems: Array<any> = [
-		{ id: 1, title: 'Overview', link: 'overview' },
-		{ id: 2, title: 'Backup', link: 'backup' },
-		{ id: 3, title: 'Logs', link: 'logs' }
-	];
+	public get tabsItems(): Array<any> {
+		return [
+			{ id: 1, title: 'Overview', link: 'overview' },
+			{ id: 2, title: 'Backup', link: 'backup' },
+			{ id: 3, title: 'Logs', link: 'logs' }
+		];
+	}
+
+	/** cutomer head data */
+	public head(): any {
+		return {
+			title: 'Dashboard index page',
+			meta: [
+				{ name: 'description', content: 'summary description' },
+				{
+					name: 'keywords',
+					content: 'Nuxt.js Nest.js combine together'
+				}
+			]
+		};
+	}
 }
 </script>
