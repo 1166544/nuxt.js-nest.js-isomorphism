@@ -64,16 +64,22 @@ import { Component, Vue } from 'nuxt-property-decorator';
 	}
 })
 export default class Index extends Vue {
+	constructor() {
+		super();
+	}
+
 	/** custom head data */
-	public head: any = {
-		title: 'Isomorphism home page',
-		meta: [{ hid: 'description', name: 'description' }],
-		noscript: [{ innerHTML: 'Body No Script', body: true }],
-		script: [
-			{ src: '/head.js' },
-			{ src: '/body.js', body: true },
-			{ src: '/defer.js', defer: '' }
-		]
-	};
+	public head(): any {
+		return {
+			title: 'Isomorphism home page',
+			meta: [{ hid: 'description', name: 'some seo description' }],
+			noscript: [{ innerHTML: 'Body No Script', body: true }],
+			script: [
+				{ src: '/head.js' },
+				{ src: '/body.js', body: true },
+				{ src: '/defer.js', defer: '' }
+			]
+		};
+	}
 }
 </script>
