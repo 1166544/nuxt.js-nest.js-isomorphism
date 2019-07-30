@@ -71,7 +71,7 @@ export default class Test extends Vue {
 
 	/** method */
 	public greet(): void {
-		alert('greeting: ' + this.msg);
+		console.log('greeting: ' + this.msg);
 	}
 }
 </script>

@@ -16,6 +16,7 @@
 		"no-unused-expression": true
 	},
 	"rules": {
+		"ordered-imports": false,
 		"no-implicit-dependencies": false,
 		"no-inferrable-types": false,
 		"typedef": [true, "variable-declaration", "property-declaration", "arrow-call-signature", "call-signature", "parameter", "member-variable-declaration", "array-destructuring"],

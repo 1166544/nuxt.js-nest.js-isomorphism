@@ -44,15 +44,36 @@
         </v-card>
       </v-flex>
     </v-layout>
+
+    <!-- Custom header -->
+    <TwitterHeadCard></TwitterHeadCard>
+    <!-- Custom header -->
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import Logo from '~/components/Logo.vue';
+import TwitterHeadCard from '~/components/TwitterHeadCard.vue';
+import { Component, Vue } from 'nuxt-property-decorator';
 
-export default {
+/** Index page */
+@Component({
 	components: {
-		Logo
+		Logo,
+		TwitterHeadCard
 	}
-};
+})
+export default class Index extends Vue {
+	/** custom head data */
+	public head: any = {
+		title: 'Isomorphism home page',
+		meta: [{ hid: 'description', name: 'description' }],
+		noscript: [{ innerHTML: 'Body No Script', body: true }],
+		script: [
+			{ src: '/head.js' },
+			{ src: '/body.js', body: true },
+			{ src: '/defer.js', defer: '' }
+		]
+	};
+}
 </script>

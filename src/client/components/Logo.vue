@@ -1,14 +1,24 @@
 <template>
-	<div class="VueToNuxtLogo">
-		<div class="Triangle Triangle--two" />
-		<div class="Triangle Triangle--one" />
-		<div class="Triangle Triangle--three" />
-		<div class="Triangle Triangle--four" />
-	</div>
+  <div class="vu-to-nux-logo">
+    <div class="Triangle Triangle--two" />
+    <div class="Triangle Triangle--one" />
+    <div class="Triangle Triangle--three" />
+    <div class="Triangle Triangle--four" />
+  </div>
 </template>
 
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator';
+
+/** Logo */
+@Component({})
+export default class Logo extends Vue {
+	// hole
+}
+</script>
+
 <style>
-.VueToNuxtLogo {
+.vu-to-nux-logo {
 	display: inline-block;
 	animation: turn 2s linear forwards 1s;
 	transform: rotateX(180deg);

@@ -19,7 +19,7 @@ const config: NuxtConfiguration = {
 	 ** Headers of the page
 	 */
 	head: {
-		title: 'Nuxt and Nest bio project',
+		title: '%s - Nuxt.js bio project',
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -33,6 +33,11 @@ const config: NuxtConfiguration = {
 					'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons',
 			},
 		],
+	},
+
+	/** Render content */
+	render: {
+		ssrLog: 'collapsed'
 	},
 
 	/*

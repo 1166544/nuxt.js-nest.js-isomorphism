@@ -20,17 +20,20 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      tabs: null,
-      tabsItems: [
-        { id: 1, title: 'Overview', link: 'overview' },
-        { id: 2, title: 'Backup', link: 'backup' },
-        { id: 3, title: 'Logs', link: 'logs' },
-      ],
-    };
-  },
-};
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator';
+
+/** Dashboard class */
+@Component({})
+export default class Dashboard extends Vue {
+	/** tabs */
+	public tabs: any = null;
+
+	/** tab items data */
+	public tabItems: Array<any> = [
+		{ id: 1, title: 'Overview', link: 'overview' },
+		{ id: 2, title: 'Backup', link: 'backup' },
+		{ id: 3, title: 'Logs', link: 'logs' }
+	];
+}
 </script>
