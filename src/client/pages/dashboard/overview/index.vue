@@ -22,6 +22,10 @@ import { Component, Vue } from 'nuxt-property-decorator';
 /** Test class */
 @Component({})
 export default class Test extends Vue {
+	constructor() {
+		super();
+	}
+
 	/** initial data */
 	public msg: number = 123;
 
@@ -72,6 +76,29 @@ export default class Test extends Vue {
 	/** method */
 	public greet(): void {
 		console.log('greeting: ' + this.msg);
+	}
+
+	/** cutomer head data */
+	public head(): any {
+		return {
+			title: 'Dashboard overview',
+			meta: [
+				{ name: 'twitter:card', content: 'summary' },
+				{ name: 'twitter:site', content: '@nuxt_js' },
+				{ name: 'twitter:title', content: 'Nuxt.js Twitter Card' },
+				{
+					name: 'twitter:description',
+					content:
+						'Nuxt.js lets you handle custom headers for your app with vue-meta'
+				},
+				{
+					name: 'twitter:image',
+					content:
+						'https://avatars0.githubusercontent.com/u/23360933?v=3'
+				},
+				{ name: 'twitter:image:alt', content: 'Nuxt.js logo' }
+			]
+		};
 	}
 }
 </script>
