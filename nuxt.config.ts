@@ -19,7 +19,7 @@ const config: NuxtConfiguration = {
 	 ** Headers of the page
 	 */
 	head: {
-		title: '%s - Nuxt.js bio project',
+		title: 'Nuxt.js bio project',
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -76,7 +76,11 @@ const config: NuxtConfiguration = {
 	build: {
 		cache: true,
 		babel: {
-			plugins: ['@babel/plugin-transform-modules-commonjs'],
+			plugins: [
+				'@babel/plugin-transform-modules-commonjs',
+				["@babel/plugin-proposal-decorators", { legacy: true }],
+				["@babel/plugin-proposal-class-properties", { loose: true }]
+			],
 		},
 		transpile: ['vuetify/lib'],
 		plugins: [new VuetifyLoaderPlugin()],
