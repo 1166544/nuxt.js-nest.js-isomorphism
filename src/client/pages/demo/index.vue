@@ -27,6 +27,12 @@ const symbol: any = Symbol('DemoTest');
 	}
 })
 export default class Demo extends Vue {
+	// TODO: add following demo
+	// Vue Property Decorator
+	// Vue class component
+	// Vuex Class
+	// Nuxt Class Component
+
 	/**
 	 * 定义普通属性，相当于 data() {
 	 * 	return {
