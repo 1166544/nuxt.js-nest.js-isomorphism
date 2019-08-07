@@ -1,5 +1,12 @@
 <template>
-  <div></div>
+  <div>
+    <input v-model="msg" />
+    <p>prop: {{propMessage}}</p>
+    <p>msg: {{msg}}</p>
+    <p>helloMsg: {{helloMsg}}</p>
+    <p>computed msg: {{computedMsg}}</p>
+    <button @click="greet">Greet</button>
+  </div>
 </template>
 
 <script lang="ts">
@@ -32,6 +39,9 @@ export default class Demo extends Vue {
 	// Vue class component
 	// Vuex Class
 	// Nuxt Class Component
+
+	public msg: number = 123;
+	public helloMsg: string = `Hello, ${this.propMessage}`;
 
 	/**
 	 * 定义普通属性，相当于 data() {
@@ -88,6 +98,9 @@ export default class Demo extends Vue {
 	 * 	propD: { type: null }
 	 * }
 	 */
+	@Prop()
+	public propMessage: string;
+
 	@Prop()
 	public propA: number;
 
@@ -232,6 +245,21 @@ export default class Demo extends Vue {
 		// be navigated away from.
 		// has access to `this` component instance.
 		console.log('beforeRouteLeave called.');
+	}
+
+	/** 普通勾子函数mounted */
+	public mounted(): void {
+		this.greet();
+	}
+
+	/** get computed return string value */
+	public get computedMsg(): string {
+		return `computed ${this.msg}`;
+	}
+
+	/** 普通方法 */
+	private greet(): void {
+		console.log('greeting: ', this.msg);
 	}
 }
 </script>
