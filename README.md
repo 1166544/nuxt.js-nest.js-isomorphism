@@ -9,7 +9,7 @@
 <p>UI Frameworks base on <a href="https://vuetifyjs.com">Vuetify</a></p>
 
 
-## Development
+## 1.Development
 ```js
 npm run client
 
@@ -20,12 +20,12 @@ npm run serve
 visit: http://localhost:8088
 ```
 
-## Deploy
+## 2.Deploy
 ```js
 npm run build
 ```
 
-## Directory Structure
+## 3.Directory Structure
 ```js
 client --- The client side source code folder, write Vue.js logical
 here
@@ -58,10 +58,18 @@ server --- The server side(Node.js) logical here
              |--------- modeule D..
 ```
 
-## References
-> Vuetifyjs-Material Design
-Component Framework   https://vuetifyjs.com/zh-Hans/styles/colors<br/>
+## 4.Frameworks
+> [Vuetifyjs - Material Design Component Framework](https://vuetifyjs.com/zh-Hans/styles/colors)
 
-> Nest.js-A progressive Node.js framework for building efficient, reliable and scalable server-side applications.   https://nestjs.com/<br/>
+> [Nest.js - A progressive Node.js framework for building efficient, reliable and scalable server-side applications.](https://nestjs.com/)
 
-> Nuxt.js-The Vue.js Framework   https://nuxtjs.org/<br/>
+> [Nuxt.js - The Vue.js Framework](https://nuxtjs.org/)
+
+## 5.Plugins
+> [Nuxt-property-decorator](https://github.com/nuxt-community/nuxt-property-decorator)
+
+> [Vue class component](https://github.com/vuejs/vue-class-component)
+
+> [Vuex class](https://github.com/ktsn/vuex-class/)
+
+> [Nuxt class component](https://github.com/nuxt-community/nuxt-class-component)
