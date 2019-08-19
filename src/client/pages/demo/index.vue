@@ -17,7 +17,7 @@
 			<van-cell title="单元格" value="内容" />
 			<van-cell title="单元格" value="内容" label="描述信息" />
 			<van-skeleton title avatar :row="3" :loading="loading">
-				<div>{{ip}}</div>
+				<div>{{helloMsg}}</div>
 			</van-skeleton>
 		</van-cell-group>
 	</div>
@@ -52,9 +52,14 @@ export default class Demo extends Vue {
 	// Vue class component
 	// Vuex Class
 	// Nuxt Class Component
-
+	private loading: boolean = false;
 	public msg: number = 123;
 	public helloMsg: string = `Hello, ${this.propMessage}`;
+
+	/** show popup */
+	private showPopup(e: any): void {
+		// hole
+	}
 
 	/**
 	 * 定义普通属性，相当于 data() {
@@ -74,16 +79,16 @@ export default class Demo extends Vue {
 	 * }
 	 */
 	/** 注入属性foo */
-	@Inject()
-	public foo: string = 'foo';
+	// @Inject()
+	// public foo: string = 'foo';
 
 	/** 注入属性bar */
-	@Inject('bar')
-	public bar: string;
+	// @Inject('bar')
+	// public bar: string;
 
 	/** 注入符号symbol */
-	@Inject(symbol)
-	public symbolValue: string;
+	// @Inject(symbol)
+	// public symbolValue: string;
 	// ==========================================================================
 
 	// ============================= Model() ====================================
