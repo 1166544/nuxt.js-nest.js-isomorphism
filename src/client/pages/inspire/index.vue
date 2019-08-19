@@ -1,25 +1,21 @@
 <template>
-  <v-layout>
-    <v-flex text-xs-center>
-      <img src="/v.png" alt="Vuetify.js" class="mb-5" />
+	<div>
+		<van-row>
+			<van-col span="8">span: 8</van-col>
+			<van-col span="8">span: 8</van-col>
+			<van-col span="8">span: 8</van-col>
+		</van-row>
 
-      <input v-model="msg" />
-      <p>prop: {{propMessage}}</p>
-      <p>msg: {{msg}}</p>
-      <p>helloMsg: {{helloMsg}}</p>
-      <p>computed msg: {{computedMsg}}</p>
-      <button @click="greet">Greet</button>
+		<van-row>
+			<van-col span="4">span: 4</van-col>
+			<van-col span="10" offset="4">offset: 4, span: 10</van-col>
+			<van-col span="6">span: 6</van-col>
+		</van-row>
 
-      <blockquote class="blockquote">
-        &#8220;First, solve the problem. Then, write the code.&#8221;
-        <footer>
-          <small>
-            <em>&mdash;</em>
-          </small>
-        </footer>
-      </blockquote>
-    </v-flex>
-  </v-layout>
+		<van-row>
+			<van-col offset="12" span="12">offset: 12, span: 12</van-col>
+		</van-row>
+	</div>
 </template>
 
 <script lang="ts">

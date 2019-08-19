@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <span>{{ computedMsg }} - {{ msg }}</span>
-    <v-data-table :headers="headers" :items="friends" class="elevation-1">
-      <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
-        <td>{{ props.item.name }}</td>
-      </template>
-    </v-data-table>
-  </div>
+	<div>
+		<span>{{ computedMsg }} - {{ msg }}</span>
+		<van-button type="default" :headers="headers" :items="friends" class="elevation-1">
+			<template v-slot:items="props">
+				<div>{{ props.item.id }}</div>
+				<div>{{ props.item.name }}</div>
+			</template>
+		</van-button>
+	</div>
 </template>
 
 <script lang="ts">

@@ -1,19 +1,30 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <v-card>
-        <v-card-title class="headline">YES!</v-card-title>
-        <v-card-text>
-          <v-data-table :headers="headers" :items="friends" class="elevation-1">
-            <template v-slot:items="props">
-              <td>{{ props.item.id }}</td>
-              <td>{{ props.item.name }}</td>
-            </template>
-          </v-data-table>
-        </v-card-text>
-      </v-card>
-    </v-flex>
-  </v-layout>
+	<div>
+		<!-- fade in  -->
+		<transition name="van-fade">
+			<div v-show="visible">Fade</div>
+		</transition>
+
+		<!-- slide up -->
+		<transition name="van-slide-up">
+			<div v-show="visible">Slide Up</div>
+		</transition>
+
+		<!-- slide down -->
+		<transition name="van-slide-down">
+			<div v-show="visible">Slide Down</div>
+		</transition>
+
+		<!-- slide left -->
+		<transition name="van-slide-left">
+			<div v-show="visible">Slide Left</div>
+		</transition>
+
+		<!-- slide right -->
+		<transition name="van-slide-right">
+			<div v-show="visible">Slide Right</div>
+		</transition>
+	</div>
 </template>
 
 <script lang="ts">

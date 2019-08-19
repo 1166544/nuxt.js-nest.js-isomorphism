@@ -1,23 +1,11 @@
 <template>
-  <div>
-    <v-toolbar dense tabs color="primary" dark>
-      <v-toolbar-title class="pl-2">Dashboard</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-tabs v-model="tabs" color="transparent" slider-color="white" slot="extension">
-        <v-tab v-for="tabsItem in tabsItems" :key="tabsItem.id" :to="tabsItem.link">
-          <span class="pl-2 pr-2">{{ tabsItem.title }}</span>
-        </v-tab>
-      </v-tabs>
-    </v-toolbar>
-
-    <v-container>
-      <v-layout row>
-        <v-flex xs12 md8 offset-md2>
-          <nuxt-child />
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </div>
+	<div>
+		<van-button type="default">Default</van-button>
+		<van-button type="primary">Primary</van-button>
+		<van-button type="info">Info</van-button>
+		<van-button type="danger">Danger</van-button>
+		<van-button type="warning">Warning</van-button>
+	</div>
 </template>
 
 <script lang="ts">
