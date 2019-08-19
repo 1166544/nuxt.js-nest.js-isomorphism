@@ -1,12 +1,26 @@
 <template>
-  <div>
-    <input v-model="msg" />
-    <p>prop: {{propMessage}}</p>
-    <p>msg: {{msg}}</p>
-    <p>helloMsg: {{helloMsg}}</p>
-    <p>computed msg: {{computedMsg}}</p>
-    <button @click="greet">Greet</button>
-  </div>
+	<div>
+		<input v-model="msg" />
+		<p>prop: {{propMessage}}</p>
+		<p>msg: {{msg}}</p>
+		<p>helloMsg: {{helloMsg}}</p>
+		<p>computed msg: {{computedMsg}}</p>
+		<button @click="greet">Greet</button>
+		<van-button size="small" type="default">默认按钮</van-button>
+		<van-button size="small" type="primary">主要按钮</van-button>
+		<van-button size="small" type="info">信息按钮</van-button>
+		<van-button size="small" type="warning">警告按钮</van-button>
+		<van-button type="danger">危险按钮</van-button>
+		<van-button type="primary" @click="showPopup">展示弹出层</van-button>
+
+		<van-cell-group>
+			<van-cell title="单元格" value="内容" />
+			<van-cell title="单元格" value="内容" label="描述信息" />
+			<van-skeleton title avatar :row="3" :loading="loading">
+				<div>{{ip}}</div>
+			</van-skeleton>
+		</van-cell-group>
+	</div>
 </template>
 
 <script lang="ts">
@@ -21,7 +35,6 @@ import {
 	Emit
 } from 'nuxt-property-decorator';
 import TwitterHeadCard from '~/components/TwitterHeadCard.vue';
-import { setTimeout } from 'timers';
 
 /** 测试用SYMBOL */
 const symbol: any = Symbol('DemoTest');

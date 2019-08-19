@@ -1,5 +1,4 @@
 import NuxtConfiguration from '@nuxt/config';
-import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin';
 import nodeExternals from 'webpack-node-externals';
 const isDev = !(process.env.NODE_ENV === 'production');
 
@@ -22,16 +21,11 @@ const config: NuxtConfiguration = {
 		title: 'Nuxt.js bio project',
 		meta: [
 			{ charset: 'utf-8' },
-			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
+			{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=0' },
 			{ hid: 'description', name: 'description', content: 'meta description' },
 		],
 		link: [
 			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-			{
-				rel: 'stylesheet',
-				href:
-					'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons',
-			},
 		],
 	},
 
@@ -53,28 +47,51 @@ const config: NuxtConfiguration = {
 	/*
 	 ** Plugins to load before mounting the App
 	 */
-	plugins: ['@/plugins/vuetify', '@/plugins/axiosInstance.ts'],
+	plugins: [
+		{
+			src: '~/plugins/vant.js',
+			ssr: true
+		},
+		{
+			src: '~/assets/amfe-flexible.js',
+			ssr: false
+		}
+	],
 
 	/*
 	 ** Nuxt.js modules
 	 */
 	modules: [
-		// Doc: https://axios.nuxtjs.org/usage
-		'@nuxtjs/axios',
+		'@nuxtjs/axios', // Doc: https://axios.nuxtjs.org/usage
 	],
 	/*
 	 ** Axios module configuration
 	 */
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
-		debug: isDev,
+		// debug: isDev,
+		proxy: false
 	},
-
+	/*
+	 ** Axios proxy configuration
+	 */
+	proxy: [
+		['http://127.0.0.1:8888', { changeOrigin: false, ws: false }]
+	],
 	/*
 	 ** Build configuration
 	 */
 	build: {
 		cache: true,
+		postcss: {
+			// 添加插件名称作为键，参数作为值,使用npm或yarn安装它们
+			plugins: {
+				'postcss-pxtorem': {
+					rootValue: 37.5,
+					propList: ['*']
+				}
+			}
+		},
 		babel: {
 			plugins: [
 				'@babel/plugin-transform-modules-commonjs',
@@ -82,12 +99,9 @@ const config: NuxtConfiguration = {
 				["@babel/plugin-proposal-class-properties", { loose: true }]
 			],
 		},
-		transpile: ['vuetify/lib'],
-		plugins: [new VuetifyLoaderPlugin()],
+		transpile: [],
+		plugins: [],
 		loaders: {
-			stylus: {
-				import: ['~assets/style/variables.styl'],
-			},
 		},
 		/*
 		 ** You can extend webpack config here
@@ -96,7 +110,7 @@ const config: NuxtConfiguration = {
 			if (process.server) {
 				config.externals = [
 					nodeExternals({
-						whitelist: [/^vuetify/],
+						whitelist: [/^vant/],
 					}),
 				];
 			}

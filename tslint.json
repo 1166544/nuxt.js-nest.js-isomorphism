@@ -39,7 +39,7 @@
 		// 指定类成员的排序规则
 		"member-ordering": false,
 		// 强制方法注释
-		"completed-docs": [true, "enums", "functions", "methods", "classes", "interfaces", "namespaces", "types", "variables"],
+		"completed-docs": [true, "enums", "functions", "methods", "classes", "interfaces", "namespaces", "types"],
 		// 方法RETURN 前必须有空行
 		"newline-before-return": true,
 		// 禁止将 this 赋值给其他变量，除非是解构赋值
@@ -237,7 +237,7 @@
 		// 定义每个文件代码行数
 		"max-file-line-count": [true, 500],
 		// 定义每行代码数
-		"max-line-length": [true, 200],
+		"max-line-length": [true, 500],
 		// 禁止使用export default关键字，因为当export对象名称发生变化时，需要修改import中的对象名。https://github.com/palantir/tslint/issues/1182#issue-151780453
 		"no-default-export": false,
 
