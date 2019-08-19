@@ -37,11 +37,13 @@ export default class Test extends Vue {
 		super();
 	}
 
+	public visible: boolean = true;
+
 	/** initial data */
 	public msg: number = 123;
 
 	/** get friends */
-	public get friends(): any {
+	public friends(): any {
 		return this.$vxm.root.rFriends;
 	}
 
@@ -64,7 +66,7 @@ export default class Test extends Vue {
 
 	/** mounted data */
 	public mounted(): void {
-		this.$vxm.root.getFriends();
+		// this.$vxm.root.getFriends();
 
 		console.log('mounted :D');
 	}
@@ -80,7 +82,7 @@ export default class Test extends Vue {
 	}
 
 	/** computed mgs */
-	public get computedMsg(): string {
+	public computedMsg(): string {
 		return 'computed ' + this.msg;
 	}
 
