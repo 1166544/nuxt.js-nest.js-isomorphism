@@ -5,8 +5,7 @@
 
 ## Nuxt.js and Nest.js isomorphism project
 
-<p>Nuxt and Nest integrated, ships with vuetify.</p>
-<p>UI Frameworks base on <a href="https://vuetifyjs.com">Vuetify</a></p>
+<p>Nuxt and Nest integrated, ships with Vant.</p>
 
 
 ## 1.Development

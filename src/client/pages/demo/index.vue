@@ -52,6 +52,10 @@ export default class Demo extends Vue {
 	// Vue class component
 	// Vuex Class
 	// Nuxt Class Component
+	// https://youzan.github.io/vant/#/en-US/demo
+	// https://github.com/youzan/vant-demo/blob/master/base/src/App.vue
+
+
 	private loading: boolean = false;
 	public msg: number = 123;
 	public helloMsg: string = `Hello, ${this.propMessage}`;
