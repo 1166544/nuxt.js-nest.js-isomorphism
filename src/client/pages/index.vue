@@ -34,7 +34,7 @@ import Logo from '~/components/Logo.vue';
 import TwitterHeadCard from '~/components/TwitterHeadCard.vue';
 import { Component, Vue } from 'nuxt-property-decorator';
 
-/** Index page */
+/** 首页 */
 @Component({
 	components: {
 		Logo,
