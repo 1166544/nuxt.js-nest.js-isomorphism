@@ -16,7 +16,13 @@
 			:disabled="!checkedGoods.length"
 			button-text="结算"
 			@submit="onSubmit"
-		/>
+		>
+			<span slot="tip">
+				总共
+				<span>{{checkedGoods.length}}</span>
+				件，商品
+			</span>
+		</van-submit-bar>
 	</div>
 </template>
 
