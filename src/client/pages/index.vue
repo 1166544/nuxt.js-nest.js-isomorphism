@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<img src="https://hellorfimg.zcool.cn/preview260/650151028.jpg" class="user-poster" />
+		<img
+			class="user-poster"
+			src="https://img.yzcdn.cn/public_files/2017/10/23/8690bb321356070e0b8c4404d087f8fd.png"
+		/>
 
 		<van-row class="user-links">
 			<van-col span="6">
@@ -25,6 +28,10 @@
 			<van-cell icon="points" title="我的积分" is-link />
 			<van-cell icon="gold-coin-o" title="我的优惠券" is-link />
 			<van-cell icon="gift-o" title="我的礼物" is-link />
+			<van-cell class="cell-line" icon="shopping-cart-o" title="我的购物车" is-link>
+				<div class="badge">2</div>
+			</van-cell>
+			<van-cell icon="coupon-o" title="我的货品" is-link />
 		</van-cell-group>
 	</div>
 </template>
@@ -85,5 +92,24 @@ export default class Index extends Vue {
       font-size: 24px;
     }
   }
+}
+
+/deep/ .cell-line {
+  .van-cell__value {
+    flex: none;
+    margin-top: 3px;
+  }
+}
+
+.badge {
+  background-color: red;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  line-height: 18px;
+  margin: 0 3px 0 0;
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
 }
 </style>
