@@ -55,10 +55,8 @@ export default class Demo extends Vue {
 	// https://youzan.github.io/vant/#/en-US/demo
 	// https://github.com/youzan/vant-demo/blob/master/base/src/App.vue
 
-
 	private loading: boolean = false;
 	public msg: number = 123;
-	public helloMsg: string = `Hello, ${this.propMessage}`;
 
 	/** show popup */
 	private showPopup(e: any): void {
@@ -122,6 +120,7 @@ export default class Demo extends Vue {
 	 */
 	@Prop()
 	public propMessage: string;
+	public helloMsg: string = `Hello, ${this.propMessage}`;
 
 	@Prop()
 	public propA: number;
@@ -252,12 +251,14 @@ export default class Demo extends Vue {
 	/** promise emit */
 	@Emit()
 	public promise(): Promise<any> {
-		return new Promise((resolve: any, reject: any): any => {
-			const NUM_20: number = 20;
-			setTimeout(() => {
-				resolve(NUM_20);
-			}, 0);
-		});
+		return new Promise(
+			(resolve: any, reject: any): any => {
+				const NUM_20: number = 20;
+				setTimeout(() => {
+					resolve(NUM_20);
+				}, 0);
+			}
+		);
 	}
 	// ==========================================================================
 

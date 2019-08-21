@@ -10,8 +10,18 @@ import {
 	Toast,
 	Skeleton,
 	List,
+	Tag,
 	PullRefresh,
 	NavBar,
+	Checkbox,
+	CheckboxGroup,
+	Card,
+	SubmitBar,
+	Swipe,
+	SwipeItem,
+	GoodsAction,
+	GoodsActionIcon,
+	GoodsActionButton
 } from 'vant';
 
 import 'vant/lib/index.css';
@@ -22,8 +32,22 @@ Vue.use(Cell).use(CellGroup);
 Vue.use(Icon);
 Vue.use(Row).use(Col);
 Vue.use(Dialog);
-Vue.use(Toast);
 Vue.use(Skeleton);
 Vue.use(List);
 Vue.use(PullRefresh);
 Vue.use(NavBar);
+Vue.use(Tag);
+Vue.use(Col);
+Vue.use(Icon);
+Vue.use(Cell);
+Vue.use(CellGroup);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
+Vue.use(GoodsAction);
+Vue.use(GoodsActionIcon);
+Vue.use(GoodsActionButton);
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
+Vue.use(Card);
+Vue.use(SubmitBar);
+Vue.use(Toast);

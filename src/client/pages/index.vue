@@ -29,7 +29,7 @@
 			<van-cell icon="gold-coin-o" title="我的优惠券" is-link />
 			<van-cell icon="gift-o" title="我的礼物" is-link />
 			<van-cell class="cell-line" icon="shopping-cart-o" title="我的购物车" is-link @click="gotoCart">
-				<div class="badge">2</div>
+				<div v-if="count > 0" class="badge">{{ count }}</div>
 			</van-cell>
 			<van-cell icon="coupon-o" title="我的货品" is-link @click="gotoGoods" />
 		</van-cell-group>
@@ -41,6 +41,7 @@ import Logo from '~/components/Logo.vue';
 import TwitterHeadCard from '~/components/TwitterHeadCard.vue';
 import { Component, Vue } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
+import { axios } from '~/plugins/axiosInstance';
 
 /** 首页 */
 @Component({
@@ -50,8 +51,25 @@ import Routers from '~/routers/routers';
 	}
 })
 export default class Index extends Vue {
+	/** 购物篮数量 */
+	private count: number = 0;
+
 	constructor() {
 		super();
+	}
+
+	/** ssr模拟远程调用，填充store */
+	public async asyncData({ params }: any): Promise<any> {
+		// const data: any = await axios.get('/carts.json');
+		// const count: number = data.data.total;
+		// const count: number = 3;
+		// return { count };
+	}
+
+	/** 生命周期mounted */
+	public mounted(): void {
+		this.$vxm.carts.getCartsListFromAsync();
+		this.count = this.$vxm.carts.cartsList.length;
 	}
 
 	/** custom head data */

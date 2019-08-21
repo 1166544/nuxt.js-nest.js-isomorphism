@@ -33,7 +33,7 @@
 
 		<van-goods-action>
 			<van-goods-action-icon icon="chat-o" @click="noneMethod">客服</van-goods-action-icon>
-			<van-goods-action-icon icon="cart-o" @click="onClickCart">购物车</van-goods-action-icon>
+			<van-goods-action-icon icon="cart-o" @click="onClickCart">购物车{{ cartsCount }}</van-goods-action-icon>
 			<van-goods-action-button type="warning" @click="noneMethod">加入购物车</van-goods-action-button>
 			<van-goods-action-button type="danger" @click="noneMethod">立即购买</van-goods-action-button>
 		</van-goods-action>
@@ -41,42 +41,17 @@
 </template>
 
 <script lang="ts">
-import Logo from '~/components/Logo.vue';
 import { Component, Vue } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
 
-import {
-	Tag,
-	Col,
-	Icon,
-	Cell,
-	CellGroup,
-	Swipe,
-	Toast,
-	SwipeItem,
-	GoodsAction,
-	GoodsActionIcon,
-	GoodsActionButton
-} from 'vant';
-
 /** 产品页 */
 @Component({
-	components: {
-		Logo,
-		[Tag.name]: Tag,
-		[Col.name]: Col,
-		[Icon.name]: Icon,
-		[Cell.name]: Cell,
-		[CellGroup.name]: CellGroup,
-		[Swipe.name]: Swipe,
-		[Toast.name]: Toast,
-		[SwipeItem.name]: SwipeItem,
-		[GoodsAction.name]: GoodsAction,
-		[GoodsActionIcon.name]: GoodsActionIcon,
-		[GoodsActionButton.name]: GoodsActionButton
-	}
+	components: {}
 })
 export default class Index extends Vue {
+	/** 购物篮数量 */
+	private cartsCount: number = 0;
+
 	constructor() {
 		super();
 	}
@@ -92,6 +67,11 @@ export default class Index extends Vue {
 			'https://img.yzcdn.cn/public_files/2017/10/24/1791ba14088f9c2be8c610d0a6cc0f93.jpeg'
 		]
 	};
+
+	/** 生命周期mounted */
+	public mounted(): void {
+		this.cartsCount = this.$vxm.carts.cartsList.length;
+	}
 
 	/** 自定义SEO头部数据 */
 	public head(): any {

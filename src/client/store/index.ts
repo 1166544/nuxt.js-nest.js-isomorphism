@@ -1,21 +1,25 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { root, RootStore } from './root';
+import { root, RootStore } from './modules/root';
+import { carts, CartsStore } from './modules/carts';
 
 Vue.use(Vuex);
 
 /** store */
 export const store: any = new Vuex.Store({
 	modules: {
-		root
+		root,
+		carts
 	}
 });
 
+/** 注册store实例 */
 Vue.prototype.$vxm = {
-	root: RootStore.CreateProxy(store, RootStore)
+	root: RootStore.CreateProxy(store, RootStore),
+	carts: RootStore.CreateProxy(store, CartsStore)
 };
 
-/** declear */
+/** 定义接口格式用于TS语法提示 */
 declare module 'vue/types/vue' {
 
 	/** define vue interface */
@@ -23,6 +27,7 @@ declare module 'vue/types/vue' {
 	interface Vue {
 		$vxm: {
 			root: RootStore;
+			carts: CartsStore;
 		};
 	}
 }
