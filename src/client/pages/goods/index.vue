@@ -33,7 +33,7 @@
 
 		<van-goods-action>
 			<van-goods-action-icon icon="chat-o" @click="noneMethod">客服</van-goods-action-icon>
-			<van-goods-action-icon icon="cart-o" @click="onClickCart">购物车{{ cartsCount }}</van-goods-action-icon>
+			<van-goods-action-icon icon="cart-o" :info="cartsCount" @click="onClickCart">购物车</van-goods-action-icon>
 			<van-goods-action-button type="warning" @click="noneMethod">加入购物车</van-goods-action-button>
 			<van-goods-action-button type="danger" @click="noneMethod">立即购买</van-goods-action-button>
 		</van-goods-action>

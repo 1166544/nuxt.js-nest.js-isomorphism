@@ -65,7 +65,6 @@ export class CartsStore extends VuexModule {
 	 */
 	@action()
 	public async getCartsListFromAsync(): Promise<any> {
-		console.log('data');
 		// const data: any = await axios.get('/carts.json');
 
 		// test
