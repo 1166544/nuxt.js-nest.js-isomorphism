@@ -65,10 +65,14 @@ export class CartsStore extends VuexModule {
 	 */
 	@action()
 	public async getCartsListFromAsync(): Promise<any> {
-		// console.log(data);
+		console.log('data');
 		// const data: any = await axios.get('/carts.json');
 
 		// test
+		if (this.cartsListSource.length) {
+
+			return {};
+		}
 		const data: any = [{
 			id: '1',
 			title: '进口香蕉',
