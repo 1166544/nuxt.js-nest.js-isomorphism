@@ -28,10 +28,10 @@
 			<van-cell icon="points" title="我的积分" is-link />
 			<van-cell icon="gold-coin-o" title="我的优惠券" is-link />
 			<van-cell icon="gift-o" title="我的礼物" is-link />
-			<van-cell class="cell-line" icon="shopping-cart-o" title="我的购物车" is-link>
+			<van-cell class="cell-line" icon="shopping-cart-o" title="我的购物车" is-link @click="gotoCart">
 				<div class="badge">2</div>
 			</van-cell>
-			<van-cell icon="coupon-o" title="我的货品" is-link />
+			<van-cell icon="coupon-o" title="我的货品" is-link @click="gotoGoods" />
 		</van-cell-group>
 	</div>
 </template>
@@ -40,6 +40,7 @@
 import Logo from '~/components/Logo.vue';
 import TwitterHeadCard from '~/components/TwitterHeadCard.vue';
 import { Component, Vue } from 'nuxt-property-decorator';
+import Routers from '~/routers/routers';
 
 /** 首页 */
 @Component({
@@ -65,6 +66,16 @@ export default class Index extends Vue {
 				{ src: '/defer.js', defer: '' }
 			]
 		};
+	}
+
+	/** 跳转至购物车页 */
+	private gotoCart(): void {
+		this.$router.push(Routers.CART_PAGE);
+	}
+
+	/** 跳转至商品页 */
+	private gotoGoods(): void {
+		this.$router.push(Routers.GOODS_PAGE);
 	}
 }
 </script>

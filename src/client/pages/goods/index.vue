@@ -43,6 +43,8 @@
 <script lang="ts">
 import Logo from '~/components/Logo.vue';
 import { Component, Vue } from 'nuxt-property-decorator';
+import Routers from '~/routers/routers';
+
 import {
 	Tag,
 	Col,
@@ -112,7 +114,7 @@ export default class Index extends Vue {
 
 	/** 点击路由跳转 */
 	private onClickCart(e: any): void {
-		this.$router.push('cart');
+		this.$router.push(Routers.CART_PAGE);
 	}
 
 	/** 空方法处理 */
