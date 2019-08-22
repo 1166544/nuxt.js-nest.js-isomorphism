@@ -55,7 +55,7 @@ import { Toast } from 'vant';
 	}
 })
 export default class Index extends Vue {
-	/** 购物篮数量 */
+	/** 购物车数量 */
 	private cartsCount: number = 0;
 	private headerTitle: string = '';
 	private headerData: any = {

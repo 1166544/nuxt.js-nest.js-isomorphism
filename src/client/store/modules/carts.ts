@@ -7,7 +7,7 @@ import {
 import { ICarts, CartsVO } from '~/models/carts';
 
 /**
- * 购物篮Store定义
+ * 购物车Store定义
  *
  * @export
  * @class CartsStore
@@ -17,7 +17,7 @@ import { ICarts, CartsVO } from '~/models/carts';
 export class CartsStore extends VuexModule {
 
 	/**
-	 * 购物篮物品总数
+	 * 购物车物品总数
 	 *
 	 * @type {Array<ICarts>}
 	 * @memberof CartsStore
@@ -25,7 +25,7 @@ export class CartsStore extends VuexModule {
 	private cartsListSource: Array<ICarts> = [];
 
 	/**
-	 * 获取购物篮物品数量
+	 * 获取购物车物品数量
 	 *
 	 * @readonly
 	 * @type {*}
@@ -36,7 +36,18 @@ export class CartsStore extends VuexModule {
 	}
 
 	/**
-	 * 设置购物篮物品数量
+	 * 获取购物车数量
+	 *
+	 * @readonly
+	 * @type {number}
+	 * @memberof CartsStore
+	 */
+	public get cartsNum(): number {
+		return this.cartsListSource.length;
+	}
+
+	/**
+	 * 设置购物车物品数量
 	 *
 	 * @param {*} friends
 	 * @memberof CartsStore
@@ -47,7 +58,7 @@ export class CartsStore extends VuexModule {
 	}
 
 	/**
-	 * 更新购物篮列表
+	 * 更新购物车列表
 	 *
 	 * @param {Array<ICarts>} cartsList
 	 * @memberof CartsStore
@@ -58,7 +69,7 @@ export class CartsStore extends VuexModule {
 	}
 
 	/**
-	 * 异步获取购物篮物品数量,例如调用接口
+	 * 异步获取购物车物品数量,例如调用接口
 	 *
 	 * @returns {Promise<any>}
 	 * @memberof CartsStore

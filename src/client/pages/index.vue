@@ -51,7 +51,7 @@ import { axios } from '~/plugins/axiosInstance';
 	}
 })
 export default class Index extends Vue {
-	/** 购物篮数量 */
+	/** 购物车数量 */
 	private count: number = 0;
 
 	constructor() {

@@ -15,7 +15,7 @@ export interface IVO {
 }
 
 /**
- * 购物篮数据结构
+ * 购物车数据结构
  *
  * @export
  * @interface ICarts
@@ -30,7 +30,7 @@ export interface ICarts extends IVO {
 }
 
 /**
- * 购物篮VO
+ * 购物车VO
  *
  * @export
  * @class CartsVO
