@@ -34,7 +34,7 @@
 
 		<van-goods-action>
 			<van-goods-action-icon icon="chat-o" @click="noneMethod">客服</van-goods-action-icon>
-			<van-goods-action-icon icon="cart-o" :info="cartsCount" @click="onClickCart">购物车</van-goods-action-icon>
+			<van-goods-action-icon icon="cart-o" :info="this.$vxm.carts.cartsNum" @click="onClickCart">购物车</van-goods-action-icon>
 			<van-goods-action-button type="warning" @click="addToCart">加入购物车</van-goods-action-button>
 			<van-goods-action-button type="danger" @click="onClickCart">立即购买</van-goods-action-button>
 		</van-goods-action>
@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator';
+import { Component, Vue, Getter } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
 import Header from '~/components/Header';
 import { ICarts, CartsVO } from '~/models/carts';
@@ -55,8 +55,6 @@ import { Toast } from 'vant';
 	}
 })
 export default class Index extends Vue {
-	/** 购物车数量 */
-	private cartsCount: number = 0;
 	private headerTitle: string = '';
 	private headerData: any = {
 		title: 'Goods Page',
@@ -91,7 +89,6 @@ export default class Index extends Vue {
 
 	/** 生命周期mounted */
 	public mounted(): void {
-		this.cartsCount = this.$vxm.carts.cartsList.length;
 		this.headerTitle = this.headerData.title;
 	}
 

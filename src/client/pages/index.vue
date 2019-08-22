@@ -29,7 +29,7 @@
 			<van-cell icon="gold-coin-o" title="我的优惠券" is-link />
 			<van-cell icon="gift-o" title="我的礼物" is-link />
 			<van-cell class="cell-line" icon="shopping-cart-o" title="我的购物车" is-link @click="gotoCart">
-				<div v-if="count > 0" class="badge">{{ count }}</div>
+				<div v-if="this.$vxm.carts.cartsNum > 0" class="badge">{{ this.$vxm.carts.cartsNum }}</div>
 			</van-cell>
 			<van-cell icon="coupon-o" title="我的货品" is-link @click="gotoGoods" />
 		</van-cell-group>
@@ -51,9 +51,6 @@ import { axios } from '~/plugins/axiosInstance';
 	}
 })
 export default class Index extends Vue {
-	/** 购物车数量 */
-	private count: number = 0;
-
 	constructor() {
 		super();
 	}
@@ -69,7 +66,6 @@ export default class Index extends Vue {
 	/** 生命周期mounted */
 	public mounted(): void {
 		this.$vxm.carts.getCartsListFromAsync();
-		this.count = this.$vxm.carts.cartsList.length;
 	}
 
 	/** custom head data */

@@ -36,7 +36,7 @@ export class CartsStore extends VuexModule {
 	}
 
 	/**
-	 * 获取购物车数量
+	 * 获取购物车列表数据
 	 *
 	 * @readonly
 	 * @type {number}
@@ -47,7 +47,7 @@ export class CartsStore extends VuexModule {
 	}
 
 	/**
-	 * 设置购物车物品数量
+	 * 设置购物车物品
 	 *
 	 * @param {*} friends
 	 * @memberof CartsStore
@@ -69,7 +69,7 @@ export class CartsStore extends VuexModule {
 	}
 
 	/**
-	 * 异步获取购物车物品数量,例如调用接口
+	 * 异步获取购物车物品,例如调用接口
 	 *
 	 * @returns {Promise<any>}
 	 * @memberof CartsStore
