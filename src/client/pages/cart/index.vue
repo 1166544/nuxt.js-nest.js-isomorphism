@@ -1,8 +1,13 @@
 <template>
 	<div>
 		<Header :title="headerTitle"></Header>
-		<van-checkbox-group class="card-goods" v-model="checkedGoods">
-			<van-checkbox class="card-goods__item" v-for="item in goods" :key="item.id" :name="item.id">
+		<van-checkbox-group class="card-goods" v-model="checkedGoods" @change="countTotalPrice">
+			<van-checkbox
+				class="card-goods__item"
+				v-for="item in this.$vxm.carts.cartsList"
+				:key="item.id"
+				:name="item.id"
+			>
 				<van-card
 					:title="item.title"
 					:desc="item.desc"
@@ -31,6 +36,7 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 import { ICarts } from '~/models/carts';
 import Header from '~/components/Header';
+import { Toast } from 'vant';
 
 /** 购物车页 */
 @Component({
@@ -40,7 +46,6 @@ import Header from '~/components/Header';
 })
 export default class Index extends Vue {
 	private checkedGoods: Array<string> = [];
-	private goods: Array<any> = [];
 	private totalPrice: number = 0;
 	private headerTitle: string = '';
 	private headerData: any = {
@@ -61,7 +66,7 @@ export default class Index extends Vue {
 	/** 异步数据 */
 	public asyncData({ req }: any): any {
 		const goods: Array<ICarts> = [];
-		const checkedGoods: Array<any> = ['1', '2', '3'];
+		const checkedGoods: Array<any> = [];
 
 		return { checkedGoods, goods };
 	}
@@ -74,30 +79,30 @@ export default class Index extends Vue {
 	/** 生命周期computed */
 	private mounted(): void {
 		this.headerTitle = this.headerData.title;
-		this.goods = this.$vxm.carts.cartsList;
 		this.countTotalPrice();
 	}
 
 	/** 计算总价 */
 	private countTotalPrice(): void {
-		this.totalPrice = this.goods.reduce((total: any, item: ICarts): any => {
-			const resultTotal: any =
-				this.checkedGoods.indexOf(item.id) !== -1 ? item.price : 0;
+		this.totalPrice = this.$vxm.carts.cartsList.reduce(
+			(total: any, item: ICarts): any => {
+				const resultTotal: any =
+					this.checkedGoods.indexOf(item.id) !== -1 ? item.price : 0;
 
-			return total + resultTotal;
-		}, 0);
+				return total + resultTotal;
+			},
+			0
+		);
 	}
 
 	/** 格式价格 */
 	private formatPrice(price: number = 1): string {
-		console.log('format');
-
 		return (price / 100).toFixed(2);
 	}
 
 	/** on submit */
 	private onSubmit(): void {
-		console.log('点击结算');
+		Toast('TODO: 点击结算');
 	}
 }
 </script>

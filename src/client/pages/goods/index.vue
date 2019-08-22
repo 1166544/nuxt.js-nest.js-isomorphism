@@ -111,6 +111,7 @@ export default class Index extends Vue {
 	private addToCart(): void {
 		const cartItem: ICarts = new CartsVO();
 		cartItem.update(this.goods);
+		cartItem.id = Math.random().toString();
 
 		this.$vxm.carts.addCarts(cartItem);
 		Toast('添加成功');
