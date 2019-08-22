@@ -116,6 +116,10 @@ const config: NuxtConfiguration = {
 			}
 		},
 	},
+
+	router: {
+		middleware: ['mobile']
+	}
 };
 
 export default config;

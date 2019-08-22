@@ -1,5 +1,6 @@
 <template>
 	<div class="goods">
+		<Header :title="headerData.title"></Header>
 		<van-swipe class="goods-swipe" :autoplay="30000">
 			<van-swipe-item v-for="thumb in goods.thumb" :key="thumb">
 				<img :src="thumb" />
@@ -43,14 +44,28 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
+import Header from '~/components/Header';
 
 /** 产品页 */
 @Component({
-	components: {}
+	components: {
+		Header
+	}
 })
 export default class Index extends Vue {
 	/** 购物篮数量 */
 	private cartsCount: number = 0;
+	private headerTitle: string = '';
+	private headerData: any = {
+		title: 'Goods Page',
+		meta: [{ hid: 'description', name: 'some seo description' }],
+		noscript: [{ innerHTML: 'Body No Script', body: true }],
+		script: [
+			{ src: '/head.js' },
+			{ src: '/body.js', body: true },
+			{ src: '/defer.js', defer: '' }
+		]
+	};
 
 	constructor() {
 		super();
@@ -75,16 +90,7 @@ export default class Index extends Vue {
 
 	/** 自定义SEO头部数据 */
 	public head(): any {
-		return {
-			title: 'Goods page',
-			meta: [{ hid: 'description', name: 'some seo description' }],
-			noscript: [{ innerHTML: 'Body No Script', body: true }],
-			script: [
-				{ src: '/head.js' },
-				{ src: '/body.js', body: true },
-				{ src: '/defer.js', defer: '' }
-			]
-		};
+		return this.headerData;
 	}
 
 	/** 格式化货币单位 */

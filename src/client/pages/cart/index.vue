@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<Header :title="headerData.title"></Header>
 		<van-checkbox-group class="card-goods" v-model="checkedGoods">
 			<van-checkbox class="card-goods__item" v-for="item in goods" :key="item.id" :name="item.id">
 				<van-card
@@ -29,15 +30,28 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import { ICarts } from '~/models/carts';
+import Header from '~/components/Header';
 
 /** 购物车页 */
 @Component({
-	components: {}
+	components: {
+		Header
+	}
 })
 export default class Index extends Vue {
 	private checkedGoods: Array<string> = [];
 	private goods: Array<any> = [];
 	private totalPrice: number = 0;
+	private headerData: any = {
+		title: 'Cart Page',
+		meta: [{ hid: 'description', name: 'some seo description' }],
+		noscript: [{ innerHTML: 'Body No Script', body: true }],
+		script: [
+			{ src: '/head.js' },
+			{ src: '/body.js', body: true },
+			{ src: '/defer.js', defer: '' }
+		]
+	};
 
 	constructor() {
 		super();
@@ -46,7 +60,6 @@ export default class Index extends Vue {
 	/** 异步数据 */
 	public asyncData({ req }: any): any {
 		const goods: Array<ICarts> = [];
-
 		const checkedGoods: Array<any> = ['1', '2', '3'];
 
 		return { checkedGoods, goods };
@@ -54,16 +67,7 @@ export default class Index extends Vue {
 
 	/** 自定义SEO头部数据 */
 	public head(): any {
-		return {
-			title: 'Cart page',
-			meta: [{ hid: 'description', name: 'some seo description' }],
-			noscript: [{ innerHTML: 'Body No Script', body: true }],
-			script: [
-				{ src: '/head.js' },
-				{ src: '/body.js', body: true },
-				{ src: '/defer.js', defer: '' }
-			]
-		};
+		return this.headerData;
 	}
 
 	/** 生命周期computed */
