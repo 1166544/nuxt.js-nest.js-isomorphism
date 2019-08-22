@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Header :title="headerData.title"></Header>
+		<Header :title="headerTitle"></Header>
 		<van-checkbox-group class="card-goods" v-model="checkedGoods">
 			<van-checkbox class="card-goods__item" v-for="item in goods" :key="item.id" :name="item.id">
 				<van-card
@@ -42,6 +42,7 @@ export default class Index extends Vue {
 	private checkedGoods: Array<string> = [];
 	private goods: Array<any> = [];
 	private totalPrice: number = 0;
+	private headerTitle: string = '';
 	private headerData: any = {
 		title: 'Cart Page',
 		meta: [{ hid: 'description', name: 'some seo description' }],
@@ -72,6 +73,7 @@ export default class Index extends Vue {
 
 	/** 生命周期computed */
 	private mounted(): void {
+		this.headerTitle = this.headerData.title;
 		this.goods = this.$vxm.carts.cartsList;
 		this.countTotalPrice();
 	}

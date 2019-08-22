@@ -1,8 +1,8 @@
 <template>
 	<div class="goods">
-		<Header :title="headerData.title"></Header>
+		<Header :title="headerTitle"></Header>
 		<van-swipe class="goods-swipe" :autoplay="30000">
-			<van-swipe-item v-for="thumb in goods.thumb" :key="thumb">
+			<van-swipe-item v-for="thumb in goods.thumbList" :key="thumb">
 				<img :src="thumb" />
 			</van-swipe-item>
 		</van-swipe>
@@ -35,8 +35,8 @@
 		<van-goods-action>
 			<van-goods-action-icon icon="chat-o" @click="noneMethod">客服</van-goods-action-icon>
 			<van-goods-action-icon icon="cart-o" :info="cartsCount" @click="onClickCart">购物车</van-goods-action-icon>
-			<van-goods-action-button type="warning" @click="noneMethod">加入购物车</van-goods-action-button>
-			<van-goods-action-button type="danger" @click="noneMethod">立即购买</van-goods-action-button>
+			<van-goods-action-button type="warning" @click="addToCart">加入购物车</van-goods-action-button>
+			<van-goods-action-button type="danger" @click="onClickCart">立即购买</van-goods-action-button>
 		</van-goods-action>
 	</div>
 </template>
@@ -45,6 +45,8 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
 import Header from '~/components/Header';
+import { ICarts, CartsVO } from '~/models/carts';
+import { Toast } from 'vant';
 
 /** 产品页 */
 @Component({
@@ -77,7 +79,11 @@ export default class Index extends Vue {
 		price: 2680,
 		express: '免邮',
 		remain: 19,
-		thumb: [
+		desc: '约680g/3个',
+		num: '1',
+		thumb:
+			'https://img.yzcdn.cn/public_files/2017/10/24/e5a5a02309a41f9f5def56684808d9ae.jpeg',
+		thumbList: [
 			'https://img.yzcdn.cn/public_files/2017/10/24/e5a5a02309a41f9f5def56684808d9ae.jpeg',
 			'https://img.yzcdn.cn/public_files/2017/10/24/1791ba14088f9c2be8c610d0a6cc0f93.jpeg'
 		]
@@ -86,6 +92,7 @@ export default class Index extends Vue {
 	/** 生命周期mounted */
 	public mounted(): void {
 		this.cartsCount = this.$vxm.carts.cartsList.length;
+		this.headerTitle = this.headerData.title;
 	}
 
 	/** 自定义SEO头部数据 */
@@ -101,6 +108,15 @@ export default class Index extends Vue {
 	/** 点击路由跳转 */
 	private onClickCart(e: any): void {
 		this.$router.push(Routers.CART_PAGE);
+	}
+
+	/** 加入购物车 */
+	private addToCart(): void {
+		const cartItem: ICarts = new CartsVO();
+		cartItem.update(this.goods);
+
+		this.$vxm.carts.addCarts(cartItem);
+		Toast('添加成功');
 	}
 
 	/** 空方法处理 */
