@@ -35,7 +35,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import { ICarts } from '~/models/carts';
-import Header from '~/components/Header';
+import Header from '~/components/Header.vue';
 import { Toast } from 'vant';
 
 /** 购物车页 */
