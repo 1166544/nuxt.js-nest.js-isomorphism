@@ -6,9 +6,9 @@ const config: NuxtConfiguration = {
 	mode: 'universal',
 
 	env: {
-		host: 'localhost',
+		host: '0.0.0.0',
 		port: '8088',
-		baseUrl: process.env.BASE_URL || 'http://localhost:8088',
+		baseUrl: process.env.BASE_URL || 'http://0.0.0.0:8088',
 	},
 
 	srcDir: './src/client/',
@@ -84,7 +84,7 @@ const config: NuxtConfiguration = {
 	 ** Axios proxy configuration
 	 */
 	proxy: [
-		// ['http://127.0.0.1:8888', { changeOrigin: false, ws: false }],
+		// ['http://0.0.0.0:8888', { changeOrigin: false, ws: false }],
 		// ['/dog', { target: 'https://dog.ceo/', pathRewrite: { '^/dog': '/api/breeds/image/random' } }]
 		// '/api/': { target: 'http://api.example.com', pathRewrite: { '^/api/': '' } }
 	],

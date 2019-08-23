@@ -1,19 +1,11 @@
+import { IVO } from '~/core/interfaces/vo.interface';
+
 /**
  * 基础数据结构
  *
  * @export
  * @interface IVO
  */
-export interface IVO {
-	/**
-	 * 更新数据
-	 *
-	 * @param {*} val
-	 * @memberof IVO
-	 */
-	update(val: any): void;
-}
-
 /**
  * 购物车数据结构
  *

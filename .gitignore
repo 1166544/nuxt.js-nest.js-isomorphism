@@ -18,3 +18,4 @@ npm-debug.log
 yarn.lock
 .nuxt
 .history
+config/config.env.ts

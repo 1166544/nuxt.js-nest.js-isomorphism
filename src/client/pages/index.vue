@@ -41,6 +41,7 @@ import Logo from '~/components/Logo.vue';
 import TwitterHeadCard from '~/components/TwitterHeadCard.vue';
 import { Component, Vue } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
+import localService from '~/service/local.service';
 
 /** 首页 */
 @Component({
@@ -59,7 +60,7 @@ export default class Index extends Vue {
 
 	/** ssr远程调用，填充store */
 	public async asyncData({ params, app }: any): Promise<any> {
-		const data: any = await app.$axios.get('/carts.json');
+		const data: any = await localService.getGoodsListData();
 
 		return { sourceData: data.data };
 	}

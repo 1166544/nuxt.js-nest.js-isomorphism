@@ -233,7 +233,7 @@
 		// 换行符格式 CR/LF可以通用使用在windows和osx
 		"linebreak-style": [false, "CR/LF"],
 		// 每个文件中可定义类的个数
-		"max-classes-per-file": [true, 1],
+		"max-classes-per-file": [true, 6],
 		// 定义每个文件代码行数
 		"max-file-line-count": [true, 500],
 		// 定义每行代码数

@@ -1,3 +1,4 @@
+import configService from '~/core/service/config.service';
 import { NuxtAxiosInstance } from '@nuxtjs/axios';
 
 /** axios defined */
@@ -7,9 +8,11 @@ export const CODE_400: number = 400;
 export const CODE_500: number = 500;
 
 /** axios instance */
-export default ({ app }): any => {
+export default ({ app, redirect }): any => {
 	axios = app.$axios;
 	axios.defaults.baseURL = '';
+
+	configService.saveAxios(axios);
 
 	// 设置自定义头部,TOKEN, AUTH等
 	// Adds header: `Authorization: test` to all requests
@@ -48,10 +51,10 @@ export default ({ app }): any => {
 	axios.onError((error: any): any => {
 		const code: number = Number(error.response && error.response.status);
 		if (code === CODE_400) {
-			app.redirect('/400');
+			redirect('/400');
 		}
 		if (code === CODE_500) {
-			app.redirect('/500');
+			redirect('/500');
 		}
 	});
 	axios.onRequestError((error: any): any => {
