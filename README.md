@@ -10,11 +10,8 @@
 
 ## 1.Development
 ```js
-npm run client
-
-or 
-
-npm run serve
+npm run client:prod				// local start on production mode
+npm run client:dev				// local start on development mode
 
 visit: http://localhost:8088
 ```
@@ -22,6 +19,11 @@ visit: http://localhost:8088
 ## 2.Deploy
 ```js
 npm run build
+
+and
+
+cross-env NODE_ENV=production npm run start		// server start on production mode
+cross-env NODE_ENV=development npm run start	// server start on development mode
 ```
 
 ## 3.Directory Structure

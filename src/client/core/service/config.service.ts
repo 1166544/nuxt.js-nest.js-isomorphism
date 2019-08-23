@@ -11,8 +11,8 @@ import ConfigEnv from '../../../../config/config.env';
 class ConfigService {
 	private static instance: ConfigService;
 
-	private static ENV_DEV: string = 'dev';
-	private static ENV_PROD: string = 'prod';
+	private static ENV_DEV: string = 'development';
+	private static ENV_PROD: string = 'production';
 
 	private axios: any;
 

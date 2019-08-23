@@ -10,7 +10,7 @@ import { ConfigDefault } from './config.default';
 export class ConfigProd extends ConfigDefault {
 	constructor() {
 		super();
-		console.log('生产服配置::: 启动');
+		// console.log('生产服配置::: 启动');
 	}
 
 	/**

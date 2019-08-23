@@ -10,7 +10,7 @@ import { ConfigDefault } from './config.default';
 export class ConfigDev extends ConfigDefault {
 	constructor() {
 		super();
-		console.log('开发服配置::: 启动');
+		// console.log('开发服配置::: 启动');
 	}
 
 	/**
