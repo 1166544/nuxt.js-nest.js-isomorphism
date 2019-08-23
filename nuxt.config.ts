@@ -49,15 +49,15 @@ const config: NuxtConfiguration = {
 	 */
 	plugins: [
 		{
-			src: '~/plugins/vant.js',
+			src: '~/plugins/plugins-vant.js',
 			ssr: true
 		},
 		{
-			src: '~/assets/amfe-flexible.js',
+			src: '~/plugins/plugins-flexible.js',
 			ssr: false
 		},
 		{
-			src: '~/plugins/axios',
+			src: '~/plugins/plugins-axios',
 			ssr: true
 		}
 	],

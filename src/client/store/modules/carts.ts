@@ -5,7 +5,7 @@ import {
 	VuexModule
 } from 'vuex-class-component';
 import { ICarts, CartsVO } from '~/models/carts';
-import { axios } from '~/plugins/axios';
+import { axios } from '~/plugins/plugins-axios';
 
 /**
  * 购物车Store定义
