@@ -41,7 +41,6 @@ import Logo from '~/components/Logo.vue';
 import TwitterHeadCard from '~/components/TwitterHeadCard.vue';
 import { Component, Vue } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
-import { axios } from '~/plugins/axiosInstance';
 
 /** 首页 */
 @Component({
@@ -51,21 +50,23 @@ import { axios } from '~/plugins/axiosInstance';
 	}
 })
 export default class Index extends Vue {
+	/** 原始数据 */
+	private sourceData: any;
+
 	constructor() {
 		super();
 	}
 
-	/** ssr模拟远程调用，填充store */
-	public async asyncData({ params }: any): Promise<any> {
-		// const data: any = await axios.get('/carts.json');
-		// const count: number = data.data.total;
-		// const count: number = 3;
-		// return { count };
+	/** ssr远程调用，填充store */
+	public async asyncData({ params, app }: any): Promise<any> {
+		const data: any = await app.$axios.get('/carts.json');
+
+		return { sourceData: data.data };
 	}
 
-	/** 生命周期mounted */
+	/** 生命周期mounted, 初始化页面后获取从服务端已获取好的数据，存入store */
 	public mounted(): void {
-		this.$vxm.carts.getCartsListFromAsync();
+		this.$vxm.carts.getCartsListFromAsync(this.sourceData);
 	}
 
 	/** custom head data */

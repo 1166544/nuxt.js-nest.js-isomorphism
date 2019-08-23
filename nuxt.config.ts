@@ -55,6 +55,10 @@ const config: NuxtConfiguration = {
 		{
 			src: '~/assets/amfe-flexible.js',
 			ssr: false
+		},
+		{
+			src: '~/plugins/axios',
+			ssr: true
 		}
 	],
 
@@ -63,6 +67,7 @@ const config: NuxtConfiguration = {
 	 */
 	modules: [
 		'@nuxtjs/axios', // Doc: https://axios.nuxtjs.org/usage
+		// '@nuxtjs/proxy'
 	],
 	/*
 	 ** Axios module configuration
@@ -70,13 +75,18 @@ const config: NuxtConfiguration = {
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
 		// debug: isDev,
-		proxy: false
+		// proxy: false,
+		// retry: { retries: 3 },
+		// prefix: '/api',
+		// credentials: true
 	},
 	/*
 	 ** Axios proxy configuration
 	 */
 	proxy: [
-		['http://127.0.0.1:8888', { changeOrigin: false, ws: false }]
+		// ['http://127.0.0.1:8888', { changeOrigin: false, ws: false }],
+		// ['/dog', { target: 'https://dog.ceo/', pathRewrite: { '^/dog': '/api/breeds/image/random' } }]
+		// '/api/': { target: 'http://api.example.com', pathRewrite: { '^/api/': '' } }
 	],
 	/*
 	 ** Build configuration

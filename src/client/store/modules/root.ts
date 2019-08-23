@@ -4,7 +4,7 @@ import {
 	mutation,
 	VuexModule
 } from 'vuex-class-component';
-import { axios } from '~/plugins/axiosInstance';
+import { axios } from '~/plugins/axios';
 
 /**
  * RootStore define

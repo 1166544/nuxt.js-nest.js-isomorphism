@@ -5,6 +5,7 @@ import {
 	VuexModule
 } from 'vuex-class-component';
 import { ICarts, CartsVO } from '~/models/carts';
+import { axios } from '~/plugins/axios';
 
 /**
  * 购物车Store定义
@@ -75,38 +76,31 @@ export class CartsStore extends VuexModule {
 	 * @memberof CartsStore
 	 */
 	@action()
-	public async getCartsListFromAsync(): Promise<any> {
-		// const data: any = await axios.get('/carts.json');
-
-		// test
-		if (this.cartsListSource.length) {
-
-			return {};
+	public async getCartsListFromAsync(sourceData: any): Promise<any> {
+		if (this.cartsNum) {
+			return '';
 		}
-		const data: any = [{
-			id: '1',
-			title: '进口香蕉',
-			desc: '约250g，2根',
-			price: 200,
-			num: '1',
-			thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/2f9a36046449dafb8608e99990b3c205.jpeg'
-			// tslint:disable-next-line:align
-		}, {
-			id: '2',
-			title: '陕西蜜梨',
-			desc: '约600g',
-			price: 690,
-			num: '1',
-			thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/f6aabd6ac5521195e01e8e89ee9fc63f.jpeg'
-			// tslint:disable-next-line:align
-		}, {
-			id: '3',
-			title: '美国伽力果',
-			desc: '约680g/3个',
-			price: 2680,
-			num: '1',
-			thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/320454216bbe9e25c7651e1fa51b31fd.jpeg'
-		}];
+
+		let data: Array<any>;
+
+		if (sourceData) {
+			// 页面渲染时已初始化
+			if (sourceData.list) {
+				data = sourceData.list;
+			}
+		} else {
+			// 页面渲染时未初始化
+			const dataValue: any = await axios.get('/carts.json');
+			let data: any = '';
+
+			if (dataValue && dataValue.data) {
+				if (dataValue.data.list) {
+					data = dataValue.data.list;
+				} else {
+					data = JSON.parse(dataValue.data);
+				}
+			}
+		}
 
 		while (data.length) {
 			const item: any = data.shift();
@@ -115,7 +109,6 @@ export class CartsStore extends VuexModule {
 			cartItem.update(item);
 			this.addCarts(cartItem);
 		}
-		// test
 
 		return data;
 	}
