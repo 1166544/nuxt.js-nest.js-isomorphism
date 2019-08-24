@@ -75,10 +75,10 @@ const config: NuxtConfiguration = {
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
 		// debug: isDev,
-		// proxy: false,
-		// retry: { retries: 3 },
+		proxy: false,
+		retry: { retries: 3 },
 		// prefix: '/api',
-		// credentials: true
+		credentials: true
 	},
 	/*
 	 ** Axios proxy configuration

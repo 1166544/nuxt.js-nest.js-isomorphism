@@ -19,6 +19,7 @@ export interface ICarts extends IVO {
 	price: number;
 	num: string;
 	thumb: string;
+	thumbList: Array<any>
 }
 
 /**
@@ -38,6 +39,7 @@ export class CartsVO implements ICarts {
 	public price: number;
 	public num: string;
 	public thumb: string;
+	public thumbList: Array<any> = [];
 
 	/**
 	 * 更新数据源
@@ -53,6 +55,12 @@ export class CartsVO implements ICarts {
 			this.price = Number(val.price);
 			this.num = val.num;
 			this.thumb = val.thumb;
+
+			if (val.thumbList && val.thumbList.length) {
+				while (val.thumbList.length) {
+					this.thumbList.push(val.thumbList.shift());
+				}
+			}
 		}
 	}
 }

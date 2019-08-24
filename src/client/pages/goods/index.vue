@@ -47,6 +47,7 @@ import Routers from '~/routers/routers';
 import Header from '~/components/Header.vue';
 import { ICarts, CartsVO } from '~/models/carts';
 import { Toast } from 'vant';
+import localService from '~/service/local.service';
 
 /** 产品页 */
 @Component({
@@ -72,20 +73,14 @@ export default class Index extends Vue {
 	}
 
 	/** 页面商品数据 */
-	private goods: any = {
-		title: '美国伽力果（约680g/3个）',
-		price: 2680,
-		express: '免邮',
-		remain: 19,
-		desc: '约680g/3个',
-		num: '1',
-		thumb:
-			'https://img.yzcdn.cn/public_files/2017/10/24/e5a5a02309a41f9f5def56684808d9ae.jpeg',
-		thumbList: [
-			'https://img.yzcdn.cn/public_files/2017/10/24/e5a5a02309a41f9f5def56684808d9ae.jpeg',
-			'https://img.yzcdn.cn/public_files/2017/10/24/1791ba14088f9c2be8c610d0a6cc0f93.jpeg'
-		]
-	};
+	private goods: any;
+
+	/** 初始化前将页面数据提取 */
+	public async asyncData({ params, app }: any): Promise<any> {
+		const data: any = await localService.getGoodsData();
+
+		return { goods: data.data };
+	}
 
 	/** 生命周期mounted */
 	public mounted(): void {
