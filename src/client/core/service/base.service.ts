@@ -9,6 +9,7 @@ import configService from '~/core/service/config.service';
  */
 export interface IBaseOption {
 	baseUrl: string;
+	isLocalHost: boolean;
 }
 
 /**
@@ -23,7 +24,21 @@ export class BaseOption implements IBaseOption, IVO {
 		// hole
 	}
 
+	/**
+	 * 调用URL地址
+	 *
+	 * @type {string}
+	 * @memberof BaseOption
+	 */
 	public baseUrl: string;
+
+	/**
+	 * 是否为本地周用
+	 *
+	 * @type {boolean}
+	 * @memberof BaseOption
+	 */
+	public isLocalHost: boolean = false;
 
 	/**
 	 * 更新数据
@@ -61,13 +76,23 @@ export class BaseService {
 	}
 
 	/**
-	 * 更新配置
+	 * 更新配置,加上目标URL前缀
 	 *
 	 * @private
 	 * @memberof BaseService
 	 */
-	private updateConfig(): void {
-		this.apiService.defaults.baseUrl = this.options.baseUrl || '';
+	private updateConfig(url: string): string {
+		// 本地调用
+		if (this.options.isLocalHost) {
+			return url;
+		}
+
+		// 非本地调用
+		const baseUrl: string = this.options.baseUrl || '';
+		const resultUrl: string = `${baseUrl}${url}`;
+		// console.log(resultUrl);
+
+		return resultUrl;
 	}
 
 	/**
@@ -79,8 +104,6 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	protected request(config: any): void {
-		this.updateConfig();
-
 		return this.apiService.request(config);
 	}
 
@@ -92,9 +115,7 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	public async get(url: string, config: any = {}): Promise<any> {
-		this.updateConfig();
-
-		return await this.apiService.get(url, config);
+		return await this.apiService.get(this.updateConfig(url), config);
 	}
 
 	/**
@@ -107,9 +128,7 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	public async post(url: string, data: any, config: any = {}): Promise<any> {
-		this.updateConfig();
-
-		return this.apiService.post(url, data, config);
+		return this.apiService.post(this.updateConfig(url), data, config);
 	}
 
 	/**
@@ -121,9 +140,7 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	public async delete(url: string, config: any = {}): Promise<any> {
-		this.updateConfig();
-
-		return this.apiService.delete(url, config);
+		return this.apiService.delete(this.updateConfig(url), config);
 	}
 
 	/**
@@ -135,9 +152,7 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	public async head(url: string, config: any = {}): Promise<any> {
-		this.updateConfig();
-
-		return this.apiService.head(url, config);
+		return this.apiService.head(this.updateConfig(url), config);
 	}
 
 	/**
@@ -150,9 +165,7 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	public async put(url: string, data: any, config: any = {}): Promise<any> {
-		this.updateConfig();
-
-		return this.apiService.put(url, data, config);
+		return this.apiService.put(this.updateConfig(url), data, config);
 	}
 
 	/**
@@ -165,8 +178,6 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	public async patch(url: string, data: any, config: any = {}): Promise<any> {
-		this.updateConfig();
-
-		return this.apiService.patch(url, data, config);
+		return this.apiService.patch(this.updateConfig(url), data, config);
 	}
 }

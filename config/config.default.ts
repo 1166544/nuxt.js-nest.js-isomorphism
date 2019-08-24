@@ -23,5 +23,5 @@ export class ConfigDefault {
 	 * @type {string}
 	 * @memberof ConfigDefault
 	 */
-	public cnodeUrl: string = 'https://cnodejs.org/';
+	public cnodeUrl: string = 'https://cnodejs.org';
 }

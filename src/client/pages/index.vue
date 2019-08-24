@@ -27,7 +27,7 @@
 		<van-cell-group>
 			<van-cell icon="points" title="我的积分" is-link />
 			<van-cell icon="gold-coin-o" title="我的优惠券" is-link />
-			<van-cell icon="gift-o" title="我的礼物" is-link />
+			<van-cell icon="gift-o" title="我的礼物" is-link @click="gotoList" />
 			<van-cell class="cell-line" icon="shopping-cart-o" title="我的购物车" is-link @click="gotoCart">
 				<div v-if="this.$vxm.carts.cartsNum > 0" class="badge">{{ this.$vxm.carts.cartsNum }}</div>
 			</van-cell>
@@ -92,6 +92,11 @@ export default class Index extends Vue {
 	/** 跳转至商品页 */
 	private gotoGoods(): void {
 		this.$router.push(Routers.GOODS_PAGE);
+	}
+
+	/** 跳转至列表页 */
+	private gotoList(): void {
+		this.$router.push(Routers.LIST_PAGE);
 	}
 }
 </script>

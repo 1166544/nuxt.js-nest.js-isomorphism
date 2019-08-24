@@ -32,4 +32,13 @@ export default class Routers {
 	 * @memberof Routers
 	 */
 	public static HOME_PAGE: string = '';
+
+	/**
+	 * 列表页
+	 *
+	 * @static
+	 * @type {string}
+	 * @memberof Routers
+	 */
+	public static LIST_PAGE: string = 'list';
 }

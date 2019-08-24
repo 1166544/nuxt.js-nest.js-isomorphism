@@ -10,6 +10,7 @@ class LocalService extends BaseService {
 	constructor() {
 		const baseOption: BaseOption = new BaseOption();
 		baseOption.baseUrl = configService.getConfig().localUrl;
+		baseOption.isLocalHost = true;
 		super(baseOption);
 	}
 
