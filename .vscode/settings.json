@@ -1,10 +1,30 @@
 {
-    "editor.fontSize": 14,
-    "editor.tabCompletion": "on",
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "window.zoomLevel": 0.3,
-    "terminal.integrated.fontSize": 14,
-    "terminal.integrated.fontFamily": "Menlo, Monaco, 'Courier New', monospace"
+	"editor.fontSize": 14,
+	"editor.tabCompletion": "on",
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnType": true,
+	"window.zoomLevel": 0.3,
+	"terminal.integrated.fontSize": 14,
+	"terminal.integrated.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		".history": true,
+		".idea": true,
+		".vscode": true,
+		"_mock": true,
+		"_nginx": true,
+		"run": true,
+		"logs": true,
+		"build": true,
+		"test": true,
+		".nuxt": true,
+		"coverage": true,
+		"package-lock.json": true,
+		"config/config.env.ts": true
+	}
 }
