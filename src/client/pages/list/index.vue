@@ -17,17 +17,36 @@ import cnodeService from '~/service/cnode.service';
 	}
 })
 export default class Index extends Vue {
-	private listData: any;
+	private listData: any = [
+		{
+			id: '5d5cbb25421846662d983a25',
+			author_id: '5d5104cc697873456c6bca69',
+			tab: 'share',
+			content:
+				'<p><strong>Nebulan Graph 捉虫计划</strong> 是开源的分布式图数据库 —— Nebula 发起的「找 Bug」活动，旨在发动开源社区的力量共建图数据库 Nebula。',
+			title: '众测图数据库 Nebula Graph | 捉虫计划已开启，这项有礼',
+			last_reply_at: '2019-08-23T14:56:12.364Z',
+			good: false,
+			top: true,
+			reply_count: 3,
+			visit_count: 1531,
+			create_at: '2019-08-21T03:31:49.789Z',
+			author: {
+				loginname: 'QingZ11',
+				avatar_url:
+					'https://avatars0.githubusercontent.com/u/38887077?v=4&s=120'
+			}
+		}
+	];
+
+	/** 页面显示标题 */
 	private headerTitle: string = '';
+
+	/** 页面TDK */
 	private headerData: any = {
 		title: 'List Page',
 		meta: [{ hid: 'description', name: 'some seo description' }],
-		noscript: [{ innerHTML: 'Body No Script', body: true }],
-		script: [
-			{ src: '/head.js' },
-			{ src: '/body.js', body: true },
-			{ src: '/defer.js', defer: '' }
-		]
+		noscript: [{ innerHTML: 'Body No Script', body: true }]
 	};
 
 	constructor() {
@@ -38,7 +57,7 @@ export default class Index extends Vue {
 	public async asyncData({ req }: any): Promise<any> {
 		const data: any = await cnodeService.getTopics();
 
-		return { listData: data.data };
+		return { listData: data.data.data };
 	}
 
 	/** 自定义SEO头部数据 */
@@ -49,7 +68,6 @@ export default class Index extends Vue {
 	/** 生命周期computed */
 	private mounted(): void {
 		this.headerTitle = this.headerData.title;
-		console.log(this.listData);
 	}
 }
 </script>
