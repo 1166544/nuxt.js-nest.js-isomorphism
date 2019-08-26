@@ -1,7 +1,7 @@
 import { ConfigDefault } from '../../../../config/default.config';
 import { ConfigDev } from '../../../../config/dev.config';
 import { ConfigProd } from '../../../../config/prod.config';
-import ConfigEnv from '../../../../config/config.env';
+import ConfigEnv from '../../../../config/env.config';
 
 /**
  * 配置服务
