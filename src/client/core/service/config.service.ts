@@ -1,6 +1,6 @@
-import { ConfigDefault } from '../../../../config/config.default';
-import { ConfigDev } from '../../../../config/config.dev';
-import { ConfigProd } from '../../../../config/config.prod';
+import { ConfigDefault } from '../../../../config/default.config';
+import { ConfigDev } from '../../../../config/dev.config';
+import { ConfigProd } from '../../../../config/prod.config';
 import ConfigEnv from '../../../../config/config.env';
 
 /**

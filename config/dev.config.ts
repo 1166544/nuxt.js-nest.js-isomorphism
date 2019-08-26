@@ -1,4 +1,4 @@
-import { ConfigDefault } from './config.default';
+import { ConfigDefault } from './default.config';
 
 /**
  * 开发服配置

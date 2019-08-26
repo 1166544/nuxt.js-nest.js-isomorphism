@@ -16,7 +16,7 @@ export const store: any = new Vuex.Store({
 /** 注册store实例 */
 Vue.prototype.$vxm = {
 	root: RootStore.CreateProxy(store, RootStore),
-	carts: RootStore.CreateProxy(store, CartsStore)
+	carts: CartsStore.CreateProxy(store, CartsStore)
 };
 
 /** 定义接口格式用于TS语法提示 */

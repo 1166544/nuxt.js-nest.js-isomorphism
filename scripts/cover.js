@@ -3,7 +3,7 @@ const path = require('path');
 
 const arguments = process.env.NODE_ENV || 'production';
 let file = '';
-const coverPath = path.resolve(__dirname, '../config/config.env.ts');
+const coverPath = path.resolve(__dirname, '../config/env.config.ts');
 
 const replacestr = 'Replace ENV:: ';
 

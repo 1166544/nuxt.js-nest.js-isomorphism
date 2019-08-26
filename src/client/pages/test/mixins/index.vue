@@ -1,10 +1,10 @@
 <template>
-  <div>{{mixinValue}}</div>
+	<div>{{mixinValue}}</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, mixins } from 'nuxt-property-decorator';
-import MixinSample from './components/mixins-sample';
+import MixinSample from './components/mixins-sample.component';
 
 /** Use Mixin demo */
 @Component({})

@@ -1,4 +1,4 @@
-import { ConfigDefault } from './config/config.default';
+import { ConfigDefault } from './config/default.config';
 import NuxtConfiguration from '@nuxt/config';
 import nodeExternals from 'webpack-node-externals';
 
@@ -40,7 +40,7 @@ const config: NuxtConfiguration = {
 	/*
 	 ** Customize the progress-bar
 	 */
-	loading: '~/components/Loading.vue',
+	loading: '~/components/loading.component.vue',
 
 	/*
 	 ** Global CSS

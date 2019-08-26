@@ -44,7 +44,7 @@
 <script lang="ts">
 import { Component, Vue, Getter } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
-import Header from '~/components/Header.vue';
+import Header from '~/components/header.component.vue';
 import { ICarts, CartsVO } from '~/models/carts';
 import { Toast } from 'vant';
 import localService from '~/service/local.service';

@@ -34,7 +34,7 @@ import {
 	Watch,
 	Emit
 } from 'nuxt-property-decorator';
-import TwitterHeadCard from '~/components/TwitterHeadCard.vue';
+import TwitterHeadCard from '~/components/twitter-head.component.vue';
 
 /** 测试用SYMBOL */
 const symbol: any = Symbol('DemoTest');

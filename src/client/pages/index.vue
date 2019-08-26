@@ -37,8 +37,8 @@
 </template>
 
 <script lang="ts">
-import Logo from '~/components/Logo.vue';
-import TwitterHeadCard from '~/components/TwitterHeadCard.vue';
+import Logo from '~/components/logo.component.vue';
+import TwitterHeadCard from '~/components/twitter-head.component.vue';
 import { Component, Vue } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
 import localService from '~/service/local.service';

@@ -19,3 +19,4 @@ yarn.lock
 .nuxt
 .history
 config/config.env.ts
+config/env.config.ts

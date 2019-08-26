@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import Header from '~/components/Header.vue';
+import Header from '~/components/header.component.vue';
 import { Toast } from 'vant';
 import cnodeService from '~/service/cnode.service';
 

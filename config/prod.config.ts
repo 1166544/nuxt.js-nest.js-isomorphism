@@ -1,4 +1,4 @@
-import { ConfigDefault } from './config.default';
+import { ConfigDefault } from './default.config';
 
 /**
  * 生产服配置
