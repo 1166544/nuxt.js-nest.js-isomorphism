@@ -53,6 +53,7 @@ import localService from '~/service/local.service';
 export default class Index extends Vue {
 	/** 原始数据 */
 	private sourceData: any;
+	private title: string = '';
 
 	constructor() {
 		super();
@@ -62,7 +63,7 @@ export default class Index extends Vue {
 	public async asyncData({ params, app }: any): Promise<any> {
 		const data: any = await localService.getGoodsListData();
 
-		return { sourceData: data.data };
+		return { sourceData: data.data, title: data.data.list.length };
 	}
 
 	/** 生命周期mounted, 初始化页面后获取从服务端已获取好的数据，存入store */
@@ -73,7 +74,7 @@ export default class Index extends Vue {
 	/** custom head data */
 	public head(): any {
 		return {
-			title: 'Isomorphism home page',
+			title: 'Isomorphism home page' + this.title,
 			meta: [{ hid: 'description', name: 'some seo description' }],
 			noscript: [{ innerHTML: 'Body No Script', body: true }],
 			script: [
