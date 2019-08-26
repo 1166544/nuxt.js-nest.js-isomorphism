@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /cart/
+Disallow: /*?*
+Disallow: /*.sql
+Disallow: /*.js
+Disallow: /*.css
+Disallow: /*.asmx

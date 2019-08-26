@@ -74,7 +74,7 @@ export default class Index extends Vue {
 	/** custom head data */
 	public head(): any {
 		return {
-			title: 'Isomorphism home page' + this.title,
+			title: 'Isomorphism home page ' + this.title,
 			meta: [{ hid: 'description', name: 'some seo description' }],
 			noscript: [{ innerHTML: 'Body No Script', body: true }],
 			script: [
