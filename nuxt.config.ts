@@ -1,14 +1,17 @@
+import { ConfigDefault } from './config/config.default';
 import NuxtConfiguration from '@nuxt/config';
 import nodeExternals from 'webpack-node-externals';
+
 const isDev = !(process.env.NODE_ENV === 'production');
+const configDefault: ConfigDefault = new ConfigDefault();
 
 const config: NuxtConfiguration = {
 	mode: 'universal',
 
 	env: {
-		host: '0.0.0.0',
-		port: '8088',
-		baseUrl: process.env.BASE_URL || 'http://0.0.0.0:8088',
+		host: configDefault.serverAdderess,
+		port: configDefault.port,
+		baseUrl: process.env.BASE_URL || `http://${configDefault.serverAdderess}:${configDefault.port}`,
 	},
 
 	srcDir: './src/client/',
@@ -84,7 +87,7 @@ const config: NuxtConfiguration = {
 	 ** Axios proxy configuration
 	 */
 	proxy: [
-		// ['http://0.0.0.0:8888', { changeOrigin: false, ws: false }],
+		// [`http://${configDefault.serverAdderess}:${configDefault.port}`, { changeOrigin: false, ws: false }],
 		// ['/dog', { target: 'https://dog.ceo/', pathRewrite: { '^/dog': '/api/breeds/image/random' } }]
 		// '/api/': { target: 'http://api.example.com', pathRewrite: { '^/api/': '' } }
 	],
