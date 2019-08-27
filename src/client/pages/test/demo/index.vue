@@ -35,6 +35,7 @@ import {
 	Emit
 } from 'nuxt-property-decorator';
 import TwitterHeadCard from '~/components/twitter-head.component.vue';
+import { BaseView } from '~/core/views/base.view';
 
 /** 测试用SYMBOL */
 const symbol: any = Symbol('DemoTest');
@@ -46,7 +47,7 @@ const symbol: any = Symbol('DemoTest');
 		TwitterHeadCard
 	}
 })
-export default class Demo extends Vue {
+export default class Demo extends BaseView {
 	// TODO: add following demo
 	// Vue Property Decorator
 	// Vue class component

@@ -42,6 +42,7 @@ import TwitterHeadCard from '~/components/twitter-head.component.vue';
 import { Component, Vue } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
 import localService from '~/service/local.service';
+import { BaseView } from '~/core/views/base.view';
 
 /** 首页 */
 @Component({
@@ -50,10 +51,9 @@ import localService from '~/service/local.service';
 		TwitterHeadCard
 	}
 })
-export default class Index extends Vue {
+export default class Index extends BaseView {
 	/** 原始数据 */
 	private sourceData: any;
-	private title: string = '';
 
 	constructor() {
 		super();

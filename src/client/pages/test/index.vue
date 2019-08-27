@@ -13,10 +13,11 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import { State } from 'vuex-class';
+import { BaseView } from '~/core/views/base.view';
 
 /** 测试模块 */
 @Component({})
-export default class Test extends Vue {
+export default class Test extends BaseView {
 	/** friends data */
 	@State
 	public friends: any;

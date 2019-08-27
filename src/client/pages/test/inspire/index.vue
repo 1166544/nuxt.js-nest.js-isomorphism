@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
+import { BaseView } from '~/core/views/base.view';
 
 /** Inspire class */
 @Component({
@@ -27,7 +28,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator';
 		propMessage: String
 	}
 })
-export default class Inspire extends Vue {
+export default class Inspire extends BaseView {
 	/** init data */
 	public msg: number = 123;
 

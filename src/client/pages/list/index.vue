@@ -41,6 +41,7 @@ import { Toast } from 'vant';
 import cnodeService from '~/service/cnode.service';
 import localService from '~/service/local.service';
 import Routers from '~/routers/routers';
+import { BaseView } from '~/core/views/base.view';
 
 /** 主题列表页 */
 @Component({
@@ -48,7 +49,7 @@ import Routers from '~/routers/routers';
 		Header
 	}
 })
-export default class Index extends Vue {
+export default class Index extends BaseView {
 	/** 列表数据 */
 	private listData: any = [];
 

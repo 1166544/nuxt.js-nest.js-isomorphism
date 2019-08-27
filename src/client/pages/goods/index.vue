@@ -48,6 +48,7 @@ import Header from '~/components/header.component.vue';
 import { ICarts, CartsVO } from '~/models/carts';
 import { Toast } from 'vant';
 import localService from '~/service/local.service';
+import { BaseView } from '~/core/views/base.view';
 
 /** 产品页 */
 @Component({
@@ -55,7 +56,7 @@ import localService from '~/service/local.service';
 		Header
 	}
 })
-export default class Index extends Vue {
+export default class Index extends BaseView {
 	private headerTitle: string = '';
 	private headerData: any = {
 		title: 'Goods Page',

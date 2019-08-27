@@ -37,6 +37,7 @@ import { Component, Vue } from 'nuxt-property-decorator';
 import { ICarts } from '~/models/carts';
 import Header from '~/components/header.component.vue';
 import { Toast } from 'vant';
+import { BaseView } from '~/core/views/base.view';
 
 /** 购物车页 */
 @Component({
@@ -44,7 +45,7 @@ import { Toast } from 'vant';
 		Header
 	}
 })
-export default class Index extends Vue {
+export default class Index extends BaseView {
 	private checkedGoods: Array<string> = [];
 	private totalPrice: number = 0;
 	private headerTitle: string = '';

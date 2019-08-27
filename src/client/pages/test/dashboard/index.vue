@@ -10,10 +10,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
+import { BaseView } from '~/core/views/base.view';
 
 /** Dashboard class */
 @Component({})
-export default class Dashboard extends Vue {
+export default class Dashboard extends BaseView {
 	/** tabs */
 	public tabs: any = null;
 

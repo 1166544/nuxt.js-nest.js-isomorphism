@@ -29,10 +29,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
+import { BaseView } from '~/core/views/base.view';
 
 /** Test class */
 @Component({})
-export default class Test extends Vue {
+export default class Test extends BaseView {
 	constructor() {
 		super();
 	}
