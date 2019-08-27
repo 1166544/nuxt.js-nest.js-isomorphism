@@ -2,16 +2,34 @@
 	<div>
 		<Header :title="headerTitle"></Header>
 		<van-pull-refresh v-model="loading" @refresh="onRefresh">
-			<van-list
-				v-model="loading"
-				:finished="finished"
-				finished-text="没有更多了"
-				@load="onLoad"
-				:error.sync="error"
-				error-text="请求失败，点击重新加载"
-			>
-				<van-cell v-for="item in listData" :key="item.id" :title="item.title" />
-			</van-list>
+				<van-list
+					v-model="loading"
+					:finished="finished"
+					finished-text="没有更多了"
+					@load="onLoad"
+					:error.sync="error"
+					error-text="请求失败，点击重新加载"
+				>
+					<van-cell-group v-for="item in listData" :key="item.id">
+						<van-cell :title="item.author.loginname" size="large">
+						</van-cell>
+						<van-card
+							:num="item.reply_count"
+							:price="item.reply_count"
+							:desc="item.create_at"
+							:title="item.title"
+							:thumb="item.author.avatar_url"
+							:origin-price="item.visit_count"
+							@click="onCardClick(item)"
+							>
+							<div slot="tags">
+								<van-tag plain type="danger">{{item.tab.toUpperCase()}}</van-tag>
+								<van-tag plain type="danger">{{ item.top ? '上升' : '下降' }}</van-tag>
+							</div>
+						</van-card>
+					</van-cell-group>
+				</van-list>
+			</van-pull-refresh>
 		</van-pull-refresh>
 	</div>
 </template>
@@ -22,6 +40,7 @@ import Header from '~/components/header.component.vue';
 import { Toast } from 'vant';
 import cnodeService from '~/service/cnode.service';
 import localService from '~/service/local.service';
+import Routers from '~/routers/routers';
 
 /** 主题列表页 */
 @Component({
@@ -54,6 +73,11 @@ export default class Index extends Vue {
 
 	constructor() {
 		super();
+	}
+
+	/** card点击 */
+	private onCardClick(item: any): void {
+		this.$router.push(`${Routers.CART_PAGE}?id=${item.id}`);
 	}
 
 	/** 异步数据 */
