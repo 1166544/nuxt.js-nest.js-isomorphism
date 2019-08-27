@@ -59,7 +59,7 @@ export default class Index extends Vue {
 		super();
 	}
 
-	/** ssr远程调用，填充store */
+	/** ssr远程调用 */
 	public async asyncData({ params, app }: any): Promise<any> {
 		const data: any = await localService.getGoodsListData();
 

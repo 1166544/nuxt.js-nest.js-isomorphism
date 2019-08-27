@@ -1,6 +1,18 @@
 <template>
 	<div>
 		<Header :title="headerTitle"></Header>
+		<van-pull-refresh v-model="loading" @refresh="onRefresh">
+			<van-list
+				v-model="loading"
+				:finished="finished"
+				finished-text="没有更多了"
+				@load="onLoad"
+				:error.sync="error"
+				error-text="请求失败，点击重新加载"
+			>
+				<van-cell v-for="item in listData" :key="item.id" :title="item.title" />
+			</van-list>
+		</van-pull-refresh>
 	</div>
 </template>
 
@@ -9,6 +21,7 @@ import { Component, Vue } from 'nuxt-property-decorator';
 import Header from '~/components/header.component.vue';
 import { Toast } from 'vant';
 import cnodeService from '~/service/cnode.service';
+import localService from '~/service/local.service';
 
 /** 主题列表页 */
 @Component({
@@ -17,30 +30,20 @@ import cnodeService from '~/service/cnode.service';
 	}
 })
 export default class Index extends Vue {
-	private listData: any = [
-		{
-			id: '5d5cbb25421846662d983a25',
-			author_id: '5d5104cc697873456c6bca69',
-			tab: 'share',
-			content:
-				'<p><strong>Nebulan Graph 捉虫计划</strong> 是开源的分布式图数据库 —— Nebula 发起的「找 Bug」活动，旨在发动开源社区的力量共建图数据库 Nebula。',
-			title: '众测图数据库 Nebula Graph | 捉虫计划已开启，这项有礼',
-			last_reply_at: '2019-08-23T14:56:12.364Z',
-			good: false,
-			top: true,
-			reply_count: 3,
-			visit_count: 1531,
-			create_at: '2019-08-21T03:31:49.789Z',
-			author: {
-				loginname: 'QingZ11',
-				avatar_url:
-					'https://avatars0.githubusercontent.com/u/38887077?v=4&s=120'
-			}
-		}
-	];
+	/** 列表数据 */
+	private listData: any = [];
 
 	/** 页面显示标题 */
 	private headerTitle: string = '';
+
+	/** 加载中标记 */
+	private loading: boolean = false;
+
+	/** 是否已加载完成标记 */
+	private finished: boolean = false;
+
+	/** 错误信息 */
+	private error: boolean = false;
 
 	/** 页面TDK */
 	private headerData: any = {
@@ -55,9 +58,29 @@ export default class Index extends Vue {
 
 	/** 异步数据 */
 	public async asyncData({ req }: any): Promise<any> {
-		const data: any = await cnodeService.getTopics();
+		// const data: any = await cnodeService.getTopics();
+		const data: any = await localService.getListData();
 
-		return { listData: data.data.data };
+		return { listData: data.data };
+	}
+
+	/** 下拉刷新 */
+	private async onRefresh(): Promise<any> {
+		const data: any = await localService.getListData();
+
+		this.listData = data.data;
+		this.loading = false;
+	}
+
+	/** 上拉分页刷新事件 */
+	public async onLoad(): Promise<any> {
+		const data: any = await localService.getListData();
+
+		this.listData = this.listData.concat(data.data);
+		this.loading = false;
+
+		// 当最后一页时显示该标记
+		// this.finished = true;
 	}
 
 	/** 自定义SEO头部数据 */

@@ -33,6 +33,16 @@ class LocalService extends BaseService {
 	public async getGoodsData(): Promise<any> {
 		return await this.get('/goods.json');
 	}
+
+	/**
+	 * 获取商品列表数据
+	 *
+	 * @returns {Promise<any>}
+	 * @memberof LocalService
+	 */
+	public async getListData(): Promise<any> {
+		return await this.get('/list.json');
+	}
 }
 
 export default new LocalService();
