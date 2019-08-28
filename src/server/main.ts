@@ -6,6 +6,8 @@ import config from '../../nuxt.config';
 import { ApplicationModule } from './app.module';
 import NuxtServer from './common/nuxt';
 import { NuxtFilter } from './common/nuxt/nuxt.filter';
+import configService from '../client/core/service/config.service';
+import { ConfigDefault } from '../../config/default.config';
 
 // tslint:disable-next-line:completed-docs
 declare const module: any;
@@ -22,10 +24,11 @@ async function bootstrap() {
 		config.dev ? !module.hot._main : true
 	);
 	const server: any = await NestFactory.create(ApplicationModule);
+	const configer: ConfigDefault = configService.getConfig();
 
 	server.useGlobalFilters(new NuxtFilter(nuxt));
 	server.useGlobalPipes(new ValidationPipe());
-
+	server.setGlobalPrefix(configer.getGlobalPrefix());
 	await server.listen(port, host, () => {
 		Consola.ready({
 			message: `Server listening on http://${host}:${port}`,

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CatsModule } from './modules/cats/cats.module';
-// tslint:disable-next-line: ordered-imports
+import { TransportModule } from './modules/transport/transport.module';
 import { AppController } from './app.controller';
 
 /**
@@ -10,7 +10,7 @@ import { AppController } from './app.controller';
  * @class ApplicationModule
  */
 @Module({
-	imports: [CatsModule],
+	imports: [CatsModule, TransportModule],
 	controllers: [AppController]
 })
 export class ApplicationModule { }

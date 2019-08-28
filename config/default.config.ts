@@ -40,4 +40,11 @@ export class ConfigDefault {
 	 * @memberof ConfigDefault
 	 */
 	public cnodeUrl: string = 'https://cnodejs.org';
+
+	/**
+	 * API统一前缀
+	 */
+	public getGlobalPrefix(): string {
+		return 'api';
+	}
 }

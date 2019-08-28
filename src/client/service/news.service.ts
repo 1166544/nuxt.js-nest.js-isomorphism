@@ -1,14 +1,13 @@
-import { BaseOption } from '~/core/service/base.service';
+import { BaseService, BaseOption } from '~/core/service/base.service';
 import configService from '~/core/service/config.service';
-import { TransportService } from '~/core/service/transport.service';
 
 /**
- * cn node服务(中转方式，解决跨域问题)
+ * cn node服务(非中转)
  *
- * @class CnNodeService
- * @extends {TransportService}
+ * @class NewsService
+ * @extends {BaseService}
  */
-class CnNodeService extends TransportService {
+class NewsService extends BaseService {
 	constructor() {
 		const baseOption: BaseOption = new BaseOption();
 		baseOption.baseUrl = configService.getConfig().cnodeUrl;
@@ -26,4 +25,4 @@ class CnNodeService extends TransportService {
 	}
 }
 
-export default new CnNodeService();
+export default new NewsService();

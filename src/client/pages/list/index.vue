@@ -68,8 +68,10 @@ export default class Index extends BaseView {
 	/** 页面TDK */
 	private headerData: any = {
 		title: 'List Page',
-		meta: [{ hid: 'description', name: 'some seo description' }],
-		noscript: [{ innerHTML: 'Body No Script', body: true }]
+		meta: [
+			{ hid: 'description', name: 'some seo description' },
+			{ hid: 'keywords', name: 'ssr vuex vue nuxt.js nest.js' }
+		]
 	};
 
 	constructor() {
@@ -83,10 +85,10 @@ export default class Index extends BaseView {
 
 	/** 异步数据 */
 	public async asyncData({ req }: any): Promise<any> {
-		// const data: any = await cnodeService.getTopics();
-		const data: any = await localService.getListData();
+		const data: any = await cnodeService.getTopics();
+		// const data: any = await localService.getListData();
 
-		return { listData: data.data };
+		return { listData: data.data.data };
 	}
 
 	/** 下拉刷新 */

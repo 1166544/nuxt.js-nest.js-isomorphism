@@ -60,14 +60,14 @@ export class BaseOption implements IBaseOption, IVO {
  */
 export class BaseService {
 	[x: string]: any;
-	private apiServiceInstance: any;
-	private options: IBaseOption;
+	protected apiServiceInstance: any;
+	protected options: IBaseOption;
 
 	constructor(optios: IBaseOption) {
 		this.options = optios;
 	}
 
-	private get apiService(): any {
+	protected get apiService(): any {
 		if (!this.apiServiceInstance) {
 			this.apiServiceInstance = configService.getAxios();
 		}
@@ -78,10 +78,10 @@ export class BaseService {
 	/**
 	 * 更新配置,加上目标URL前缀
 	 *
-	 * @private
+	 * @protected
 	 * @memberof BaseService
 	 */
-	private updateConfig(url: string): string {
+	protected updateConfig(url: string): string {
 		// 本地调用
 		if (this.options.isLocalHost) {
 			return url;
