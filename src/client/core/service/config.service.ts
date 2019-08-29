@@ -10,10 +10,6 @@ import ConfigEnv from '../../../../config/env.config';
  */
 class ConfigService {
 	private static instance: ConfigService;
-
-	private static ENV_DEV: string = 'development';
-	private static ENV_PROD: string = 'production';
-
 	private axios: any;
 
 	/**
@@ -42,10 +38,10 @@ class ConfigService {
 
 	constructor() {
 		switch (ConfigEnv.env) {
-			case ConfigService.ENV_DEV:
+			case ConfigDefault.ENV_DEV:
 				this.config = new ConfigDev();
 				break;
-			case ConfigService.ENV_PROD:
+			case ConfigDefault.ENV_PROD:
 				this.config = new ConfigProd();
 				break;
 			default:

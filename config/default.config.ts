@@ -5,6 +5,32 @@
  * @class ConfigDefault
  */
 export class ConfigDefault {
+
+	/**
+	 * X real url of config default
+	 */
+	public static X_REAL_URL: string = 'x-real-url';
+
+	/**
+	 * X real base url of config default
+	 */
+	public static X_REAL_BASE_URL: string = 'x-real-base-url';
+
+	/**
+	 * content-type
+	 */
+	public static CONTENT_TYPE: string = 'content-type';
+
+	/**
+	 * Env dev of config default
+	 */
+	public static ENV_DEV: string = 'development';
+
+	/**
+	 * Env prod of config default
+	 */
+	public static ENV_PROD: string = 'production';
+
 	constructor() {
 		// hole
 	}

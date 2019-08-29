@@ -1,34 +1,48 @@
-import { Injectable } from '@nestjs/common';
-import { ITransport } from './interfaces/transport.interface';
+import { AxiosRequestConfig } from 'axios';
+import { stringify } from 'querystring';
+import { BaseHttpClient } from '../../common/middleware/http.middleware';
+import { ConfigDefault } from '../../../../config/default.config';
 
 /**
- * Transport service
+ * 中转接口服务
  *
  * @export
  * @class TransportService
  */
-@Injectable()
 export class TransportService {
-	private readonly cats: ITransport[] = [];
-
-	/**
-	 * create
-	 *
-	 * @param {ITransport} cat
-	 * @returns {*}
-	 * @memberof TransportService
-	 */
-	public create(cat: ITransport): any {
-		this.cats.push(cat);
+	constructor(
+		private readonly httpService: BaseHttpClient
+	) {
+		// hole
 	}
 
 	/**
-	 * Find all
-	 *
-	 * @returns {ITransport[]}
-	 * @memberof TransportService
+	 * 中转
 	 */
-	public findAll(): ITransport[] {
-		return this.cats;
+	public async getTransportData(request: any): Promise<any> {
+
+		const url: string = request.headers[ConfigDefault.X_REAL_URL];
+		const baseURL: string = request.headers[ConfigDefault.X_REAL_BASE_URL];
+		const contentType: string = request.headers[ConfigDefault.CONTENT_TYPE];
+
+		let headers: any = {};
+		let requestObj: AxiosRequestConfig = {
+			data: request.body,
+			params: request.query || request.params,
+			baseURL,
+			url,
+			method: request.method
+		};
+
+		if (
+			contentType &&
+			contentType === 'application/x-www-form-urlencoded'
+		) {
+			headers[ConfigDefault.CONTENT_TYPE] = contentType;
+			requestObj.data = stringify(requestObj.data);
+		}
+		requestObj.headers = headers;
+
+		return await this.httpService.request(requestObj).toPromise();
 	}
 }

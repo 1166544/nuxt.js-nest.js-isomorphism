@@ -3,13 +3,15 @@ import { TransportController } from './transport.controller';
 import { TransportService } from './transport.service';
 
 /**
- * Transport Module
- *
- * @export
- * @class TransportModule
+ * 中转模块
  */
 @Module({
+	imports: [],
 	controllers: [TransportController],
 	providers: [TransportService]
 })
-export class TransportModule { }
+export class TransportModule {
+	constructor() {
+		// hole
+	}
+}

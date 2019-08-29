@@ -1,54 +1,44 @@
-import {
-	Controller,
-	Get,
-	Res,
-	HttpStatus
-} from '@nestjs/common';
-import { Routers } from '../../routers/routers';
+import { All, Controller, HttpCode, Req, HttpStatus } from '@nestjs/common';
 import { TransportService } from './transport.service';
+import { Routers } from '../../routers/routers';
 
 /**
- * Transport controller
+ * 中转服务CONTROLLER处理器
  *
  * @export
  * @class TransportController
+ * @extends {EngineController}
  */
 @Controller(Routers.TRANSPORT_MODULE_ROUTER)
 export class TransportController {
-	constructor(private readonly catsService: TransportService) {
-		this.catsService.findAll();
+	constructor(
+		private readonly transportService: TransportService
+	) {
+		// hole
 	}
 
 	/**
-	 * Transport
+	 * 中转服务接收
 	 *
-	 * @param {*} id
+	 * @param {*} request
+	 * @returns
 	 * @memberof TransportController
 	 */
-	@Get('transportData')
-	public async transportData(
-		@Res() res: any
-	): Promise<any> {
-		const data: any = [
-			{
-				'id': '5d5cbb25421846662d983a25',
-				'author_id': '5d5104cc697873456c6bca69',
-				'tab': 'share',
-				'content': 'FmgpGBgp5Uiis4mzjJO6Ml80BYBM',
-				'title': '众测图数据库 Nebula Graph | 捉虫计划已开启，这项有礼',
-				'last_reply_at': '2019-08-23T14:56:12.364Z',
-				'good': false,
-				'top': true,
-				'reply_count': 3,
-				'visit_count': 1531,
-				'create_at': '2019-08-21T03:31:49.789Z',
-				'author': {
-					'loginname': 'QingZ11',
-					'avatar_url': 'https://avatars0.githubusercontent.com/u/38887077?v=4&s=120'
-				}
-			}
-		];
+	@HttpCode(HttpStatus.OK)
+	@All('getTransportData')
+	public async getTransportData(@Req() request: any): Promise<any> {
 
-		res.status(HttpStatus.OK).json(data);
+		let result: any = await this.transportService.getTransportData(request);
+
+		if (result === undefined) {
+			result = {
+				code: HttpStatus.INTERNAL_SERVER_ERROR,
+				message: 'Internal server error'
+			};
+
+			return result;
+		} else {
+			return result.data;
+		}
 	}
 }

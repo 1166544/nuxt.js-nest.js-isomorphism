@@ -20,3 +20,4 @@ yarn.lock
 .history
 config/config.env.ts
 config/env.config.ts
+yarn-error.log
