@@ -1,7 +1,6 @@
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { defer, Observable } from 'rxjs';
 import ProxyAgent from 'proxy-agent';
-import { Injectable } from '@nestjs/common';
 import { ConfigDefault } from './../../../../config/default.config';
 
 /**
@@ -10,7 +9,6 @@ import { ConfigDefault } from './../../../../config/default.config';
  * @export
  * @class BaseHttpClient
  */
-@Injectable()
 export class BaseHttpClient {
 	/**
 	 * http代理地址

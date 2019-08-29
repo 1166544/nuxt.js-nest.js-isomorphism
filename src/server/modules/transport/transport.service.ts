@@ -9,11 +9,9 @@ import { ConfigDefault } from '../../../../config/default.config';
  * @export
  * @class TransportService
  */
-export class TransportService {
-	constructor(
-		private readonly httpService: BaseHttpClient
-	) {
-		// hole
+export class TransportService extends BaseHttpClient {
+	constructor() {
+		super();
 	}
 
 	/**
@@ -43,6 +41,6 @@ export class TransportService {
 		}
 		requestObj.headers = headers;
 
-		return await this.httpService.request(requestObj).toPromise();
+		return await this.request(requestObj).toPromise();
 	}
 }
