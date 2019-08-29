@@ -41,7 +41,7 @@ export class ConfigDefault {
 	 * @type {string}
 	 * @memberof ConfigDefault
 	 */
-	public serverAdderess: string = '0.0.0.0';
+	public serverAdderess: string = '127.0.0.1';
 
 	/**
 	 * 启动端口

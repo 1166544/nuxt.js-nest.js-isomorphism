@@ -19,6 +19,6 @@ export class ConfigProd extends ConfigDefault {
 	 * @type {string}
 	 * @memberof ConfigDefault
 	 */
-	public localUrl: string = 'http://0.0.0.0';
+	public localUrl: string = 'http://127.0.0.1';
 }
 

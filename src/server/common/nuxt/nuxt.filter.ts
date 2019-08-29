@@ -2,7 +2,8 @@ import {
 	ArgumentsHost,
 	Catch,
 	ExceptionFilter,
-	HttpException
+	HttpException,
+	HttpStatus
 } from '@nestjs/common';
 import { Nuxt } from 'nuxt';
 
@@ -29,17 +30,21 @@ export class NuxtFilter implements ExceptionFilter {
 	 * @memberof NuxtFilter
 	 */
 	public async catch(exception: HttpException, host: ArgumentsHost): Promise<any> {
+		// console.log(exception);
+		// console.log(host);
+
 		const ctx: any = host.switchToHttp();
 		const res: any = ctx.getResponse();
 		const req: any = ctx.getRequest();
-		const status: any = exception.getStatus();
-		const NUM_404: number = 404;
+		const status: any = exception ? exception.getStatus() : HttpStatus.OK;
 
-		if (status === NUM_404) {
+		if (status === HttpStatus.NOT_FOUND) {
+			// console.log('Render========', HttpStatus.NOT_FOUND);
 			if (!res.headersSent) {
 				await this.nuxt.render(req, res);
 			}
 		} else {
+			// console.log('Render========', status);
 			res.status(status).json({
 				statusCode: status,
 				timestamp: new Date().toISOString(),

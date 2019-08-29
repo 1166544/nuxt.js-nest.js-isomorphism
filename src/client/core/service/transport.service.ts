@@ -33,8 +33,9 @@ export class TransportService extends BaseService {
 	 * @memberof TransportService
 	 */
 	protected transportConfig(url: string, config: any): any {
-		config[ConfigDefault.X_REAL_URL] = url;
-		config[ConfigDefault.X_REAL_BASE_URL] = this.options.baseUrl || '';
+		config.headers = {};
+		config.headers[ConfigDefault.X_REAL_URL] = url;
+		config.headers[ConfigDefault.X_REAL_BASE_URL] = this.options.baseUrl || '';
 
 		return config;
 	}
