@@ -15,4 +15,9 @@ export class Routers {
 	 * transport router /api/transport/....visit
 	 */
 	public static TRANSPORT_MODULE_ROUTER: string = 'transport';
+
+	/**
+	 * local router /api/local/....visit
+	 */
+	public static LOCAL_MODULE_ROUTER: string = 'local';
 }

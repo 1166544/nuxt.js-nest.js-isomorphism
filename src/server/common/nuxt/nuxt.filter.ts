@@ -30,26 +30,31 @@ export class NuxtFilter implements ExceptionFilter {
 	 * @memberof NuxtFilter
 	 */
 	public async catch(exception: HttpException, host: ArgumentsHost): Promise<any> {
-		// console.log(exception);
-		// console.log(host);
 
-		const ctx: any = host.switchToHttp();
-		const res: any = ctx.getResponse();
-		const req: any = ctx.getRequest();
-		const status: any = exception ? exception.getStatus() : HttpStatus.OK;
+		try {
+			// console.log(exception);
+			// console.log(host);
 
-		if (status === HttpStatus.NOT_FOUND) {
-			// console.log('Render========', HttpStatus.NOT_FOUND);
-			if (!res.headersSent) {
-				await this.nuxt.render(req, res);
+			const ctx: any = host.switchToHttp();
+			const res: any = ctx.getResponse();
+			const req: any = ctx.getRequest();
+			const status: any = exception ? exception.getStatus() : HttpStatus.OK;
+
+			if (status === HttpStatus.NOT_FOUND) {
+				// console.log('Render========', HttpStatus.NOT_FOUND);
+				if (!res.headersSent) {
+					await this.nuxt.render(req, res);
+				}
+			} else {
+				// console.log('Render========', status);
+				res.status(status).json({
+					statusCode: status,
+					timestamp: new Date().toISOString(),
+					path: req.url
+				});
 			}
-		} else {
-			// console.log('Render========', status);
-			res.status(status).json({
-				statusCode: status,
-				timestamp: new Date().toISOString(),
-				path: req.url
-			});
+		} catch (error) {
+			console.log(error);
 		}
 	}
 }

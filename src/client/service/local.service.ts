@@ -21,7 +21,7 @@ class LocalService extends BaseService {
 	 * @memberof LocalService
 	 */
 	public async getGoodsListData(): Promise<any> {
-		return await this.get('/carts.json');
+		return await this.get('/api/local/getCarts');
 	}
 
 	/**
@@ -31,7 +31,7 @@ class LocalService extends BaseService {
 	 * @memberof LocalService
 	 */
 	public async getGoodsData(): Promise<any> {
-		return await this.get('/goods.json');
+		return await this.get('/api/local/getGoods');
 	}
 
 	/**
@@ -41,7 +41,7 @@ class LocalService extends BaseService {
 	 * @memberof LocalService
 	 */
 	public async getListData(): Promise<any> {
-		return await this.get('/list.json');
+		return await this.get('/api/local/getList');
 	}
 }
 

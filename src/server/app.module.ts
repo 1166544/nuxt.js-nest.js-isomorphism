@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { CatsModule } from './modules/cats/cats.module';
 import { TransportModule } from './modules/transport/transport.module';
 import { AppController } from './app.controller';
+import { LocalModule } from './modules/local/local.module';
 
 /**
  * App Module
@@ -10,7 +11,11 @@ import { AppController } from './app.controller';
  * @class ApplicationModule
  */
 @Module({
-	imports: [CatsModule, TransportModule],
+	imports: [
+		CatsModule,
+		TransportModule,
+		LocalModule
+	],
 	controllers: [AppController]
 })
 export class ApplicationModule { }
