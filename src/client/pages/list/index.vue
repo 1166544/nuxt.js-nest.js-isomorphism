@@ -86,24 +86,23 @@ export default class Index extends BaseView {
 	/** 异步数据 */
 	public async asyncData({ req }: any): Promise<any> {
 		const data: any = await cnodeService.getTopics();
-		// const data: any = await localService.getListData();
 
 		return { listData: data.data.data };
 	}
 
 	/** 下拉刷新 */
 	private async onRefresh(): Promise<any> {
-		const data: any = await localService.getListData();
+		const data: any = await cnodeService.getTopics();
 
-		this.listData = data.data;
+		this.listData = data.data.data;
 		this.loading = false;
 	}
 
 	/** 上拉分页刷新事件 */
 	public async onLoad(): Promise<any> {
-		const data: any = await localService.getListData();
+		const data: any = await cnodeService.getTopics();
 
-		this.listData = this.listData.concat(data.data);
+		this.listData = this.listData.concat(data.data.data);
 		this.loading = false;
 
 		// 当最后一页时显示该标记
