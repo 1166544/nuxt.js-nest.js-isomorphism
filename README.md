@@ -1,7 +1,4 @@
-<p align="center">
-  <a href="https://nuxtjs.org/ target="blank"><img align="center" style="width:720px" alt="Nuxt Logo" src="docs/1567861669077.jpg"/></a>
-  <!-- <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a> -->
-</p>
+![logo](docs/1567861669077.jpg)
 
 ## Nuxt.js and Nest.js isomorphism project
 
