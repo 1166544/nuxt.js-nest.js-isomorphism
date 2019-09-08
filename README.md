@@ -19,13 +19,13 @@ npm run build
 
 and
 
-cross-env NODE_ENV=production npm run start		// server start on production mode
-cross-env NODE_ENV=development npm run start	// server start on development mode
+cross-env NODE_ENV=production npm run start     // server start on production mode
+cross-env NODE_ENV=development npm run start    // server start on development mode
 ```
 
 ## 3.Directory Structure
 ```js
-client --- The client side source code folder, write Vue.js logical
+client ---The client side source code folder, write Vue.js logical
 here
  |-------- assets
  |-------- components

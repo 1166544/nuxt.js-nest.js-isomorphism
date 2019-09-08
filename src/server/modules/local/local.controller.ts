@@ -1,6 +1,8 @@
-import { Controller, Req, Get, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Req, Get, Res, HttpStatus, Post, Body } from '@nestjs/common';
 import { LocalService } from './local.service';
 import { Routers } from '../../routers/routers';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { ICat } from './interfaces/cat.interface';
 
 /**
  * 中转服务CONTROLLER处理器
@@ -15,6 +17,26 @@ export class LocalController {
 		private readonly localService: LocalService
 	) {
 		// hole
+	}
+
+	/**
+	 * create
+	 * @description Posts local controller
+	 * @param createCatDto
+	 */
+	@Post('create')
+	public async create(@Body() createCatDto: CreateCatDto): Promise<any> {
+		await this.localService.create(createCatDto);
+	}
+
+	/**
+	 * find all
+	 * @description Gets local controller
+	 * @returns all
+	 */
+	@Get('findAll')
+	public async findAll(): Promise<ICat[]> {
+		return this.localService.findAll();
 	}
 
 	/**

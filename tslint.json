@@ -253,7 +253,7 @@
 		// 注释基于jsdoc风格
 		"jsdoc-format": false,
 		// 定义变量命名规则
-		"variable-name": [true, "check-format",
+		"variable-name": [false, "check-format",
 			"allow-leading-underscore",
 			"allow-trailing-underscore",
 			"ban-keywords"
