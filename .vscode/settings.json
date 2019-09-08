@@ -26,5 +26,6 @@
 		"coverage": true,
 		"package-lock.json": true,
 		"config/config.env.ts": true
-	}
+	},
+	"commentTranslate.targetLanguage": "zh-CN"
 }

@@ -3,6 +3,9 @@ import { Model } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import { ICat } from './interfaces/cat.interface';
 import { CreateCatDto } from './dto/create-cat.dto';
+import { CreateGoodsDto } from './dto/create-goods.dto';
+import { IGoods } from './interfaces/goods.interface';
+import { MODEL } from './local.providers';
 
 /**
  * 本地服务
@@ -12,12 +15,27 @@ import { CreateCatDto } from './dto/create-cat.dto';
  */
 @Injectable()
 export class LocalService extends BaseHttpClient {
-	constructor(@Inject('CAT_MODEL') private readonly catModel: Model<ICat>) {
+	constructor(
+		@Inject(MODEL.CAT_MODEL) private readonly catModel: Model<ICat>,
+		@Inject(MODEL.GOODS_MODEL) private readonly goodsModel: Model<IGoods>
+	) {
 		super();
 	}
 
 	/**
-	 * create
+	 * create goods
+	 * @description Creates local service
+	 * @param createGoodsDto
+	 * @returns create
+	 */
+	public async createGoods(createGoodsDto: CreateGoodsDto): Promise<IGoods> {
+		const createdGoods: any = new this.goodsModel(createGoodsDto);
+
+		return await createdGoods.save();
+	}
+
+	/**
+	 * create cat
 	 * @description Creates local service
 	 * @param createCatDto
 	 * @returns create
@@ -55,8 +73,10 @@ export class LocalService extends BaseHttpClient {
 	 * @returns {Promise<any>}
 	 * @memberof LocalService
 	 */
-	public async getGoods(): Promise<any> {
-		return await this.get('/goods.json').toPromise();
+	public async getGoods(id: string): Promise<any> {
+		const result: any = await this.goodsModel.findById(id).exec();
+
+		return result;
 	}
 
 	/**
