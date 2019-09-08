@@ -19,7 +19,7 @@ export const databaseProviders: Array<any> = [
 
 			// 组装连接字符串
 			const configData: IMongoDBConfig = configDB.getMongoDbConfig();
-			const configStr: string = `mongodb://${configData.userName}:${configData.password}@${configData.uri}:${configData.prot}/${configData.db}`;
+			const configStr: string = `mongodb://${configData.userName}:${configData.password}@${configData.uri}:${configData.port}/${configData.db}`;
 			const connectResult: any = await mongoose.connect(configStr);
 
 			return connectResult;

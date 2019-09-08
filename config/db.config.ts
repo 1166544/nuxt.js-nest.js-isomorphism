@@ -20,7 +20,7 @@ export class ConfigDB extends ConfigDefault {
 	private getDevEnviromentMongoConfig(): IMongoDBConfig {
 		return {
 			uri: 'localhost',
-			prot: 27017,
+			port: 27017,
 			db: 'admin',
 			userName: 'admin',
 			password: '123456'
@@ -35,7 +35,7 @@ export class ConfigDB extends ConfigDefault {
 	private getProdEnviromentMongoConfig(): IMongoDBConfig {
 		return {
 			uri: 'localhost',
-			prot: 27017,
+			port: 27017,
 			db: 'admin',
 			userName: 'admin',
 			password: '123456'
@@ -71,7 +71,7 @@ export class ConfigDB extends ConfigDefault {
  */
 export interface IMongoDBConfig {
 	uri: string;
-	prot: number;
+	port: number;
 	db: string;
 	userName: string;
 	password: string;
