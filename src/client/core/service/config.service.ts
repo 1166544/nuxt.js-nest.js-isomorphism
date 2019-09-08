@@ -48,6 +48,9 @@ class ConfigService {
 				this.config = new ConfigProd();
 				break;
 		}
+
+		// 将环境标识写入配置中
+		this.config.updateEnv(ConfigEnv.env);
 	}
 
 	/**

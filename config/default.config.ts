@@ -31,6 +31,12 @@ export class ConfigDefault {
 	 */
 	public static ENV_PROD: string = 'production';
 
+	/**
+	 * 默认环境标识
+	 * @description Env  of config default
+	 */
+	private _env: string = ConfigDefault.ENV_PROD;
+
 	constructor() {
 		// hole
 	}
@@ -72,5 +78,23 @@ export class ConfigDefault {
 	 */
 	public getGlobalPrefix(): string {
 		return 'api';
+	}
+
+	/**
+	 * 获取当前环境标识
+	 * @description Gets env
+	 * @returns env
+	 */
+	public getEnv(): string {
+		return this._env;
+	}
+
+	/**
+	 * 更新环境标识
+	 * @description Updates env
+	 * @param env
+	 */
+	public updateEnv(env: string): void {
+		this._env = env;
 	}
 }
