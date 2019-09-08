@@ -3,7 +3,6 @@ import { CatsModule } from './modules/cats/cats.module';
 import { TransportModule } from './modules/transport/transport.module';
 import { AppController } from './app.controller';
 import { LocalModule } from './modules/local/local.module';
-import { MongooseModule } from '@nestjs/mongoose';
 
 /**
  * App Module
@@ -13,7 +12,6 @@ import { MongooseModule } from '@nestjs/mongoose';
  */
 @Module({
 	imports: [
-		MongooseModule.forRoot('mongodb://admin:123456@localhost:27017/admin'),
 		CatsModule,
 		TransportModule,
 		LocalModule

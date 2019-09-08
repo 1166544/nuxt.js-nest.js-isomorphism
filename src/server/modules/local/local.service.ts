@@ -1,7 +1,6 @@
 import { BaseHttpClient } from '../../common/middleware/http.middleware';
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
+import { Injectable, Inject } from '@nestjs/common';
 import { ICat } from './interfaces/cat.interface';
 import { CreateCatDto } from './dto/create-cat.dto';
 
@@ -13,7 +12,7 @@ import { CreateCatDto } from './dto/create-cat.dto';
  */
 @Injectable()
 export class LocalService extends BaseHttpClient {
-	constructor(@InjectModel('Cat') private readonly catModel: Model<ICat>) {
+	constructor(@Inject('CAT_MODEL') private readonly catModel: Model<ICat>) {
 		super();
 	}
 
@@ -25,7 +24,6 @@ export class LocalService extends BaseHttpClient {
 	 */
 	public async create(createCatDto: CreateCatDto): Promise<ICat> {
 		const createdCat: any = new this.catModel(createCatDto);
-		console.log(createdCat);
 
 		return await createdCat.save();
 	}
