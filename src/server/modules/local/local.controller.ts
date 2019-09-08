@@ -4,6 +4,7 @@ import { Routers } from '../../routers/routers';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { ICat } from './interfaces/cat.interface';
 import { CreateGoodsDto } from './dto/create-goods.dto';
+import { EngineController } from '../../common/core/engine.controller';
 
 /**
  * 中转服务CONTROLLER处理器
@@ -13,11 +14,11 @@ import { CreateGoodsDto } from './dto/create-goods.dto';
  * @extends {}
  */
 @Controller(Routers.LOCAL_MODULE_ROUTER)
-export class LocalController {
+export class LocalController extends EngineController {
 	constructor(
 		private readonly localService: LocalService
 	) {
-		// hole
+		super();
 	}
 
 	/**
@@ -76,7 +77,9 @@ export class LocalController {
 		const id: string = query.id || '5d74f3dc40407532cd556949';
 		const returnData: any = await this.localService.getGoods(id);
 
-		res.status(HttpStatus.OK).json(returnData);
+		res.status(HttpStatus.OK).json(
+			this.encapsulationReturnObject(returnData)
+		);
 	}
 
 	/**

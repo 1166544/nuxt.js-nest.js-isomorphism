@@ -80,7 +80,7 @@ export default class Index extends BaseView {
 	public async asyncData({ params, app }: any): Promise<any> {
 		const data: any = await localService.getGoodsData();
 
-		return { goods: data.data };
+		return { goods: data.data.data };
 	}
 
 	/** 生命周期mounted */
