@@ -65,7 +65,7 @@ export class LocalController extends EngineController {
 	public async getCarts(@Res() res: any, @Req() request: any): Promise<any> {
 		const returnData: any = await this.localService.getCarts();
 
-		res.status(HttpStatus.OK).json(returnData.data);
+		res.status(HttpStatus.OK).json(returnData);
 	}
 
 	/**

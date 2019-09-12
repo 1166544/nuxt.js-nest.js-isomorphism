@@ -5,7 +5,7 @@ import {
 	VuexModule
 } from 'vuex-class-component';
 import { ICartsItem, CartsVO } from '~/models/carts';
-import { axios } from '~/plugins/axios.plugins';
+// import { axios } from '~/plugins/axios.plugins';
 
 /**
  * 购物车Store定义
@@ -85,12 +85,12 @@ export class CartsStore extends VuexModule {
 
 		if (sourceData) {
 			// 页面渲染时已初始化
-			if (sourceData.list) {
-				data = sourceData.list;
+			if (sourceData && sourceData.length) {
+				data = sourceData;
 			}
 		} else {
 			// 页面渲染时未初始化
-			const dataValue: any = await axios.get('/carts.json');
+			/* const dataValue: any = await axios.get('/carts.json');
 			let data: any = '';
 
 			if (dataValue && dataValue.data) {
@@ -99,7 +99,7 @@ export class CartsStore extends VuexModule {
 				} else {
 					data = JSON.parse(dataValue.data);
 				}
-			}
+			} */
 		}
 
 		while (data.length) {

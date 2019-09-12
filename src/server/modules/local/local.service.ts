@@ -87,7 +87,7 @@ export class LocalService extends BaseHttpClient {
 	 * @memberof LocalService
 	 */
 	public async getCarts(): Promise<any> {
-		const returnData: any = await this.get('/carts.json').toPromise();
+		const returnData: any = await this.cartsModel.find().exec();
 
 		return returnData;
 	}

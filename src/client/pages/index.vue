@@ -63,7 +63,7 @@ export default class Index extends BaseView {
 	public async asyncData({ params, app }: any): Promise<any> {
 		const data: any = await localService.getGoodsListData();
 
-		return { sourceData: data.data, title: data.data.list.length };
+		return { sourceData: data.data, title: data.data.length };
 	}
 
 	/** 生命周期mounted, 初始化页面后获取从服务端已获取好的数据，存入store */
