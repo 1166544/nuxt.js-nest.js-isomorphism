@@ -1,6 +1,7 @@
 import { Connection } from 'mongoose';
 import { CatSchema } from './schemas/cat.schema';
 import { GoodsSchema } from './schemas/goods.schema';
+import { CartsSchema } from './schemas/cart.schema';
 
 /**
  * model常量
@@ -9,6 +10,7 @@ import { GoodsSchema } from './schemas/goods.schema';
 export class MODEL {
 	public static CAT_MODEL: string = 'CAT_MODEL';
 	public static GOODS_MODEL: string = 'GOODS_MODEL';
+	public static CARTS_MODEL: string = 'CARTS_MODEL';
 }
 
 /**
@@ -23,6 +25,11 @@ export const catsProviders: Array<any> = [
 	{
 		provide: MODEL.GOODS_MODEL,
 		useFactory: (connection: Connection): any => connection.model('Goods', GoodsSchema),
+		inject: ['DATABASE_CONNECTION']
+	},
+	{
+		provide: MODEL.CARTS_MODEL,
+		useFactory: (connection: Connection): any => connection.model('Carts', CartsSchema),
 		inject: ['DATABASE_CONNECTION']
 	}
 ];

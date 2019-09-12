@@ -12,7 +12,7 @@ import { IVO } from '~/core/interfaces/vo.interface';
  * @export
  * @interface ICarts
  */
-export interface ICarts extends IVO {
+export interface ICartsItem extends IVO {
 	id: string;
 	title: string;
 	desc: string;
@@ -29,7 +29,7 @@ export interface ICarts extends IVO {
  * @class CartsVO
  * @implements {ICarts}
  */
-export class CartsVO implements ICarts {
+export class CartsVO implements ICartsItem {
 	constructor() {
 		// hole
 	}
@@ -49,7 +49,7 @@ export class CartsVO implements ICarts {
 	 */
 	public update(val: any): void {
 		if (val) {
-			this.id = val.id;
+			this.id = val.id || val._id;
 			this.title = val.title;
 			this.desc = val.desc;
 			this.price = Number(val.price);

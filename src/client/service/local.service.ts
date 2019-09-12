@@ -1,5 +1,6 @@
 import { BaseService, BaseOption } from '~/core/service/base.service';
 import configService from '~/core/service/config.service';
+import { CartsVO } from '~/models/carts';
 /**
  * 本地 node服务
  *
@@ -12,6 +13,19 @@ class LocalService extends BaseService {
 		baseOption.baseUrl = configService.getConfig().localUrl;
 		baseOption.isLocalHost = true;
 		super(baseOption);
+	}
+
+	/**
+	 * 调用接口添加入购物车
+	 * @description Adds to cart
+	 * @param cartsVO
+	 * @returns to cart
+	 */
+	public async addToCart(cartsVO: CartsVO): Promise<any> {
+		return await this.post('/api/local/addToCart', {
+			id: cartsVO.id,
+			num: 1
+		});
 	}
 
 	/**

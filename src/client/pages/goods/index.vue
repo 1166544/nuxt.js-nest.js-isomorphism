@@ -45,10 +45,11 @@
 import { Component, Vue, Getter } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
 import Header from '~/components/header.component.vue';
-import { ICarts, CartsVO } from '~/models/carts';
+import { ICartsItem, CartsVO } from '~/models/carts';
 import { Toast } from 'vant';
 import localService from '~/service/local.service';
 import { BaseView } from '~/core/views/base.view';
+import { HttpConst } from '~/core/consts/http.const';
 
 /** 产品页 */
 @Component({
@@ -104,13 +105,20 @@ export default class Index extends BaseView {
 	}
 
 	/** 加入购物车 */
-	private addToCart(): void {
-		const cartItem: ICarts = new CartsVO();
+	private async addToCart(): Promise<any> {
+		console.log(this.goods._id);
+		const cartItem: ICartsItem = new CartsVO();
 		cartItem.update(this.goods);
-		cartItem.id = Math.random().toString();
 
-		this.$vxm.carts.addCarts(cartItem);
-		Toast('添加成功');
+		const addToCartResult: any = await localService.addToCart(cartItem);
+
+		if (
+			addToCartResult &&
+			addToCartResult.status === HttpConst.STATUS_200
+		) {
+			this.$vxm.carts.addCarts(cartItem);
+			Toast('添加成功');
+		}
 	}
 
 	/** 空方法处理 */

@@ -4,7 +4,7 @@ import {
 	mutation,
 	VuexModule
 } from 'vuex-class-component';
-import { ICarts, CartsVO } from '~/models/carts';
+import { ICartsItem, CartsVO } from '~/models/carts';
 import { axios } from '~/plugins/axios.plugins';
 
 /**
@@ -20,10 +20,10 @@ export class CartsStore extends VuexModule {
 	/**
 	 * 购物车物品总数
 	 *
-	 * @type {Array<ICarts>}
+	 * @type {Array<ICartsItem>}
 	 * @memberof CartsStore
 	 */
-	private cartsListSource: Array<ICarts> = [];
+	private cartsListSource: Array<ICartsItem> = [];
 
 	/**
 	 * 获取购物车物品数量
@@ -32,7 +32,7 @@ export class CartsStore extends VuexModule {
 	 * @type {*}
 	 * @memberof CartsStore
 	 */
-	public get cartsList(): Array<ICarts> {
+	public get cartsList(): Array<ICartsItem> {
 		return this.cartsListSource;
 	}
 
@@ -54,18 +54,18 @@ export class CartsStore extends VuexModule {
 	 * @memberof CartsStore
 	 */
 	@mutation
-	public addCarts(item: ICarts): void {
+	public addCarts(item: ICartsItem): void {
 		this.cartsListSource.push(item);
 	}
 
 	/**
 	 * 更新购物车列表
 	 *
-	 * @param {Array<ICarts>} cartsList
+	 * @param {Array<ICartsItem>} cartsList
 	 * @memberof CartsStore
 	 */
 	@mutation
-	public updateCarts(cartsList: Array<ICarts>): void {
+	public updateCarts(cartsList: Array<ICartsItem>): void {
 		this.cartsListSource = cartsList;
 	}
 

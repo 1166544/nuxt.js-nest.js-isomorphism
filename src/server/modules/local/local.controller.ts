@@ -5,6 +5,7 @@ import { CreateCatDto } from './dto/create-cat.dto';
 import { ICat } from './interfaces/cat.interface';
 import { CreateGoodsDto } from './dto/create-goods.dto';
 import { EngineController } from '../../common/core/engine.controller';
+import { AddCartsDto } from './dto/add-carts.dto';
 
 /**
  * 中转服务CONTROLLER处理器
@@ -90,5 +91,19 @@ export class LocalController extends EngineController {
 	@Post('createGoods')
 	public async createGoods(@Body() createGoodsDto: CreateGoodsDto): Promise<any> {
 		await this.localService.createGoods(createGoodsDto);
+	}
+
+	/**
+	 * 添加商品入购物车
+	 * @description Posts local controller
+	 * @param addToCartsDto
+	 */
+	@Post('addToCart')
+	public async addToCart(@Res() res: any, @Body() addToCartsDto: AddCartsDto): Promise<any> {
+		const returnData: any = await this.localService.addToCart(addToCartsDto);
+
+		res.status(HttpStatus.OK).json(
+			this.encapsulationReturnObject(returnData)
+		);
 	}
 }
