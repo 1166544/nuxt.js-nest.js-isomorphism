@@ -118,10 +118,7 @@ export class LocalService extends BaseHttpClient {
 			ids.push(cartItem.id);
 		}
 
-		const result: any = await this.goodsModel.find().where('_id').in(ids).exec();
-
-		// TODO:
-		console.log(result);
+		const result: IGoods[] = await this.goodsModel.find().where('_id').in(ids).exec();
 
 		return result;
 	}

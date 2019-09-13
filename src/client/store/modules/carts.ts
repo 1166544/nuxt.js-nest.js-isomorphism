@@ -76,17 +76,17 @@ export class CartsStore extends VuexModule {
 	 * @memberof CartsStore
 	 */
 	@action()
-	public async getCartsListFromAsync(sourceData: any): Promise<any> {
+	public async getCartsListFromAsync(addedCartsList: Array<any>): Promise<any> {
 		if (this.cartsNum) {
 			return '';
 		}
 
 		let data: Array<any>;
 
-		if (sourceData) {
+		if (addedCartsList) {
 			// 页面渲染时已初始化
-			if (sourceData && sourceData.length) {
-				data = sourceData;
+			if (addedCartsList && addedCartsList.length) {
+				data = addedCartsList;
 			}
 		} else {
 			// 页面渲染时未初始化

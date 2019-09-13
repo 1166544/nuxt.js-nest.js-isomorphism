@@ -70,8 +70,33 @@ export default class Index extends BaseView {
 	public mounted(): void {
 		// 依据ID列表获取已存入购物车列表数据
 		localService.getCartsListData(this.sourceData).then((data: any) => {
-			this.$vxm.carts.getCartsListFromAsync(data);
+			const updatedCartsList: Array<any> = this.getUpdatedCartsList(
+				data.data.data,
+				this.sourceData
+			);
+			this.$vxm.carts.getCartsListFromAsync(updatedCartsList);
 		});
+	}
+
+	/** 更新用户已添加入购物车数量 */
+	private getUpdatedCartsList(
+		list: Array<any>,
+		sourceData: Array<any>
+	): Array<any> {
+		for (let indexList: number = 0; indexList < list.length; indexList++) {
+			const element: any = list[indexList];
+
+			for (let index: number = 0; index < sourceData.length; index++) {
+				const item: any = sourceData[index];
+
+				if (element._id === item.id) {
+					element.num = item.num;
+					break;
+				}
+			}
+		}
+
+		return list;
 	}
 
 	/** custom head data */
