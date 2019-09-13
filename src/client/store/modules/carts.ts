@@ -44,7 +44,13 @@ export class CartsStore extends VuexModule {
 	 * @memberof CartsStore
 	 */
 	public get cartsNum(): number {
-		return this.cartsListSource.length;
+		let totalNum: number = 0;
+		for (let index: number = 0; index < this.cartsListSource.length; index++) {
+			const element: CartsVO = this.cartsListSource[index];
+			totalNum += element.num;
+		}
+
+		return totalNum;
 	}
 
 	/**
