@@ -43,6 +43,7 @@ import { Component, Vue } from 'nuxt-property-decorator';
 import Routers from '~/routers/routers';
 import localService from '~/service/local.service';
 import { BaseView } from '~/core/views/base.view';
+import commonCart from '~/common/common.cart';
 
 /** 首页 */
 @Component({
@@ -70,33 +71,12 @@ export default class Index extends BaseView {
 	public mounted(): void {
 		// 依据ID列表获取已存入购物车列表数据
 		localService.getCartsListData(this.sourceData).then((data: any) => {
-			const updatedCartsList: Array<any> = this.getUpdatedCartsList(
+			const updatedCartsList: Array<any> = commonCart.getUpdatedCartsList(
 				data.data.data,
 				this.sourceData
 			);
 			this.$vxm.carts.getCartsListFromAsync(updatedCartsList);
 		});
-	}
-
-	/** 更新用户已添加入购物车数量 */
-	private getUpdatedCartsList(
-		list: Array<any>,
-		sourceData: Array<any>
-	): Array<any> {
-		for (let indexList: number = 0; indexList < list.length; indexList++) {
-			const element: any = list[indexList];
-
-			for (let index: number = 0; index < sourceData.length; index++) {
-				const item: any = sourceData[index];
-
-				if (element._id === item.id) {
-					element.num = item.num;
-					break;
-				}
-			}
-		}
-
-		return list;
 	}
 
 	/** custom head data */

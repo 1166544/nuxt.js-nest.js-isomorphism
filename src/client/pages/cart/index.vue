@@ -38,6 +38,8 @@ import { ICartsItem } from '~/models/carts';
 import Header from '~/components/header.component.vue';
 import { Toast } from 'vant';
 import { BaseView } from '~/core/views/base.view';
+import localService from '~/service/local.service';
+import commonCart from '~/common/common.cart';
 
 /** 购物车页 */
 @Component({
@@ -60,16 +62,20 @@ export default class Index extends BaseView {
 		]
 	};
 
+	/** 原始数据 */
+	private sourceData: any;
+
 	constructor() {
 		super();
 	}
 
 	/** 异步数据 */
-	public asyncData({ req }: any): any {
+	public async asyncData({ req }: any): Promise<any> {
 		const goods: Array<ICartsItem> = [];
 		const checkedGoods: Array<any> = [];
+		const data: any = await localService.getGoodsListData();
 
-		return { checkedGoods, goods };
+		return { sourceData: data.data, checkedGoods, goods };
 	}
 
 	/** 自定义SEO头部数据 */
@@ -79,6 +85,15 @@ export default class Index extends BaseView {
 
 	/** 生命周期computed */
 	private mounted(): void {
+		// 依据ID列表获取已存入购物车列表数据
+		localService.getCartsListData(this.sourceData).then((data: any) => {
+			const updatedCartsList: Array<any> = commonCart.getUpdatedCartsList(
+				data.data.data,
+				this.sourceData
+			);
+			this.$vxm.carts.getCartsListFromAsync(updatedCartsList);
+		});
+
 		this.headerTitle = this.headerData.title;
 		this.countTotalPrice();
 	}
