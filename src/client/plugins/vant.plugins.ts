@@ -21,7 +21,8 @@ import {
 	SwipeItem,
 	GoodsAction,
 	GoodsActionIcon,
-	GoodsActionButton
+	GoodsActionButton,
+	Stepper
 } from 'vant';
 
 import 'vant/lib/index.css';
@@ -51,3 +52,4 @@ Vue.use(CheckboxGroup);
 Vue.use(Card);
 Vue.use(SubmitBar);
 Vue.use(Toast);
+Vue.use(Stepper);

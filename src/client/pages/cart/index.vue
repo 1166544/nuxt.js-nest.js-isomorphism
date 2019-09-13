@@ -14,7 +14,11 @@
 					:num="item.num"
 					:price="formatPrice(item.price)"
 					:thumb="item.thumb"
-				/>
+				>
+					<div slot="footer">
+						<van-stepper v-model="item.num" min="1" max="100" />
+					</div>
+				</van-card>
 			</van-checkbox>
 		</van-checkbox-group>
 		<van-submit-bar
@@ -34,12 +38,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { ICartsItem } from '~/models/carts';
+import { ICartsItem, CartsVO } from '~/models/carts';
 import Header from '~/components/header.component.vue';
 import { Toast } from 'vant';
 import { BaseView } from '~/core/views/base.view';
 import localService from '~/service/local.service';
 import commonCart from '~/common/common.cart';
+import { HttpConst } from '~/core/consts/http.const';
 
 /** 购物车页 */
 @Component({
@@ -106,6 +111,18 @@ export default class Index extends BaseView {
 					this.checkedGoods.indexOf(item.id) !== -1
 						? item.price * item.num
 						: 0;
+				const cartItem: ICartsItem = new CartsVO();
+				cartItem.update({
+					id: item.id,
+					num: item.num
+				});
+
+				// 更新更改数量入DB
+				localService
+					.addToCart(cartItem, CartsVO.FORCE_NUM)
+					.then((e: any) => {
+						console.log(e);
+					});
 
 				return total + resultTotal;
 			},

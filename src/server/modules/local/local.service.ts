@@ -36,12 +36,33 @@ export class LocalService extends BaseHttpClient {
 		const findResult: Array<any> = await this.cartsModel.find({ id: addToCartsDto.id }).exec();
 		let processResult: any;
 		if (findResult && findResult.length === 0) {
-			// 插入
+			// 插入新的
 			const addToCarts: any = new this.cartsModel(addToCartsDto);
 			processResult = await addToCarts.save();
 		} else {
+
 			// 更新数量
-			const numValue: number = Number(findResult[0].num) + 1;
+			// 0.增加 1.减少 2.原值存入
+			let numValue: number;
+			switch (addToCartsDto.forceType) {
+				case AddCartsDto.INC_NUM:
+					// 增加
+					numValue = Number(findResult[0].num) + 1;
+					break;
+				case AddCartsDto.DEC_NUM:
+					// 减少
+					numValue = Number(findResult[0].num) - 1;
+					break;
+				case AddCartsDto.FORCE_NUM:
+					// 原值存入
+					numValue = addToCartsDto.num;
+					break;
+				default:
+					// 增加
+					numValue = Number(findResult[0].num) + 1;
+					break;
+			}
+			// 执行更新
 			processResult = this.cartsModel.updateOne({ id: addToCartsDto.id }, { num: numValue });
 		}
 

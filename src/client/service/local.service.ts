@@ -19,12 +19,14 @@ class LocalService extends BaseService {
 	 * 调用接口添加入购物车
 	 * @description Adds to cart
 	 * @param cartsVO
+	 * @param forceType 是否原值存入
 	 * @returns to cart
 	 */
-	public async addToCart(cartsVO: CartsVO): Promise<any> {
+	public async addToCart(cartsVO: CartsVO, forceType: number = 0): Promise<any> {
 		return await this.post('/api/local/addToCart', {
 			id: cartsVO.id,
-			num: 1
+			num: cartsVO.num,
+			forceType
 		});
 	}
 
