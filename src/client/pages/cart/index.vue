@@ -103,7 +103,9 @@ export default class Index extends BaseView {
 		this.totalPrice = this.$vxm.carts.cartsList.reduce(
 			(total: any, item: ICartsItem): any => {
 				const resultTotal: any =
-					this.checkedGoods.indexOf(item.id) !== -1 ? item.price : 0;
+					this.checkedGoods.indexOf(item.id) !== -1
+						? item.price * item.num
+						: 0;
 
 				return total + resultTotal;
 			},
