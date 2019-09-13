@@ -42,7 +42,7 @@ export class LocalService extends BaseHttpClient {
 		} else {
 			// 更新数量
 			const numValue: number = Number(findResult[0].num) + 1;
-			processResult = this.cartsModel.update({ id: addToCartsDto.id }, { num: numValue });
+			processResult = this.cartsModel.updateOne({ id: addToCartsDto.id }, { num: numValue });
 		}
 
 		return processResult;

@@ -77,17 +77,13 @@ export class CartsStore extends VuexModule {
 	 */
 	@mutation
 	public updateCartsNum(item: ICartsItem): void {
-		const copyList: Array<any> = this.cartsListSource.concat();
-
-		this.cartsListSource = [];
-		for (let index: number = 0; index < copyList.length; index++) {
-			const element: CartsVO = copyList[index];
+		for (let index: number = 0; index < this.cartsListSource.length; index++) {
+			const element: CartsVO = this.cartsListSource[index];
 
 			if (element.id === item.id) {
 				element.num++;
 			}
 		}
-		this.cartsListSource = copyList;
 	}
 
 	/**
