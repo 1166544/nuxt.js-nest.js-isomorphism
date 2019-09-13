@@ -26,6 +26,11 @@ class CommonCart {
 
 		return list;
 	}
+
+	/** 格式价格 */
+	public formatPrice(price: number = 1): string {
+		return (price / 100).toFixed(2);
+	}
 }
 
 export default new CommonCart();

@@ -17,7 +17,7 @@ export interface ICartsItem extends IVO {
 	title: string;
 	desc: string;
 	price: number;
-	num: string;
+	num: number;
 	thumb: string;
 	thumbList: Array<any>
 }
@@ -37,7 +37,7 @@ export class CartsVO implements ICartsItem {
 	public title: string;
 	public desc: string;
 	public price: number;
-	public num: string;
+	public num: number;
 	public thumb: string;
 	public thumbList: Array<any> = [];
 
@@ -53,12 +53,13 @@ export class CartsVO implements ICartsItem {
 			this.title = val.title;
 			this.desc = val.desc;
 			this.price = Number(val.price);
-			this.num = val.num;
+			this.num = Number(val.num);
 			this.thumb = val.thumb;
 
 			if (val.thumbList && val.thumbList.length) {
-				while (val.thumbList.length) {
-					this.thumbList.push(val.thumbList.shift());
+				for (let index: number = 0; index < val.thumbList.length; index++) {
+					const element: any = val.thumbList[index];
+					this.thumbList.push(element);
 				}
 			}
 		}

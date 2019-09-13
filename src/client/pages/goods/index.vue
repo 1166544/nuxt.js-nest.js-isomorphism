@@ -50,6 +50,7 @@ import { Toast } from 'vant';
 import localService from '~/service/local.service';
 import { BaseView } from '~/core/views/base.view';
 import { HttpConst } from '~/core/consts/http.const';
+import commonCart from '~/common/common.cart';
 
 /** 产品页 */
 @Component({
@@ -77,16 +78,29 @@ export default class Index extends BaseView {
 	/** 页面商品数据 */
 	private goods: any;
 
+	/** 原始数据 */
+	private sourceData: any;
+
 	/** 初始化前将页面数据提取 */
 	public async asyncData({ params, app }: any): Promise<any> {
-		const data: any = await localService.getGoodsData();
+		const goodsData: any = await localService.getGoodsData();
+		const sourceDta: any = await localService.getGoodsListData();
 
-		return { goods: data.data.data };
+		return { sourceData: sourceDta.data, goods: goodsData.data.data };
 	}
 
 	/** 生命周期mounted */
 	public mounted(): void {
 		this.headerTitle = this.headerData.title;
+
+		// 依据ID列表获取已存入购物车列表数据
+		localService.getCartsListData(this.sourceData).then((data: any) => {
+			const updatedCartsList: Array<any> = commonCart.getUpdatedCartsList(
+				data.data.data,
+				this.sourceData
+			);
+			this.$vxm.carts.getCartsListFromAsync(updatedCartsList);
+		});
 	}
 
 	/** 自定义SEO头部数据 */
@@ -96,7 +110,7 @@ export default class Index extends BaseView {
 
 	/** 格式化货币单位 */
 	private formatPrice(): string {
-		return '¥' + (this.goods.price / 100).toFixed(2);
+		return '¥' + commonCart.formatPrice(this.goods.price);
 	}
 
 	/** 点击路由跳转 */
@@ -106,7 +120,6 @@ export default class Index extends BaseView {
 
 	/** 加入购物车 */
 	private async addToCart(): Promise<any> {
-		console.log(this.goods._id);
 		const cartItem: ICartsItem = new CartsVO();
 		cartItem.update(this.goods);
 
@@ -116,7 +129,7 @@ export default class Index extends BaseView {
 			addToCartResult &&
 			addToCartResult.status === HttpConst.STATUS_200
 		) {
-			this.$vxm.carts.addCarts(cartItem);
+			this.$vxm.carts.updateCartsNum(cartItem);
 			Toast('添加成功');
 		}
 	}

@@ -70,6 +70,24 @@ export class CartsStore extends VuexModule {
 	}
 
 	/**
+	 * 更新购物车列表内商品数量
+	 *
+	 * @param ICartsItem item
+	 * @memberof CartsStore
+	 */
+	@mutation
+	public updateCartsNum(item: ICartsItem): void {
+		for (let index: number = 0; index < this.cartsListSource.length; index++) {
+			const element: CartsVO = this.cartsListSource[index];
+
+			if (element.id === item.id) {
+				element.num++;
+				break;
+			}
+		}
+	}
+
+	/**
 	 * 异步获取购物车物品,例如调用接口
 	 *
 	 * @returns {Promise<any>}
@@ -88,18 +106,6 @@ export class CartsStore extends VuexModule {
 			if (addedCartsList && addedCartsList.length) {
 				data = addedCartsList;
 			}
-		} else {
-			// 页面渲染时未初始化
-			/* const dataValue: any = await axios.get('/carts.json');
-			let data: any = '';
-
-			if (dataValue && dataValue.data) {
-				if (dataValue.data.list) {
-					data = dataValue.data.list;
-				} else {
-					data = JSON.parse(dataValue.data);
-				}
-			} */
 		}
 
 		while (data.length) {

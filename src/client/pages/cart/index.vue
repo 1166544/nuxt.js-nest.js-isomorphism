@@ -113,7 +113,7 @@ export default class Index extends BaseView {
 
 	/** 格式价格 */
 	private formatPrice(price: number = 1): string {
-		return (price / 100).toFixed(2);
+		return commonCart.formatPrice(price);
 	}
 
 	/** on submit */
