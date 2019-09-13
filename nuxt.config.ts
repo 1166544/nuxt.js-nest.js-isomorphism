@@ -119,13 +119,17 @@ const config: NuxtConfiguration = {
 		/*
 		 ** You can extend webpack config here
 		 */
-		extend(config, ctx) {
+		extend(config, { isClient }) {
 			if (process.server) {
 				config.externals = [
 					nodeExternals({
 						whitelist: [/^vant/],
 					}),
 				];
+			}
+
+			if (isClient) {
+				config.devtool = '#source-map'
 			}
 		},
 	},
