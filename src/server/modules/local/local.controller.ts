@@ -6,6 +6,7 @@ import { ICat } from './interfaces/cat.interface';
 import { CreateGoodsDto } from './dto/create-goods.dto';
 import { EngineController } from '../../common/core/engine.controller';
 import { AddCartsDto } from './dto/add-carts.dto';
+import { CardListItemDto } from './dto/card-list-item.dto';
 
 /**
  * 中转服务CONTROLLER处理器
@@ -101,6 +102,20 @@ export class LocalController extends EngineController {
 	@Post('addToCart')
 	public async addToCart(@Res() res: any, @Body() addToCartsDto: AddCartsDto): Promise<any> {
 		const returnData: any = await this.localService.addToCart(addToCartsDto);
+
+		res.status(HttpStatus.OK).json(
+			this.encapsulationReturnObject(returnData)
+		);
+	}
+
+	/**
+	 * 依据ID获取已添加入购物车的列表数据项
+	 * @description Posts local controller
+	 * @param addToCartsDto
+	 */
+	@Post('getCartsListData')
+	public async getCartsListData(@Res() res: any, @Body() cartListItem: CardListItemDto): Promise<any> {
+		const returnData: any = await this.localService.getCartsListData(cartListItem);
 
 		res.status(HttpStatus.OK).json(
 			this.encapsulationReturnObject(returnData)

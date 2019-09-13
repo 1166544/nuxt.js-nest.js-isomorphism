@@ -29,13 +29,23 @@ class LocalService extends BaseService {
 	}
 
 	/**
-	 * 获取已选择商品列表数据
+	 * 获取已选择商品数据ID列表
 	 *
 	 * @returns {Promise<any>}
 	 * @memberof LocalService
 	 */
 	public async getGoodsListData(): Promise<any> {
 		return await this.get('/api/local/getCarts');
+	}
+
+	/**
+	 * 获取已选择商品列表数据项
+	 *
+	 * @returns {Promise<any>}
+	 * @memberof LocalService
+	 */
+	public async getCartsListData(params: Array<any>): Promise<any> {
+		return await this.post('/api/local/getCartsListData', { list: params });
 	}
 
 	/**

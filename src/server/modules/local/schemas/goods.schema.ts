@@ -11,4 +11,4 @@ export const GoodsSchema: any = new mongoose.Schema({
 	num: String,
 	thumb: String,
 	thumbList: Array
-});
+}, { collection: 'isomorphism.goods' });

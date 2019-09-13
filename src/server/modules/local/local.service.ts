@@ -8,6 +8,7 @@ import { IGoods } from './interfaces/goods.interface';
 import { MODEL } from './local.providers';
 import { AddCartsDto } from './dto/add-carts.dto';
 import { ICart } from './interfaces/cart.interface';
+import { CardListItemDto } from './dto/card-list-item.dto';
 
 /**
  * 本地服务
@@ -100,6 +101,27 @@ export class LocalService extends BaseHttpClient {
 	 */
 	public async getGoods(id: string): Promise<any> {
 		const result: any = await this.goodsModel.findById(id).exec();
+
+		return result;
+	}
+
+	/**
+	 * 依据ID获取已添加入购物车的列表数据项
+	 *
+	 * @returns {Promise<any>}
+	 * @memberof LocalService
+	 */
+	public async getCartsListData(cartListItem: CardListItemDto): Promise<any> {
+		const ids: Array<string> = [];
+		while (cartListItem.list.length) {
+			const cartItem: AddCartsDto = cartListItem.list.shift();
+			ids.push(cartItem.id);
+		}
+
+		const result: any = await this.goodsModel.find().where('_id').in(ids).exec();
+
+		// TODO:
+		console.log(result);
 
 		return result;
 	}

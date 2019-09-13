@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { ICarts } from '~/models/carts';
+import { ICartsItem } from '~/models/carts';
 import Header from '~/components/header.component.vue';
 import { Toast } from 'vant';
 import { BaseView } from '~/core/views/base.view';
@@ -66,7 +66,7 @@ export default class Index extends BaseView {
 
 	/** 异步数据 */
 	public asyncData({ req }: any): any {
-		const goods: Array<ICarts> = [];
+		const goods: Array<ICartsItem> = [];
 		const checkedGoods: Array<any> = [];
 
 		return { checkedGoods, goods };
@@ -86,7 +86,7 @@ export default class Index extends BaseView {
 	/** 计算总价 */
 	private countTotalPrice(): void {
 		this.totalPrice = this.$vxm.carts.cartsList.reduce(
-			(total: any, item: ICarts): any => {
+			(total: any, item: ICartsItem): any => {
 				const resultTotal: any =
 					this.checkedGoods.indexOf(item.id) !== -1 ? item.price : 0;
 

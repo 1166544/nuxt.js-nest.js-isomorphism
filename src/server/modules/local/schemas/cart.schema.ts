@@ -6,4 +6,6 @@ import * as mongoose from 'mongoose';
 export const CartsSchema: any = new mongoose.Schema({
 	id: { type: String, unique: true, required: true },
 	num: Number
-});
+},
+	{ collection: 'isomorphism.carts' }
+);

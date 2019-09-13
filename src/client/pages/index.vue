@@ -68,7 +68,10 @@ export default class Index extends BaseView {
 
 	/** 生命周期mounted, 初始化页面后获取从服务端已获取好的数据，存入store */
 	public mounted(): void {
-		this.$vxm.carts.getCartsListFromAsync(this.sourceData);
+		// 依据ID列表获取已存入购物车列表数据
+		localService.getCartsListData(this.sourceData).then((data: any) => {
+			this.$vxm.carts.getCartsListFromAsync(data);
+		});
 	}
 
 	/** custom head data */
