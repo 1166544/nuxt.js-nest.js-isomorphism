@@ -51,10 +51,10 @@ export default ({ app, redirect }): any => {
 	axios.onError((error: any): any => {
 		const code: number = Number(error.response && error.response.status);
 		if (code === CODE_400) {
-			redirect('/400');
+			redirect('/error/400');
 		}
 		if (code === CODE_500) {
-			redirect('/500');
+			redirect('/error/500');
 		}
 	});
 	axios.onRequestError((error: any): any => {
