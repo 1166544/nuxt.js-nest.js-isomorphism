@@ -32,6 +32,7 @@
 				<div v-if="this.$vxm.carts.cartsNum > 0" class="badge">{{ this.$vxm.carts.cartsNum }}</div>
 			</van-cell>
 			<van-cell icon="coupon-o" title="我的货品" is-link @click="gotoGoods" />
+			<van-cell icon="coupon-o" title="退出登录" is-link @click="logout" />
 		</van-cell-group>
 	</div>
 </template>
@@ -44,6 +45,7 @@ import Routers from '~/routers/routers';
 import localService from '~/service/local.service';
 import { BaseView } from '~/core/views/base.view';
 import commonCart from '~/common/common.cart';
+import Cookie from 'js-cookie';
 
 /** 首页 */
 @Component({
@@ -106,6 +108,13 @@ export default class Index extends BaseView {
 	/** 跳转至列表页 */
 	private gotoList(): void {
 		this.$router.push(Routers.LIST_PAGE);
+	}
+
+	/** 退出登录 */
+	private logout(): void {
+		Cookie.remove('auth');
+		this.$vxm.auth.setAuth(null);
+		this.$router.push(Routers.LOGIN_PAGE);
 	}
 }
 </script>

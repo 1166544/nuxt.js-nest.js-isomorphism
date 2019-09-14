@@ -41,4 +41,13 @@ export default class Routers {
 	 * @memberof Routers
 	 */
 	public static LIST_PAGE: string = 'list';
+
+	/**
+	 * 登录页
+	 *
+	 * @static
+	 * @type {string}
+	 * @memberof Routers
+	 */
+	public static LOGIN_PAGE: string = 'auth/login';
 }

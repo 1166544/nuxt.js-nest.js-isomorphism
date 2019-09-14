@@ -125,7 +125,10 @@ const config: NuxtConfiguration = {
 	},
 
 	router: {
-		middleware: ['mobile']
+		middleware: [
+			'mobile.middleware',
+			'not-authenticated.middleware'
+		]
 	}
 };
 

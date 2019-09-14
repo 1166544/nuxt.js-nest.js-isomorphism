@@ -114,4 +114,15 @@ export class ConfigDefault {
 	public updateEnv(env: string): void {
 		this._env = env;
 	}
+
+	/**
+	 * 鉴权白名单页面，在此列表内页面将进行登录判断
+	 */
+	public authWhiteList(): Array<string> {
+		return [
+			'/cart',
+			'/goods',
+			'/'
+		];
+	}
 }
