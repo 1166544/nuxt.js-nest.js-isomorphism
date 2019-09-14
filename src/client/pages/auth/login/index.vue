@@ -1,17 +1,41 @@
 <template>
 	<div class="container">
 		<Header :title="headerTitle"></Header>
-		<h1>Sign in to access the secret page</h1>
-		<div>
-			<label for="email">
-				<input id="email" type="email" value="test" />
-			</label>
-			<label for="password">
-				<input id="password" type="password" value="test" />
-			</label>
-			<button @click="postLogin">login</button>
-			<p>The credentials are not verified for the example purpose.</p>
-		</div>
+		<img
+			class="user-poster"
+			src="https://img.yzcdn.cn/public_files/2017/10/23/8690bb321356070e0b8c4404d087f8fd.png"
+		/>
+		<van-row class="user-links">
+			<van-col>
+				<van-icon name="pending-payment" />请输入用户名、密码登录
+			</van-col>
+		</van-row>
+		<van-panel title desc status="登录">
+			<div>
+				<van-cell-group>
+					<van-field
+						v-model="userName"
+						required
+						clearable
+						label="用户名"
+						border
+						right-icon="question-o"
+						placeholder="请输入用户名"
+						@click-right-icon="$toast('question')"
+					/>
+					<van-field v-model="password" border type="password" label="密码" placeholder="请输入密码" required />
+				</van-cell-group>
+				<van-row class="user-links">
+					<van-col>
+						<van-icon name="pending-payment" />请输入用户名、密码登录
+					</van-col>
+				</van-row>
+				<van-button round type="info" @click="postLogin" size="large">登录</van-button>
+			</div>
+		</van-panel>
+		<van-cell-group>
+			<van-cell title="说明:" value label="模拟用户登录，从服务端下发TOKEN至前端，请求时再从HEADER返回校验" />
+		</van-cell-group>
 	</div>
 </template>
 
@@ -44,6 +68,12 @@ export default class LoginPage extends BaseView {
 	/** 原始数据 */
 	private query: any;
 
+	/** user name */
+	private userName: string = 'test';
+
+	/** password */
+	private password: string = 'test';
+
 	constructor() {
 		super();
 	}
@@ -68,7 +98,7 @@ export default class LoginPage extends BaseView {
 	}
 
 	/** 登录 */
-	private postLogin(): void {
+	private async postLogin(): Promise<any> {
 		setTimeout(() => {
 			// we simulate the async request with timeout.
 			const auth: any = {
@@ -89,4 +119,29 @@ export default class LoginPage extends BaseView {
 }
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.user {
+  &-poster {
+    width: 100%;
+    height: 53vw;
+    display: block;
+  }
+
+  &-group {
+    margin-bottom: 15px;
+  }
+
+  &-links {
+    visibility: hidden;
+    padding: 15px 0;
+    font-size: 12px;
+    text-align: center;
+    background-color: #fff;
+
+    .van-icon {
+      display: block;
+      font-size: 24px;
+    }
+  }
+}
+</style>

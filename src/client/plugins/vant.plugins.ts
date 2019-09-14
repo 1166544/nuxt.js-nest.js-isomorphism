@@ -22,7 +22,9 @@ import {
 	GoodsAction,
 	GoodsActionIcon,
 	GoodsActionButton,
-	Stepper
+	Stepper,
+	Field,
+	Panel
 } from 'vant';
 
 import 'vant/lib/index.css';
@@ -53,3 +55,5 @@ Vue.use(Card);
 Vue.use(SubmitBar);
 Vue.use(Toast);
 Vue.use(Stepper);
+Vue.use(Field);
+Vue.use(Panel);
