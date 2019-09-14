@@ -1,5 +1,7 @@
 import configService from '~/core/service/config.service';
 import { NuxtAxiosInstance } from '@nuxtjs/axios';
+import { HttpConst } from '~/core/consts/http.const';
+import Cookie from 'js-cookie';
 
 /** axios defined */
 export let axios: NuxtAxiosInstance = null;
@@ -47,6 +49,17 @@ export default ({ app, redirect }): any => {
 	});
 	axios.onResponse((response: any): any => {
 		// console.log('onResponse..', response);
+		switch (response.status) {
+			case HttpConst.STATUS_401:
+				redirect('/auth/login');
+				break;
+			case HttpConst.STATUS_403:
+				if (process.client) {
+					Cookie.set('auth', null);
+				}
+				redirect('/auth/login');
+				break;
+		}
 	});
 	axios.onError((error: any): any => {
 		const code: number = Number(error.response && error.response.status);

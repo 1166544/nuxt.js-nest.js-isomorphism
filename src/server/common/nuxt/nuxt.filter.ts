@@ -32,8 +32,10 @@ export class NuxtFilter implements ExceptionFilter {
 	public async catch(exception: HttpException, host: ArgumentsHost): Promise<any> {
 
 		try {
-			// console.log(exception);
-			// console.log(host);
+			if (exception && !exception.hasOwnProperty('getStatus')) {
+				// console.log(exception);
+				// console.log(host);
+			}
 
 			const ctx: any = host.switchToHttp();
 			const res: any = ctx.getResponse();

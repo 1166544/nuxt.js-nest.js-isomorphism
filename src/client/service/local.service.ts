@@ -16,6 +16,20 @@ class LocalService extends BaseService {
 	}
 
 	/**
+	 * 登录
+	 * @description login
+	 * @param userName
+	 * @param password
+	 * @returns to cart
+	 */
+	public async login(userName: string, password: string): Promise<any> {
+		return await this.post('/api/local/login', {
+			userName,
+			password
+		});
+	}
+
+	/**
 	 * 调用接口添加入购物车
 	 * @description Adds to cart
 	 * @param cartsVO

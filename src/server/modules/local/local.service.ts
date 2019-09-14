@@ -9,6 +9,9 @@ import { MODEL } from './local.providers';
 import { AddCartsDto } from './dto/add-carts.dto';
 import { ICart } from './interfaces/cart.interface';
 import { CardListItemDto } from './dto/card-list-item.dto';
+import { LoginDto } from './dto/login.dto';
+import uuidV1 from 'uuid/v1';
+import uuidV3 from 'uuid/v3';
 
 /**
  * 本地服务
@@ -67,6 +70,28 @@ export class LocalService extends BaseHttpClient {
 		}
 
 		return processResult;
+	}
+
+	/**
+	 * login
+	 * @description Creates local service
+	 * @param loginDto
+	 * @returns create
+	 */
+	public async login(loginDto: LoginDto): Promise<any> {
+		const returnValue: any = {
+			userId: 'gGotFromApiServi',
+			userName: 'james'
+		};
+
+		returnValue.accessToken = uuidV3(returnValue.userId, uuidV1());
+
+		console.log(returnValue);
+
+		return returnValue;
+		// const createdGoods: any = new this.goodsModel(createGoodsDto);
+
+		// return await createdGoods.save();
 	}
 
 	/**

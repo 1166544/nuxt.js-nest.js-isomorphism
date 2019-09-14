@@ -7,6 +7,7 @@ import { CreateGoodsDto } from './dto/create-goods.dto';
 import { EngineController } from '../../common/core/engine.controller';
 import { AddCartsDto } from './dto/add-carts.dto';
 import { CardListItemDto } from './dto/card-list-item.dto';
+import { LoginDto } from './dto/login.dto';
 
 /**
  * 中转服务CONTROLLER处理器
@@ -28,9 +29,23 @@ export class LocalController extends EngineController {
 	 * @description Posts local controller
 	 * @param createCatDto
 	 */
+	@Post('login')
+	public async login(@Res() res: any, @Body() loginDto: LoginDto): Promise<any> {
+		const returnData: any = await this.localService.login(loginDto);
+
+		res.status(HttpStatus.OK).json(
+			this.encapsulationReturnObject(returnData)
+		);
+	}
+
+	/**
+	 * create cat
+	 * @description Posts local controller
+	 * @param createCatDto
+	 */
 	@Post('createCat')
 	public async create(@Body() createCatDto: CreateCatDto): Promise<any> {
-		await this.localService.create(createCatDto);
+		return await this.localService.create(createCatDto);
 	}
 
 	/**

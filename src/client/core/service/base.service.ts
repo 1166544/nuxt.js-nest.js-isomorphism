@@ -1,4 +1,5 @@
 import { IVO } from '~/core/interfaces/vo.interface';
+import IUser from '~/models/user';
 import configService from '~/core/service/config.service';
 
 /**
@@ -73,6 +74,14 @@ export class BaseService {
 		}
 
 		return this.apiServiceInstance;
+	}
+
+	/**
+	 * 更新拦截信息,将token设入请求头部
+	 * @param loginData
+	 */
+	public updateIntercept(loginData: IUser): void {
+		this.apiService.setToken(loginData.accessToken);
 	}
 
 	/**

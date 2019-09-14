@@ -45,6 +45,11 @@ import Cookie from 'js-cookie';
 import Header from '~/components/header.component.vue';
 import { BaseView } from '~/core/views/base.view';
 import Routers from '~/routers/routers';
+import localService from '~/service/local.service';
+import md5 from 'md5';
+import { HttpConst } from '~/core/consts/http.const';
+import { Toast } from 'vant';
+import IUser from '../../../models/user';
 
 /** LoginPage Layout */
 @Component({
@@ -99,22 +104,38 @@ export default class LoginPage extends BaseView {
 
 	/** 登录 */
 	private async postLogin(): Promise<any> {
-		setTimeout(() => {
-			// we simulate the async request with timeout.
-			const auth: any = {
-				userId: 'gGotFromApiServi',
-				userName: 'james',
-				accessToken: 'someStringGotFromApiServiceWithAjax'
-			};
+		const loginResult: any = await localService.login(
+			this.userName,
+			md5(this.password)
+		);
 
-			// 存入store和Cookie
-			this.$vxm.auth.setAuth(auth); // mutating to store for client rendering
-			Cookie.set('auth', auth); // saving token in cookie for server rendering
+		if (loginResult && loginResult.data && loginResult.data.data) {
+			const loginData: any = loginResult.data.data;
 
-			// 重定向
-			const redirectUrl: string = this.query.uri || '/';
-			this.$router.push(redirectUrl);
-		}, 1000);
+			switch (loginResult.data.code) {
+				case HttpConst.STATUS_200:
+					this.saveLoginData(loginData);
+					break;
+				case HttpConst.STATUS_401:
+				case HttpConst.STATUS_403:
+					Toast(loginData.message);
+					break;
+			}
+		}
+	}
+
+	/** 保存登录信息 */
+	private saveLoginData(auth: IUser): void {
+		// 存入store和Cookie
+		this.$vxm.auth.setAuth(auth); // 客户端渲染使用
+		Cookie.set('auth', auth); // 服务端渲染使用
+
+		// 存入axios头部拦截器
+		localService.updateIntercept(auth);
+
+		// 重定向
+		const redirectUrl: string = this.query.uri || '/';
+		this.$router.push(redirectUrl);
 	}
 }
 </script>
