@@ -16,7 +16,7 @@ export class MODEL {
 /**
  * MODEL定义
  */
-export const catsProviders: Array<any> = [
+export const localProviders: Array<any> = [
 	{
 		provide: MODEL.CAT_MODEL,
 		useFactory: (connection: Connection): any => connection.model('Cat', CatSchema),
