@@ -2,6 +2,7 @@ import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { defer, Observable } from 'rxjs';
 import ProxyAgent from 'proxy-agent';
 import { ConfigDefault } from './../../../../config/default.config';
+import configService from '../../../client/core/service/config.service';
 
 /**
  *
@@ -13,7 +14,7 @@ export class BaseHttpClient {
 	/**
 	 * http代理地址
 	 */
-	private proxyUri: string = process.env.http_proxy;
+	private proxyUri: string;
 
 	/**
 	 * Axios 实例
@@ -21,12 +22,16 @@ export class BaseHttpClient {
 	private readonly instance: AxiosInstance = Axios;
 
 	constructor() {
+		// 读取配置
+		const configer: ConfigDefault = configService.getConfig();
+		this.proxyUri = configer.getProxyAddress();
+
 		// 请求拦截
 		this.instance.interceptors.request.use(
 			(request: AxiosRequestConfig) => {
 				request.headers.startInvokeTime = Date.now();
-				// 开发模式则添加代理
-				if (process.env[ConfigDefault.ENV_DEV]) {
+				// 开发模式则添加代理-charles
+				if (process.env.NODE_ENV === ConfigDefault.ENV_DEV) {
 					request.httpAgent = new ProxyAgent(this.proxyUri);
 					request.httpsAgent = new ProxyAgent(this.proxyUri);
 				}

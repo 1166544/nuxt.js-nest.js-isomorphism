@@ -66,12 +66,29 @@ export class ConfigDefault {
 	public localUrl: string = 'http://127.0.0.1';
 
 	/**
+	 * charles抓包地址
+	 */
+	public httpProxyUrl: string = 'http://127.0.0.1';
+
+	/**
+	 * charles抓包端口
+	 */
+	public httpProxyPort: number = 8888;
+
+	/**
 	 * cnode配置
 	 *
 	 * @type {string}
 	 * @memberof ConfigDefault
 	 */
 	public cnodeUrl: string = 'https://cnodejs.org';
+
+	/**
+	 * proxy-agent地址
+	 */
+	public getProxyAddress(): string {
+		return `${this.httpProxyUrl}:${this.httpProxyPort}`;
+	}
 
 	/**
 	 * API统一前缀

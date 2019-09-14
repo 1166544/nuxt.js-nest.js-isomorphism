@@ -9,7 +9,7 @@
 	],
 	"scripts": {
 		"format": "prettier --write \"**/*.ts\"",
-		"start": "npm run cover && node dist/src/server/main.js",
+		"start": "npm run cover && cross-env NODE_ENV=production node dist/src/server/main.js",
 		"start:dev": "npm run lint && cross-env NODE_ENV=development npm run cover && webpack --config webpack.config.js",
 		"start:prod": "npm run lint && cross-env NODE_ENV=production npm run cover && webpack --config webpack.config.js",
 		"build": "npm run lint && cross-env NODE_ENV=production npm run clean && nuxt build && tsc",
