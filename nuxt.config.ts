@@ -77,20 +77,10 @@ const config: NuxtConfiguration = {
 	 */
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
-		// debug: isDev,
 		proxy: false,
 		retry: { retries: 3 },
-		// prefix: '/api',
 		credentials: true
 	},
-	/*
-	 ** Axios proxy configuration
-	 */
-	proxy: [
-		// [`http://${configDefault.serverAdderess}:${configDefault.port}`, { changeOrigin: false, ws: false }],
-		// ['/dog', { target: 'https://dog.ceo/', pathRewrite: { '^/dog': '/api/breeds/image/random' } }]
-		// '/api/': { target: 'http://api.example.com', pathRewrite: { '^/api/': '' } }
-	],
 	/*
 	 ** Build configuration
 	 */

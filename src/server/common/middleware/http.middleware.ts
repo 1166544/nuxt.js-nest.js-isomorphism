@@ -32,6 +32,7 @@ export class BaseHttpClient {
 				request.headers.startInvokeTime = Date.now();
 				// 开发模式则添加代理-charles
 				if (process.env.NODE_ENV === ConfigDefault.ENV_DEV) {
+					process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 					request.httpAgent = new ProxyAgent(this.proxyUri);
 					request.httpsAgent = new ProxyAgent(this.proxyUri);
 				}
