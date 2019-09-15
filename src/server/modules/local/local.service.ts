@@ -87,10 +87,13 @@ export class LocalService extends BaseHttpClient {
 		if (returnValue.length > 0) {
 			while (returnValue.length) {
 				const item: IUser = returnValue.shift();
+				let accessToken: string = uuidV3(item.userName, uuidV1());
+
+				accessToken = accessToken.replace(/-/ig, '');
 				userList.push({
 					userName: item.userName,
 					_id: item._id,
-					accessToken: uuidV3(item.userName, uuidV1())
+					accessToken
 				});
 
 				// TODO: 存储token到redis或全局对象用于校验
