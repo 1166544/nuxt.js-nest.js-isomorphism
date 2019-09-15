@@ -33,7 +33,11 @@ export class NuxtFilter implements ExceptionFilter {
 
 		try {
 			if (exception && !exception.hasOwnProperty('getStatus')) {
-				// console.log(exception);
+				const response: any = exception.getResponse();
+
+				if (response.message.indexOf('Cannot GET /') === -1) {
+					console.log(exception);
+				}
 			}
 
 			const ctx: any = host.switchToHttp();

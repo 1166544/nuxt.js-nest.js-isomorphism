@@ -58,6 +58,11 @@ export class ConfigDefault {
 	public port: number = 8088;
 
 	/**
+	 * 是否输出所有日志记录
+	 */
+	public monitorAllLogs: boolean = false;
+
+	/**
 	 * 本地URL地址
 	 *
 	 * @type {string}
