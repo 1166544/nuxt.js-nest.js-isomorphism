@@ -31,11 +31,17 @@ export class LocalController extends EngineController {
 	 */
 	@Post('login')
 	public async login(@Res() res: any, @Body() loginDto: LoginDto): Promise<any> {
-		const returnData: any = await this.localService.login(loginDto);
+		const returnData: Array<any> = await this.localService.login(loginDto);
 
-		res.status(HttpStatus.OK).json(
-			this.encapsulationReturnObject(returnData)
-		);
+		if (returnData.length) {
+			res.status(HttpStatus.OK).json(
+				this.encapsulationReturnObject(returnData[0])
+			);
+		} else {
+			res.status(HttpStatus.FORBIDDEN).json(
+				this.encapsulationReturnObject({}, HttpStatus.FORBIDDEN, '用户名或密码不正确')
+			);
+		}
 	}
 
 	/**

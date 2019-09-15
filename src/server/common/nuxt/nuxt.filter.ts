@@ -34,7 +34,6 @@ export class NuxtFilter implements ExceptionFilter {
 		try {
 			if (exception && !exception.hasOwnProperty('getStatus')) {
 				// console.log(exception);
-				// console.log(host);
 			}
 
 			const ctx: any = host.switchToHttp();

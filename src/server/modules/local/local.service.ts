@@ -12,6 +12,7 @@ import { CardListItemDto } from './dto/card-list-item.dto';
 import { LoginDto } from './dto/login.dto';
 import uuidV1 from 'uuid/v1';
 import uuidV3 from 'uuid/v3';
+import { IUser } from './interfaces/user.interface';
 
 /**
  * 本地服务
@@ -24,7 +25,8 @@ export class LocalService extends BaseHttpClient {
 	constructor(
 		@Inject(MODEL.CAT_MODEL) private readonly catModel: Model<ICat>,
 		@Inject(MODEL.GOODS_MODEL) private readonly goodsModel: Model<IGoods>,
-		@Inject(MODEL.CARTS_MODEL) private readonly cartsModel: Model<ICart>
+		@Inject(MODEL.CARTS_MODEL) private readonly cartsModel: Model<ICart>,
+		@Inject(MODEL.USER_MODEL) private readonly userModel: Model<IUser>
 	) {
 		super();
 	}
@@ -78,20 +80,24 @@ export class LocalService extends BaseHttpClient {
 	 * @param loginDto
 	 * @returns create
 	 */
-	public async login(loginDto: LoginDto): Promise<any> {
-		const returnValue: any = {
-			userId: 'gGotFromApiServi',
-			userName: 'james'
-		};
+	public async login(loginDto: LoginDto): Promise<Array<any>> {
+		const returnValue: Array<IUser> = await this.userModel.find({ userName: loginDto.userName }).exec();
+		const userList: Array<any> = [];
 
-		returnValue.accessToken = uuidV3(returnValue.userId, uuidV1());
+		if (returnValue.length > 0) {
+			while (returnValue.length) {
+				const item: IUser = returnValue.shift();
+				userList.push({
+					userName: item.userName,
+					_id: item._id,
+					accessToken: uuidV3(item.userName, uuidV1())
+				});
 
-		console.log(returnValue);
+				// TODO: 存储token到redis或全局对象用于校验
+			}
+		}
 
-		return returnValue;
-		// const createdGoods: any = new this.goodsModel(createGoodsDto);
-
-		// return await createdGoods.save();
+		return userList;
 	}
 
 	/**

@@ -3,6 +3,6 @@
  */
 export default interface IUser {
 	accessToken: string;
-	userId: string;
+	_id: string;
 	userName: string;
 }
