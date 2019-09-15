@@ -40,7 +40,8 @@ class LocalService extends BaseService {
 		return await this.post('/api/local/addToCart', {
 			id: cartsVO.id,
 			num: cartsVO.num,
-			forceType
+			forceType,
+			userId: cartsVO.userId
 		});
 	}
 
@@ -50,8 +51,8 @@ class LocalService extends BaseService {
 	 * @returns {Promise<any>}
 	 * @memberof LocalService
 	 */
-	public async getGoodsListData(): Promise<any> {
-		return await this.get('/api/local/getCarts');
+	public async getGoodsListData(userId: string): Promise<any> {
+		return await this.get(`/api/local/getCarts?userId=${userId}`);
 	}
 
 	/**

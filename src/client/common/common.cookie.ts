@@ -79,3 +79,30 @@ export function updateCustomHeaderByCSR(accessToken: string, axios: any): any {
 	// 设置自定义头部token
 	axios.setToken(accessToken);
 }
+
+/**
+ * 获取用户信息
+ * @param config
+ */
+export function getUser(req: any, app: any): any {
+	// 抓取cookie
+	let authData: any;
+	if (process.server) {
+		// ssr
+		const cookieValue: string = req.headers.cookie;
+		const cookie: any = parseCookie(cookieValue || '');
+
+		if (cookie) {
+			try {
+				authData = JSON.parse(decodeURIComponent(cookie.auth));
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	} else {
+		// csr
+		authData = app.store.state.modules.auth.auth;
+	}
+
+	return authData;
+}

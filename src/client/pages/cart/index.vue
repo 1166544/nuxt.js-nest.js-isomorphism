@@ -45,6 +45,8 @@ import { BaseView } from '~/core/views/base.view';
 import localService from '~/service/local.service';
 import commonCart from '~/common/common.cart';
 import { HttpConst } from '~/core/consts/http.const';
+import IUser from '../../models/user';
+import { getUser } from '~/common/common.cookie';
 
 /** 购物车页 */
 @Component({
@@ -70,17 +72,24 @@ export default class Index extends BaseView {
 	/** 原始数据 */
 	private sourceData: any;
 
+	/**
+	 * 用户数据
+	 */
+	private user: IUser;
+
 	constructor() {
 		super();
 	}
 
 	/** 异步数据 */
-	public async asyncData({ req }: any): Promise<any> {
+	public async asyncData({ params, app, req }: any): Promise<any> {
 		const goods: Array<ICartsItem> = [];
 		const checkedGoods: Array<any> = [];
-		const data: any = await localService.getGoodsListData();
 
-		return { sourceData: data.data, checkedGoods, goods };
+		const user: IUser = getUser(req, app);
+		const data: any = await localService.getGoodsListData(user._id);
+
+		return { sourceData: data.data, checkedGoods, goods, user };
 	}
 
 	/** 自定义SEO头部数据 */
@@ -90,6 +99,9 @@ export default class Index extends BaseView {
 
 	/** 生命周期computed */
 	private mounted(): void {
+		// 更新用户数据
+		this.$vxm.auth.setAuth(this.user);
+
 		// 依据ID列表获取已存入购物车列表数据
 		localService.getCartsListData(this.sourceData).then((data: any) => {
 			const updatedCartsList: Array<any> = commonCart.getUpdatedCartsList(
@@ -114,7 +126,8 @@ export default class Index extends BaseView {
 				const cartItem: ICartsItem = new CartsVO();
 				cartItem.update({
 					id: item.id,
-					num: item.num
+					num: item.num,
+					userId: this.$vxm.auth.auth._id
 				});
 
 				// 更新更改数量入DB

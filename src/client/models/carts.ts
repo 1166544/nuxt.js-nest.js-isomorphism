@@ -19,7 +19,8 @@ export interface ICartsItem extends IVO {
 	price: number;
 	num: number;
 	thumb: string;
-	thumbList: Array<any>
+	thumbList: Array<any>;
+	userId: string;
 }
 
 /**
@@ -50,6 +51,7 @@ export class CartsVO implements ICartsItem {
 	public num: number;
 	public thumb: string;
 	public thumbList: Array<any> = [];
+	public userId: string;
 
 	/**
 	 * 更新数据源
@@ -65,6 +67,7 @@ export class CartsVO implements ICartsItem {
 			this.price = Number(val.price);
 			this.num = Number(val.num);
 			this.thumb = val.thumb;
+			this.userId = val.userId;
 
 			if (val.thumbList && val.thumbList.length) {
 				for (let index: number = 0; index < val.thumbList.length; index++) {

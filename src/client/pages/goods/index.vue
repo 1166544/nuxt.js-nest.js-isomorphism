@@ -51,6 +51,8 @@ import localService from '~/service/local.service';
 import { BaseView } from '~/core/views/base.view';
 import { HttpConst } from '~/core/consts/http.const';
 import commonCart from '~/common/common.cart';
+import IUser from '~/models/user';
+import { getUser } from '~/common/common.cookie';
 
 /** 产品页 */
 @Component({
@@ -81,17 +83,26 @@ export default class Index extends BaseView {
 	/** 原始数据 */
 	private sourceData: any;
 
-	/** 初始化前将页面数据提取 */
-	public async asyncData({ params, app }: any): Promise<any> {
-		const goodsData: any = await localService.getGoodsData();
-		const sourceDta: any = await localService.getGoodsListData();
+	/**
+	 * 用户数据
+	 */
+	private user: IUser;
 
-		return { sourceData: sourceDta.data, goods: goodsData.data.data };
+	/** 初始化前将页面数据提取 */
+	public async asyncData({ params, app, req }: any): Promise<any> {
+		const goodsData: any = await localService.getGoodsData();
+		const user: IUser = getUser(req, app);
+		const sourceDta: any = await localService.getGoodsListData(user._id);
+
+		return { sourceData: sourceDta.data, goods: goodsData.data.data, user };
 	}
 
 	/** 生命周期mounted */
 	public mounted(): void {
 		this.headerTitle = this.headerData.title;
+
+		// 更新用户数据
+		this.$vxm.auth.setAuth(this.user);
 
 		// 依据ID列表获取已存入购物车列表数据
 		localService.getCartsListData(this.sourceData).then((data: any) => {
@@ -122,6 +133,7 @@ export default class Index extends BaseView {
 	private async addToCart(): Promise<any> {
 		const cartItem: ICartsItem = new CartsVO();
 		cartItem.update(this.goods);
+		cartItem.userId = this.$vxm.auth.auth._id;
 
 		const addToCartResult: any = await localService.addToCart(cartItem);
 

@@ -46,6 +46,8 @@ import localService from '~/service/local.service';
 import { BaseView } from '~/core/views/base.view';
 import commonCart from '~/common/common.cart';
 import Cookie from 'js-cookie';
+import IUser from '~/models/user';
+import { getUser } from '~/common/common.cookie';
 
 /** 首页 */
 @Component({
@@ -58,19 +60,28 @@ export default class Index extends BaseView {
 	/** 原始数据 */
 	private sourceData: any;
 
+	/**
+	 * 用户数据
+	 */
+	private user: IUser;
+
 	constructor() {
 		super();
 	}
 
 	/** ssr远程调用 */
-	public async asyncData({ params, app }: any): Promise<any> {
-		const data: any = await localService.getGoodsListData();
+	public async asyncData({ params, app, req }: any): Promise<any> {
+		const user: IUser = getUser(req, app);
+		const data: any = await localService.getGoodsListData(user._id);
 
-		return { sourceData: data.data, title: data.data.length };
+		return { sourceData: data.data, title: data.data.length, user };
 	}
 
 	/** 生命周期mounted, 初始化页面后获取从服务端已获取好的数据，存入store */
 	public mounted(): void {
+		// 更新用户数据
+		this.$vxm.auth.setAuth(this.user);
+
 		// 依据ID列表获取已存入购物车列表数据
 		localService.getCartsListData(this.sourceData).then((data: any) => {
 			const updatedCartsList: Array<any> = commonCart.getUpdatedCartsList(

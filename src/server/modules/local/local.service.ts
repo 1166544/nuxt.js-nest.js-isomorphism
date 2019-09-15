@@ -68,7 +68,7 @@ export class LocalService extends BaseHttpClient {
 					break;
 			}
 			// 执行更新
-			processResult = this.cartsModel.updateOne({ id: addToCartsDto.id }, { num: numValue });
+			processResult = this.cartsModel.updateOne({ id: addToCartsDto.id, userId: addToCartsDto.userId }, { num: numValue });
 		}
 
 		return processResult;
@@ -142,8 +142,8 @@ export class LocalService extends BaseHttpClient {
 	 * @returns {Promise<any>}
 	 * @memberof LocalService
 	 */
-	public async getCarts(): Promise<any> {
-		const returnData: any = await this.cartsModel.find().exec();
+	public async getCarts(userId: string): Promise<any> {
+		const returnData: any = await this.cartsModel.find({ userId }).exec();
 
 		return returnData;
 	}

@@ -16,4 +16,5 @@ export class AddCartsDto {
 	public readonly id: string;
 	public readonly num: number;
 	public readonly forceType: number;
+	public readonly userId: string;
 }

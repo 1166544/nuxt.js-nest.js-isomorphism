@@ -5,7 +5,8 @@ import * as mongoose from 'mongoose';
  */
 export const CartsSchema: any = new mongoose.Schema({
 	id: { type: String, unique: true, required: true },
-	num: Number
+	num: Number,
+	userId: { type: String, unique: true, required: true }
 },
 	{ collection: 'isomorphism.carts' }
 );
