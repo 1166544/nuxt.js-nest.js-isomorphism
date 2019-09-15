@@ -1,6 +1,7 @@
 import { IVO } from '~/core/interfaces/vo.interface';
 import IUser from '~/models/user';
 import configService from '~/core/service/config.service';
+import { setCustomHeaderByCSR, updateCustomHeaderByCSR } from '~/common/common.cookie';
 
 /**
  * 基础配置接口
@@ -73,6 +74,11 @@ export class BaseService {
 			this.apiServiceInstance = configService.getAxios();
 		}
 
+		// 客户端渲染时
+		if (process.client) {
+			setCustomHeaderByCSR(this.apiServiceInstance);
+		}
+
 		return this.apiServiceInstance;
 	}
 
@@ -81,7 +87,7 @@ export class BaseService {
 	 * @param loginData
 	 */
 	public updateIntercept(loginData: IUser): void {
-		this.apiService.setToken(loginData.accessToken);
+		updateCustomHeaderByCSR(loginData.accessToken, this.apiServiceInstance);
 	}
 
 	/**

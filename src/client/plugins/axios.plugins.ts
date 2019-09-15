@@ -2,7 +2,7 @@ import configService from '~/core/service/config.service';
 import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { HttpConst } from '~/core/consts/http.const';
 import Cookie from 'js-cookie';
-import parseCookie from '~/common/common.cookie';
+import { setCustomHeaderBySSR } from '~/common/common.cookie';
 
 /** axios defined */
 export let axios: NuxtAxiosInstance = null;
@@ -37,14 +37,15 @@ export default ({ app, redirect }): any => {
 	// Removes default Authorization header from `common` scope (all requests)
 	// axios.setToken(false);
 	// axios.setHeader('Authorization', getCustomHeader(app));
-	const accessToken: string = getCustomHeader(app);
-	axios.setHeader('Authorization', accessToken);
+
+	// 服务端使用时设置accessToken
+	setCustomHeaderBySSR(app, axios);
 
 	// 注册状态回调
 	axios.onRequest((config: any): any => {
 		// 设置自定义头部,TOKEN, AUTH等
 		// Adds header: `Authorization: test` to all requests
-		console.log(config.url);
+		// console.log(config.url);
 	});
 	axios.onResponse((response: any): any => {
 		// console.log('onResponse..', response);
@@ -76,29 +77,3 @@ export default ({ app, redirect }): any => {
 		console.log('onResponseError...', error);
 	});
 };
-
-/**
- * 生成自定义头部token
- * @param config
- */
-function getCustomHeader(app: any): any {
-
-	let accessToken: string = '';
-	// 检测cookie是否存在
-	if (app && app.context && app.context.req && app.context.req.headers) {
-		// 抓取cookie内认证值
-		const cookie: any = parseCookie(app.context.req.headers.cookie || '');
-
-		if (cookie && cookie.auth) {
-			let authData: any;
-			try {
-				authData = JSON.parse(decodeURIComponent(cookie.auth));
-			} catch (error) {
-				console.log(error);
-			}
-			accessToken = authData.accessToken;
-		}
-	}
-
-	return accessToken;
-}

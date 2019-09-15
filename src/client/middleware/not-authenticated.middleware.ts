@@ -1,6 +1,6 @@
 import configService from '~/core/service/config.service';
 import { ConfigDefault } from '../../../config/default.config';
-import parseCookie from '~/common/common.cookie';
+import { parseCookie } from '~/common/common.cookie';
 
 const config: ConfigDefault = configService.getConfig();
 const whiteList: Array<string> = config.authWhiteList();
