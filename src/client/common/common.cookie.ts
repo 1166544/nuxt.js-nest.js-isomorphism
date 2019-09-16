@@ -102,6 +102,17 @@ export function getUser(req: any, app: any): any {
 	} else {
 		// csr
 		authData = app.store.state.modules.auth.auth;
+
+		if (!authData || !authData._id) {
+			const cookie: any = Cookie.get('auth');
+			if (cookie) {
+				try {
+					authData = JSON.parse(decodeURIComponent(cookie));
+				} catch (error) {
+					console.log(error);
+				}
+			}
+		}
 	}
 
 	return authData;
