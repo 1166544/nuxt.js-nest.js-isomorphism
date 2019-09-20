@@ -2,28 +2,30 @@
 
 ## Nuxt.js and Nest.js isomorphism project
 
-<p>Nuxt and Nest integrated, ships with Vant.</p>
+<p>Nuxt 和 Nest 集成示例工程, UI层使用 Vant框架实现</p>
 
 
-## 1.Development
+## 1.开发环境运行
 ```js
 npm run client:prod				// local start on production mode
+
 npm run client:dev				// local start on development mode
 
 visit: http://localhost:8088
 ```
 
-## 2.Deploy
+## 2.部署
 ```js
 npm run build
 
 and
 
 cross-env NODE_ENV=production npm run start     // server start on production mode
+
 cross-env NODE_ENV=development npm run start    // server start on development mode
 ```
 
-## 3.Directory Structure
+## 3.目录结构
 ```js
 client ---The client side source code folder, write Vue.js logical
 here
