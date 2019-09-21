@@ -25,7 +25,8 @@
 		".nuxt": true,
 		"coverage": true,
 		"package-lock.json": true,
-		"config/config.env.ts": true
+		"config/config.env.ts": true,
+		"config/env.config.ts": true
 	},
 	"commentTranslate.targetLanguage": "zh-CN"
 }
