@@ -22,7 +22,7 @@
 		"serve": "npm run start:dev",
 		"prestart:prod": "npm run build",
 		"test": "jest --config=jest.json",
-		"cover": "node scripts/Cover.js",
+		"cover": "node build/BuildCover.js",
 		"test:watch": "jest --watch --config=jest.json",
 		"test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage"
 	},

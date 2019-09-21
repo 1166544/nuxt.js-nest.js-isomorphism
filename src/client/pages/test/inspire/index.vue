@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
-import { BaseView } from '~/core/views/base.view';
+import { BaseView } from '~/core/views/ViewBase';
 
 /** Inspire class */
 @Component({

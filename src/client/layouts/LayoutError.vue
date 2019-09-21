@@ -11,7 +11,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 /** ErrorPage Layout */
 @Component({})
-export default class Error400Page extends Vue {
+export default class ErrorPage extends Vue {
 	/** 定义模板 */
 	public layout({ isMobile }: any): string {
 		return 'LayoutDefault';
@@ -21,8 +21,7 @@ export default class Error400Page extends Vue {
 	@Prop()
 	public error: any = {
 		type: Object,
-		default: null,
-		statusCode: 404
+		default: null
 	};
 }
 </script>

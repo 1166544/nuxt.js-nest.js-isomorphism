@@ -14,7 +14,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator';
 export default class Error500Page extends Vue {
 	/** 定义模板 */
 	public layout({ isMobile }: any): string {
-		return 'default';
+		return 'LayoutDefault';
 	}
 
 	/** error数据 */

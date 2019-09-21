@@ -34,8 +34,8 @@ import {
 	Watch,
 	Emit
 } from 'nuxt-property-decorator';
-import TwitterHeadCard from '~/components/twitter-head.component.vue';
-import { BaseView } from '~/core/views/base.view';
+import TwitterHeadCard from '~/components/ComponentTwitter.vue';
+import { BaseView } from '~/core/views/ViewBase';
 
 /** 测试用SYMBOL */
 const symbol: any = Symbol('DemoTest');

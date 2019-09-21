@@ -38,15 +38,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { ICartsItem, CartsVO } from '~/models/carts';
-import Header from '~/components/header.component.vue';
+import { ICartsItem, CartsVO } from '~/models/ModelCarts';
+import Header from '~/components/ComponentHeader.vue';
 import { Toast } from 'vant';
-import { BaseView } from '~/core/views/base.view';
-import localService from '~/service/local.service';
-import commonCart from '~/common/common.cart';
-import { HttpConst } from '~/core/consts/http.const';
-import IUser from '../../models/user';
-import { getUser } from '~/common/common.cookie';
+import { BaseView } from '~/core/views/ViewBase';
+import localService from '~/service/ServiceLocal';
+import commonCart from '~/common/CommonCart';
+import { HttpConst } from '~/core/consts/ConstHttp';
+import IUser from '../../models/ModelUser';
+import { getUser } from '~/common/CommonCookie';
 
 /** 购物车页 */
 @Component({

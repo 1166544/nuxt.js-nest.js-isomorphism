@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import { State } from 'vuex-class';
-import { BaseView } from '~/core/views/base.view';
+import { BaseView } from '~/core/views/ViewBase';
 
 /** 测试模块 */
 @Component({})

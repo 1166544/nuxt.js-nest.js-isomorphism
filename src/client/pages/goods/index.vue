@@ -43,16 +43,16 @@
 
 <script lang="ts">
 import { Component, Vue, Getter } from 'nuxt-property-decorator';
-import Routers from '~/routers/routers';
-import Header from '~/components/header.component.vue';
-import { ICartsItem, CartsVO } from '~/models/carts';
+import Routers from '~/routers/RoutersClient';
+import Header from '~/components/ComponentHeader.vue';
+import { ICartsItem, CartsVO } from '~/models/ModelCarts';
 import { Toast } from 'vant';
-import localService from '~/service/local.service';
-import { BaseView } from '~/core/views/base.view';
-import { HttpConst } from '~/core/consts/http.const';
-import commonCart from '~/common/common.cart';
-import IUser from '~/models/user';
-import { getUser } from '~/common/common.cookie';
+import localService from '~/service/ServiceLocal';
+import { BaseView } from '~/core/views/ViewBase';
+import { HttpConst } from '~/core/consts/ConstHttp';
+import commonCart from '~/common/CommonCart';
+import IUser from '~/models/ModelUser';
+import { getUser } from '~/common/CommonCookie';
 
 /** 产品页 */
 @Component({

@@ -38,16 +38,16 @@
 </template>
 
 <script lang="ts">
-import Logo from '~/components/logo.component.vue';
-import TwitterHeadCard from '~/components/twitter-head.component.vue';
+import Logo from '~/components/ComponentLogo.vue';
+import TwitterHeadCard from '~/components/ComponentTwitter.vue';
 import { Component, Vue } from 'nuxt-property-decorator';
-import Routers from '~/routers/routers';
-import localService from '~/service/local.service';
-import { BaseView } from '~/core/views/base.view';
-import commonCart from '~/common/common.cart';
+import Routers from '~/routers/RoutersClient';
+import localService from '~/service/ServiceLocal';
+import { BaseView } from '~/core/views/ViewBase';
+import commonCart from '~/common/CommonCart';
 import Cookie from 'js-cookie';
-import IUser from '~/models/user';
-import { getUser } from '~/common/common.cookie';
+import IUser from '~/models/ModelUser';
+import { getUser } from '~/common/CommonCookie';
 
 /** 首页 */
 @Component({

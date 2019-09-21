@@ -4,7 +4,7 @@ import {
 	mutation,
 	VuexModule
 } from 'vuex-class-component';
-import { ICartsItem, CartsVO } from '~/models/carts';
+import { ICartsItem, CartsVO } from '~/models/ModelCarts';
 // import { axios } from '~/plugins/axios.plugins';
 
 /**
@@ -113,12 +113,14 @@ export class CartsStore extends VuexModule {
 			}
 		}
 
-		while (data.length) {
-			const item: any = data.shift();
-			const cartItem: CartsVO = new CartsVO();
+		if (data && data.length) {
+			while (data.length) {
+				const item: any = data.shift();
+				const cartItem: CartsVO = new CartsVO();
 
-			cartItem.update(item);
-			this.addCarts(cartItem);
+				cartItem.update(item);
+				this.addCarts(cartItem);
+			}
 		}
 
 		return data;

@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Component, Vue, mixins } from 'nuxt-property-decorator';
-import MixinSample from './components/mixins-sample.component';
+import MixinSample from './components/ComponentMixinsSample';
 
 /** Use Mixin demo */
 @Component({})

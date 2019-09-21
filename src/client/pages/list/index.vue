@@ -36,12 +36,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import Header from '~/components/header.component.vue';
+import Header from '~/components/ComponentHeader.vue';
 import { Toast } from 'vant';
-import cnodeService from '~/service/cnode.service';
-import localService from '~/service/local.service';
-import Routers from '~/routers/routers';
-import { BaseView } from '~/core/views/base.view';
+import cnodeService from '~/service/ServiceCNode';
+import localService from '~/service/ServiceLocal';
+import Routers from '~/routers/RoutersClient';
+import { BaseView } from '~/core/views/ViewBase';
 
 /** 主题列表页 */
 @Component({

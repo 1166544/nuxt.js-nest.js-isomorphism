@@ -42,14 +42,14 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
 import Cookie from 'js-cookie';
-import Header from '~/components/header.component.vue';
-import { BaseView } from '~/core/views/base.view';
-import Routers from '~/routers/routers';
-import localService from '~/service/local.service';
+import Header from '~/components/ComponentHeader.vue';
+import { BaseView } from '~/core/views/ViewBase';
+import Routers from '~/routers/RoutersClient';
+import localService from '~/service/ServiceLocal';
 import md5 from 'md5';
-import { HttpConst } from '~/core/consts/http.const';
+import { HttpConst } from '~/core/consts/ConstHttp';
 import { Toast } from 'vant';
-import IUser from '../../../models/user';
+import IUser from '../../../models/ModelUser';
 
 /** LoginPage Layout */
 @Component({

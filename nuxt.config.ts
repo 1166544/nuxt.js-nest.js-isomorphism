@@ -1,8 +1,8 @@
-import { ConfigDefault } from './config/default.config';
+import { ConfigDefault } from './config/ConfigDefault';
 import NuxtConfiguration from '@nuxt/config';
 import nodeExternals from 'webpack-node-externals';
 
-const isDev = !(process.env.NODE_ENV === 'production');
+const isDev: boolean = !(process.env.NODE_ENV === 'production');
 const configDefault: ConfigDefault = new ConfigDefault();
 
 const config: NuxtConfiguration = {
@@ -11,7 +11,7 @@ const config: NuxtConfiguration = {
 	env: {
 		host: configDefault.serverAdderess,
 		port: configDefault.port,
-		baseUrl: process.env.BASE_URL || `http://${configDefault.serverAdderess}:${configDefault.port}`,
+		baseUrl: process.env.BASE_URL || `http://${configDefault.serverAdderess}:${configDefault.port}`
 	},
 
 	srcDir: './src/client/',
@@ -25,11 +25,11 @@ const config: NuxtConfiguration = {
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=0' },
-			{ hid: 'description', name: 'description', content: 'meta description' },
+			{ hid: 'description', name: 'description', content: 'meta description' }
 		],
 		link: [
-			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-		],
+			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+		]
 	},
 
 	/** Render content */
@@ -40,27 +40,27 @@ const config: NuxtConfiguration = {
 	/*
 	 ** Customize the progress-bar
 	 */
-	loading: '~/components/loading.component.vue',
+	loading: '~/components/ComponentLoading.vue',
 
 	/*
 	 ** Global CSS
 	 */
-	css: ['~/assets/style/app.styl'],
+	css: ['~/assets/style/App.styl'],
 
 	/*
 	 ** Plugins to load before mounting the App
 	 */
 	plugins: [
 		{
-			src: '~/plugins/vant.plugins',
+			src: '~/plugins/PluginVant',
 			ssr: true
 		},
 		{
-			src: '~/plugins/flexible.plugins',
+			src: '~/plugins/PluginFlexible',
 			ssr: false
 		},
 		{
-			src: '~/plugins/axios.plugins',
+			src: '~/plugins/PluginAxios',
 			ssr: true
 		}
 	],
@@ -69,7 +69,7 @@ const config: NuxtConfiguration = {
 	 ** Nuxt.js modules
 	 */
 	modules: [
-		'@nuxtjs/axios', // Doc: https://axios.nuxtjs.org/usage
+		'@nuxtjs/axios' // Doc: https://axios.nuxtjs.org/usage
 		// '@nuxtjs/proxy'
 	],
 	/*
@@ -98,9 +98,9 @@ const config: NuxtConfiguration = {
 		babel: {
 			plugins: [
 				'@babel/plugin-transform-modules-commonjs',
-				["@babel/plugin-proposal-decorators", { legacy: true }],
-				["@babel/plugin-proposal-class-properties", { loose: true }]
-			],
+				['@babel/plugin-proposal-decorators', { legacy: true }],
+				['@babel/plugin-proposal-class-properties', { loose: true }]
+			]
 		},
 		transpile: [],
 		plugins: [],
@@ -109,25 +109,26 @@ const config: NuxtConfiguration = {
 		/*
 		 ** You can extend webpack config here
 		 */
+		// tslint:disable-next-line:typedef
 		extend(config, { isClient }) {
 			if (process.server) {
 				config.externals = [
 					nodeExternals({
-						whitelist: [/^vant/],
-					}),
+						whitelist: [/^vant/]
+					})
 				];
 			}
 
 			if (isClient) {
-				config.devtool = '#source-map'
+				config.devtool = '#source-map';
 			}
-		},
+		}
 	},
 
 	router: {
 		middleware: [
-			'mobile.middleware',
-			'not-authenticated.middleware'
+			'MiddlewareMobile',
+			'MiddlewareNotAuthenticated'
 		]
 	}
 };

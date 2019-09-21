@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { BaseView } from '~/core/views/base.view';
+import { BaseView } from '~/core/views/ViewBase';
 
 /** Test class */
 @Component({})
