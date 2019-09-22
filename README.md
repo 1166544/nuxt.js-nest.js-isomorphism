@@ -4,8 +4,28 @@
 
 <p>Nuxt 和 Nest 集成示例工程, UI层使用 Vant框架实现</p>
 
+## 1.前置条件
+#### MongoDB
+> 工程中使用到了MongoDB,需先在本地安装该服务
 
-## 1.开发环境运行
+[MongoDB安装教程](https://docs.mongodb.com/manual/installation/)
+> 安装完成后使用以下命令启动:
+```js
+mongod --config mongod配置目录/mongod.conf --dbpath 数据库存放目录
+
+例如:
+mongod --config /usr/local/etc/mongod.conf --dbpath /usr/local/mongodir
+```
+<br/>
+
+#### Charles
+> 对接接口时借助Charles抓包析工具能提升开发效率和快速定位问题,请注意Charles端口是否已设置为8888(默认值)
+
+[Charles Web Debugging Proxy](https://www.charlesproxy.com/)
+
+<br/>
+
+## 2.开发环境运行
 ```js
 npm run client:prod				// local start on production mode
 
@@ -14,7 +34,7 @@ npm run client:dev				// local start on development mode
 visit: http://localhost:8088
 ```
 
-## 2.部署
+## 3.生产环境运行
 ```js
 npm run build
 
@@ -25,7 +45,7 @@ cross-env NODE_ENV=production npm run start     // server start on production mo
 cross-env NODE_ENV=development npm run start    // server start on development mode
 ```
 
-## 3.目录结构
+## 4.目录结构
 ```js
 client ---The client side source code folder, write Vue.js logical
 here
@@ -58,14 +78,14 @@ server --- The server side(Node.js) logical here
              |--------- modeule D..
 ```
 
-## 4.Frameworks
+## 5.Frameworks
 > [Vant - Mobile UI Components built on Vue](https://youzan.github.io/vant/#/zh-CN/intro)
 
 > [Nest.js - A progressive Node.js framework for building efficient, reliable and scalable server-side applications.](https://nestjs.com/)
 
 > [Nuxt.js - The Vue.js Framework](https://nuxtjs.org/)
 
-## 5.Plugins
+## 6.Plugins
 > [Nuxt-property-decorator](https://github.com/nuxt-community/nuxt-property-decorator)
 
 > [Vue class component](https://github.com/vuejs/vue-class-component)
