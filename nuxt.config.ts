@@ -25,7 +25,6 @@ const config: NuxtConfiguration = {
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=0' },
-			{ hid: 'description', name: 'description', content: 'meta description' }
 		],
 		link: [
 			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

@@ -69,8 +69,8 @@ export default class Index extends BaseView {
 	private headerData: any = {
 		title: '资讯列表',
 		meta: [
-			{ hid: 'description', name: 'some seo description' },
-			{ hid: 'keywords', name: 'ssr vuex vue nuxt.js nest.js' }
+			{ name: 'description', content: 'some seo description' },
+			{ name: 'keywords', content: 'ssr vuex vue nuxt.js nest.js' }
 		]
 	};
 
@@ -92,7 +92,7 @@ export default class Index extends BaseView {
 
 	/** 下拉刷新 */
 	private async onRefresh(): Promise<any> {
-		const data: any = await cnodeService.getTopics();
+		const data: any = await cnodeService.getT可opics();
 
 		this.listData = data.data.data;
 		this.loading = false;
