@@ -59,7 +59,7 @@ export default class Index extends BaseView {
 	private totalPrice: number = 0;
 	private headerTitle: string = '';
 	private headerData: any = {
-		title: 'Cart Page',
+		title: '购物车',
 		meta: [{ hid: 'description', name: 'some seo description' }],
 		noscript: [{ innerHTML: 'Body No Script', body: true }],
 		script: [
@@ -157,31 +157,31 @@ export default class Index extends BaseView {
 
 <style lang="stylus" scoped>
 .card-goods {
-  padding: 20px 20px 0 20px;
-  background-color: #fff;
+    padding: 20px 20px 0 20px;
+    background-color: #fff;
 
-  &__item {
-    position: relative;
-    background-color: #fafafa;
+    &__item {
+        position: relative;
+        background-color: #fafafa;
 
-    .van-checkbox__label {
-      width: 100%;
-      height: auto; // temp
-      padding: 0 10px 0 15px;
-      box-sizing: border-box;
+        .van-checkbox__label {
+            width: 100%;
+            height: auto; // temp
+            padding: 0 10px 0 15px;
+            box-sizing: border-box;
+        }
+
+        .van-checkbox__icon {
+            top: 50%;
+            left: 10px;
+            z-index: 1;
+            position: absolute;
+            margin-top: -10px;
+        }
+
+        .van-card__price {
+            color: #f44;
+        }
     }
-
-    .van-checkbox__icon {
-      top: 50%;
-      left: 10px;
-      z-index: 1;
-      position: absolute;
-      margin-top: -10px;
-    }
-
-    .van-card__price {
-      color: #f44;
-    }
-  }
 }
 </style>

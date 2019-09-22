@@ -60,7 +60,7 @@ import IUser from '../../../models/ModelUser';
 export default class LoginPage extends BaseView {
 	private headerTitle: string = '';
 	private headerData: any = {
-		title: 'Login Page',
+		title: '欢迎你',
 		meta: [{ hid: 'description', name: 'some seo description' }],
 		noscript: [{ innerHTML: 'Body No Script', body: true }],
 		script: [

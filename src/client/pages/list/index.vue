@@ -67,7 +67,7 @@ export default class Index extends BaseView {
 
 	/** 页面TDK */
 	private headerData: any = {
-		title: 'List Page',
+		title: '资讯列表',
 		meta: [
 			{ hid: 'description', name: 'some seo description' },
 			{ hid: 'keywords', name: 'ssr vuex vue nuxt.js nest.js' }

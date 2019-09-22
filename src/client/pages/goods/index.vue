@@ -63,7 +63,7 @@ import { getUser } from '~/common/CommonCookie';
 export default class Index extends BaseView {
 	private headerTitle: string = '';
 	private headerData: any = {
-		title: 'Goods Page',
+		title: '商品信息',
 		meta: [{ hid: 'description', name: 'some seo description' }],
 		noscript: [{ innerHTML: 'Body No Script', body: true }],
 		script: [
@@ -155,39 +155,39 @@ export default class Index extends BaseView {
 
 <style lang="stylus" scoped>
 .goods {
-  padding-bottom: 50px;
+    padding-bottom: 50px;
 
-  &-swipe {
-    img {
-      width: 100%;
-      display: block;
+    &-swipe {
+        img {
+            width: 100%;
+            display: block;
+        }
     }
-  }
 
-  &-title {
-    font-size: 16px;
-  }
-
-  &-price {
-    color: #f44;
-  }
-
-  &-express {
-    color: #999;
-    font-size: 12px;
-    padding: 5px 15px;
-  }
-
-  &-cell-group {
-    margin: 15px 0;
-
-    .van-cell__value {
-      color: #999;
+    &-title {
+        font-size: 16px;
     }
-  }
 
-  &-tag {
-    margin-left: 5px;
-  }
+    &-price {
+        color: #f44;
+    }
+
+    &-express {
+        color: #999;
+        font-size: 12px;
+        padding: 5px 15px;
+    }
+
+    &-cell-group {
+        margin: 15px 0;
+
+        .van-cell__value {
+            color: #999;
+        }
+    }
+
+    &-tag {
+        margin-left: 5px;
+    }
 }
 </style>
