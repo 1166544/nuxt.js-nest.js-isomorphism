@@ -78,14 +78,18 @@ server --- The server side(Node.js) logical here
              |--------- modeule D..
 ```
 
-## 5.Frameworks
+## 5.DataBase Proview
+![db](docs/1569804144167.jpg)
+<br/>
+
+## 6.Frameworks
 > [Vant - Mobile UI Components built on Vue](https://youzan.github.io/vant/#/zh-CN/intro)
 
 > [Nest.js - A progressive Node.js framework for building efficient, reliable and scalable server-side applications.](https://nestjs.com/)
 
 > [Nuxt.js - The Vue.js Framework](https://nuxtjs.org/)
 
-## 6.Plugins
+## 7.Plugins
 > [Nuxt-property-decorator](https://github.com/nuxt-community/nuxt-property-decorator)
 
 > [Vue class component](https://github.com/vuejs/vue-class-component)
