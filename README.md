@@ -5,7 +5,7 @@
 <p>Nuxt 和 Nest 集成示例工程, UI层使用 Vant框架实现</p>
 
 ## 1.前置条件
-#### MongoDB
+#### MongoDB 
 > 工程中使用到了MongoDB,需先在本地安装该服务
 
 [MongoDB安装教程](https://docs.mongodb.com/manual/installation/)
