@@ -9,7 +9,7 @@
 > 工程中使用到了MongoDB,需先在本地安装该服务
 
 [MongoDB安装教程](https://docs.mongodb.com/manual/installation/)
-> 安装完成后使用以下命令启动:
+> 安装完成后使用以下命令启动: 
 ```js
 mongod --config mongod配置目录/mongod.conf --dbpath 数据库存放目录
 
