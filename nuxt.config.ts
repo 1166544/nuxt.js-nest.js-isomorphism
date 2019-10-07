@@ -18,7 +18,7 @@ const config: NuxtConfiguration = {
 	dev: isDev,
 
 	/*
-	 ** Headers of the page
+	 ** 默认SEO头部信息
 	 */
 	head: {
 		title: 'Nuxt.js bio project',
