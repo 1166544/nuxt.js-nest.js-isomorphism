@@ -52,15 +52,12 @@ export class ConfigDB extends ConfigDefault {
 			// 开发MOGO DB配置
 			case ConfigDefault.ENV_DEV:
 				return this.getDevEnviromentMongoConfig();
-				break;
 			// 生产MOGO DB配置
 			case ConfigDefault.ENV_PROD:
 				return this.getProdEnviromentMongoConfig();
-				break;
 			// 默认MOGO DB配置
 			default:
 				return this.getProdEnviromentMongoConfig();
-				break;
 		}
 	}
 }
