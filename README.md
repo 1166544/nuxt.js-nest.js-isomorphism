@@ -17,7 +17,7 @@
 ```js
 mongod --config mongod配置目录/mongod.conf --dbpath 数据库存放目录
 
-例如:
+例如: 
 mongod --config /usr/local/etc/mongod.conf --dbpath /usr/local/mongodir
 ```
 
