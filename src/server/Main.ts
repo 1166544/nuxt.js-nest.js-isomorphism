@@ -19,6 +19,7 @@ declare const module: any;
 // tslint:disable-next-line:typedef
 async function bootstrap() {
 	const { host, port } = config.env;
+	const serverPort: number = process.env.PORT || port;
 
 	const nuxt: any = await NuxtServer.getInstance().run(
 		config.dev ? !module.hot._main : true
@@ -29,9 +30,9 @@ async function bootstrap() {
 	server.useGlobalFilters(new NuxtFilter(nuxt));
 	server.useGlobalPipes(new ValidationPipe());
 	server.setGlobalPrefix(configer.getGlobalPrefix());
-	await server.listen(port, host, () => {
+	await server.listen(serverPort, host, () => {
 		Consola.ready({
-			message: `Server listening on http://${host}:${port}`,
+			message: `Server listening on http://${host}:${serverPort}`,
 			badge: true
 		});
 	});

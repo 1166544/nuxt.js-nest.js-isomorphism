@@ -10,7 +10,10 @@ import { setCustomHeaderByCSR, updateCustomHeaderByCSR } from '~/common/CommonCo
  * @interface IBaseOption
  */
 export interface IBaseOption {
+	/** 基础URL */
 	baseUrl: string;
+
+	/** 是否本地调用 */
 	isLocalHost: boolean;
 }
 
