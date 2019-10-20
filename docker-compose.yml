@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  nest:
+    build: .
+    ports:
+    - "3100:3100"
+    networks:
+    - docker-nest-typegoose-net
+    depends_on:
+    - mongo
+  mongo:
+    image: mongo:4.2
+    ports:
+    - "27017:27017"
+    networks:
+    - docker-nest-typegoose-net
+
+networks:
+  docker-nest-typegoose-net:
+    driver: bridge
