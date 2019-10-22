@@ -14,13 +14,12 @@ RUN yarn
 # Build the API
 COPY src src/
 COPY tsconfig.json .
-COPY .env.* ./
+COPY config config/
+COPY build build/
 RUN yarn build
 
 # Expose the API port
-EXPOSE 3100
+EXPOSE 8088
 
-# Run the API with pm2
-COPY ecosystem.config.js .
-ENTRYPOINT [ "pm2-runtime" ]
-CMD [ "start", "ecosystem.config.js" ]
+# Run
+CMD [ "start" ]
