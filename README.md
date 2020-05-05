@@ -21,7 +21,7 @@ mongod --config mongod配置目录/mongod.conf --dbpath 数据库存放目录
 mongod --config /usr/local/etc/mongod.conf --dbpath /usr/local/mongodir
 ```
 
-<br/> 
+<br/>  
 
 #### Charles 
 
