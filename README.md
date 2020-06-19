@@ -10,7 +10,7 @@
 
 > 工程中使用到了 MongoDB,需先在本地安装该服务 
 
-[MongoDB 安装教程](https://docs.mongodb.com/manual/installation/)
+[MongoDB 安装教程](https://docs.mongodb.com/manual/installation/) 
 
 > 安装完成后使用以下命令启动:  
 
