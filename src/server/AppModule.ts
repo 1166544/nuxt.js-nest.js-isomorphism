@@ -11,11 +11,7 @@ import { LocalModule } from './modules/local/LocalModule';
  * @class ApplicationModule
  */
 @Module({
-	imports: [
-		CatsModule,
-		TransportModule,
-		LocalModule
-	],
+	imports: [CatsModule, TransportModule, LocalModule],
 	controllers: [AppController]
 })
-export class ApplicationModule { }
+export class ApplicationModule {}
