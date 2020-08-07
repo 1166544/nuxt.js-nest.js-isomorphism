@@ -39,7 +39,7 @@
 		"@types/jasmine": "3.3.16",
 		"@types/mocha": "5.2.7",
 		"@types/mongoose": "5.5.16",
-		"class-transformer": "0.2.3",
+		"class-transformer": "0.3.1",
 		"class-validator": "0.9.1",
 		"cookieparser": "0.1.0",
 		"cross-env": "5.2.0",
