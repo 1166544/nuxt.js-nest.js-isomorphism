@@ -92,7 +92,7 @@ export default class Index extends BaseView {
 
 	/** 下拉刷新 */
 	private async onRefresh(): Promise<any> {
-		const data: any = await cnodeService.getT可opics();
+		const data: any = await cnodeService.getTopics();
 
 		this.listData = data.data.data;
 		this.loading = false;
